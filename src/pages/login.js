@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import { useAuth } from "@/lib/auth";
 import withoutAuth from "@/hocs/withoutAuth";
@@ -12,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Routes from "../constants/routes";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
+import Head from "next/head";
 
 const schema = yup.object().shape({
   email: yup
@@ -73,7 +75,10 @@ const Login = () => {
   };
   return (
     <div className={styles.login}>
-      <Grid container justify="center">
+      <Head>
+        <title>Inicio de Sesión</title>
+      </Head>
+      <Grid container justify="center" style={{ height: "600px" }}>
         <Grid item xs={12} className={classes.icon}>
           <Image
             src="/login/key.png"
