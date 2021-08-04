@@ -40,7 +40,7 @@ const Laws = () => {
   return (
     <>
       <Head>
-        <title>Ley</title>
+        <title>¿Qué dice la Ley?</title>
       </Head>
       <Grid container className={classes.root}>
         <Grid className={classes.subheader}>

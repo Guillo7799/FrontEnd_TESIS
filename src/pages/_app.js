@@ -7,6 +7,7 @@ import theme from "@/styles/theme";
 import { Router } from "next/router";
 import NProgress from "nprogress";
 import { SnackbarProvider } from "notistack";
+import Footer from "@/components/Footer";
 
 Router.events.on("routeChangeStart", (url) => {
   console.log(`Loading: ${url}`);
@@ -45,6 +46,7 @@ function App({ Component, pageProps }) {
           </ThemeProvider>
         </AuthProvider>
       </SnackbarProvider>
+      <Footer />
     </>
   );
 }

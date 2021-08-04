@@ -7,6 +7,7 @@ import { useAuth } from "../lib/auth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
+import Head from "next/head";
 
 const schema = yup.object().shape({
   email: yup
@@ -75,13 +76,22 @@ const SendPasswordResetEmailPage = () => {
 
   return (
     <Grid container justify="center">
-      <Grid item xs={6}>
+      <Head>
+        <title>Recuperar Contraseña</title>
+      </Head>
+      <Grid item xs={6} style={{ height: "600px" }}>
         <form
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit(onSendEmail)}
         >
           <Grid container spacing={2} justify="center" alignItems="center">
+            <h1>Recordar contraseña</h1>
+            <p>
+              Prácticas al día enviará un correo al email que especifiques a
+              continuación, por favor si no encuentras el correo, revísalo en
+              correo no deseado.
+            </p>
             <Grid xs={12} item>
               <TextField
                 id="email"
