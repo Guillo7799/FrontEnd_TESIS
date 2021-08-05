@@ -1,6 +1,3 @@
-/**
- * Created by chalosalvador on 8/16/20
- */
 import { useAuth } from "@/lib/auth";
 import Loading from "@/components/Loading";
 import Routes from "../constants/routes";

@@ -11,7 +11,7 @@ const publicRoutes = {
 
 const privateRoutes = {
   HOME: "/",
-  // ARTICLE_ID: "/publication/:id",
+  // PUBLICATION_ID: "/publication/:id",
   // USERS: "/usuarios",
   // USERS_ID: `/usuario/:id`,
 };
