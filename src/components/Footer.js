@@ -99,7 +99,7 @@ const Footer = () => {
                   <Input
                     type="email"
                     className="form-control"
-                    placeholder="Tu Correo electrónico"
+                    placeholder="Tu correo electrónico"
                     name="email"
                     size="medium"
                     style={{ width: "50%", minHeight: "15%", color: "white" }}
