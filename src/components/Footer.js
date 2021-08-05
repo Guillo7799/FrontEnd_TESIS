@@ -56,14 +56,20 @@ const Footer = () => {
               Conoce más sobre la plataforma, visita nuestras redes sociales
             </p>
             <br />
-            <YouTubeIcon style={{ fontSize: 70, color: "red" }} />
-            <LinkedInIcon style={{ fontSize: 70, color: "#0270AD" }} />
-            <InstagramIcon
-              style={{
-                fontSize: 65,
-                color: "white",
-              }}
-            />
+            <a href="https://www.youtube.com/channel/UCi-LZGktPQ08v4vfF-ej9Qg">
+              <YouTubeIcon style={{ fontSize: 70, color: "red" }} />
+            </a>
+            <a href="https://www.linkedin.com/in/guillermo-rivera-guerrero-4556b5205/">
+              <LinkedInIcon style={{ fontSize: 70, color: "#0270AD" }} />
+            </a>
+            <a href="https://www.instagram.com/guillo_rivera7/">
+              <InstagramIcon
+                style={{
+                  fontSize: 63,
+                  color: "white",
+                }}
+              />
+            </a>
           </Grid>
           <Grid item xs={12} sm={12} className={classes.content}>
             <p style={{ fontSize: 20, color: "#878586" }}>
