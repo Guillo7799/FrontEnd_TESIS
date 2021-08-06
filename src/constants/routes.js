@@ -1,6 +1,6 @@
 const publicRoutes = {
   LOGIN: "/login",
-  REGISTER: "/registro",
+  REGISTER: "/register",
   ARTICLES: "/articles",
   ABOUT: "/about",
   REMEMBERPASSWORD: "/olvide-mi-clave",

@@ -3,14 +3,14 @@ import { useForm } from "react-hook-form";
 import withoutAuth from "@/hocs/withoutAuth";
 import { useAuth } from "@/lib/auth";
 
-const Register = () => {
+const BusinessRegister = () => {
   const { register: doRegister } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     console.log("data", data);
     try {
-      const userData = await doRegister({ ...data, role: "ROLE_STUDENT" });
+      const userData = await doRegister({ ...data, role: "ROLE_BUSINESS" });
 
       console.log("userData", userData);
     } catch (error) {
@@ -39,10 +39,6 @@ const Register = () => {
           <input type="text" name="name" id="name" ref={register} />
         </div>
         <div>
-          <label htmlFor="last_name">Last Name</label>
-          <input type="text" name="last_name" id="last_name" ref={register} />
-        </div>
-        <div>
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" ref={register} />
         </div>
@@ -60,47 +56,13 @@ const Register = () => {
           />
         </div>
         <div>
-          <label htmlFor="province">Province</label>
-          <input type="text" name="province" id="province" ref={register} />
+          <label htmlFor="editorial">Editorial</label>
+          <input name="editorial" id="editorial" ref={register} />
         </div>
         <div>
-          <label htmlFor="city">city</label>
-          <input name="city" id="city" ref={register} />
+          <label htmlFor="short_bio">Bio</label>
+          <textarea name="short_bio" id="short_bio" ref={register} />
         </div>
-        <div>
-          <label htmlFor="location">location</label>
-          <input type="text" name="location" id="location" ref={register} />
-        </div>
-        <div>
-          <label htmlFor="description">description</label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            ref={register}
-          />
-        </div>
-        <div>
-          <label htmlFor="cellphone">cellphone</label>
-          <input type="tel" name="cellphone" id="cellphone" ref={register} />
-        </div>
-        <div>
-          <label htmlFor="Foto de perfil">Subir foto de perfil:</label>
-          <input
-            type="file"
-            name="Foto de Perfil"
-            accept="image/png, .jpeg, .jpg, image/gif"
-            ref={register}
-          />
-        </div>
-        {/*<div>
-          <select name="Rolde usuario">
-            <option value="ROL_STUDENT">Estudiante</option>
-            <option value="ROL_BUSINESS" selected>
-              Empresa
-            </option>
-          </select>
-        </div>*/}
         <div>
           <input type="submit" />
         </div>
@@ -109,4 +71,4 @@ const Register = () => {
   );
 };
 
-export default withoutAuth(Register);
+export default withoutAuth(BusinessRegister);
