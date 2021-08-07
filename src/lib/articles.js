@@ -1,7 +1,3 @@
-/**
- * Created by chalosalvador on 17/2/21
- */
-
 import api from "./api";
 
 async function getAll() {

@@ -1,7 +1,3 @@
-/**
- * Created by chalosalvador on 17/2/21
- */
-
 import axios from "axios";
 
 export default axios.create({
