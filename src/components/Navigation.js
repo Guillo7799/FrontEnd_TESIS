@@ -30,7 +30,11 @@ const drawerWidth = 240;
 const mainMenuItems = [
   {
     text: "Foro",
-    to: Routes.HOME,
+    to: Routes.FORO,
+  },
+  {
+    text: "Acerca de",
+    to: Routes.FORO,
   },
   {
     text: <HomeIcon />,

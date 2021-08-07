@@ -1,6 +1,3 @@
-/**
- * Created by chalosalvador on 2/2/21
- */
 import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "./api";
 import cookie from "js-cookie";
