@@ -1,16 +1,26 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "../constants/routes";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import api from "@/lib/api";
+import translateMessage from "../constants/messages";
 import Image from "next/image";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import swal from "sweetalert";
+import withAuth from "@/hocs/withAuth";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
+import Comments from "@/components/Comments";
+
+const schema = yup.object().shape({
+  text: yup.string().required("Ingresa tu comentario"),
+});
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -20,10 +30,8 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
   },
   root: {
-    width: "100%",
     marginTop: 20,
-    margin: "1rem",
-    padding: "1rem",
+    textAlign: "center",
     alignContent: "center",
     justifyContent: "center",
   },
@@ -35,18 +43,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 1%",
     boxShadow: " 5px 5px 0 #AAA",
     borderRadius: "5px",
-  },
-  input: {
-    textAlign: "left",
-  },
-  buttons: {
-    textAlign: "center",
-  },
-  input2: {
-    width: "80%",
-    height: "130px",
-    font: "300 15px Open Sans, Arial, sans-serif",
-    margin: "5px 0 10px 0",
   },
   root3: {
     minWidth: "150px",
@@ -73,10 +69,62 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "10%",
     maxWidth: "400px",
   },
+  main: {
+    maxWidth: "100%",
+    minWidth: "100%",
+    textAlign: "center",
+    justifyContent: "center",
+  },
+  form: {
+    maxWidth: "100%",
+    maxHeigh: "15%",
+  },
 }));
 
 const Comment = () => {
   const classes = useStyles();
+  const { register, handleSubmit, control, errors } = useForm();
+  const [name, setName] = useState("");
+
+  const onSubmit = async (data) => {
+    console.log("data", data);
+    const user = withAuth();
+    const commentData = { ...data, user };
+    console.log("Comment", commentData);
+    try {
+      const response = await api.post("/comments", commentData);
+      console.log("Data Comment", response);
+      swal({
+        title: "Comentario registrado con éxito!",
+        icon: "success",
+        button: "Aceptar",
+        timer: "3000",
+      });
+      return response;
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        swal({
+          title: translateMessage(error.response.data.error),
+          icon: "error",
+          button: "Aceptar",
+        });
+        console.log(error.response.data);
+        return Promise.reject(error.response);
+        // return error.response;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    }
+  };
   const bull = <span className={classes.bullet}>•</span>;
   return (
     <>
@@ -84,7 +132,8 @@ const Comment = () => {
         <title>Foro</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
-        <h1>Foro de Comentarios</h1>
+        <QuestionAnswerIcon style={{ fontSize: 30 }} />
+        <h1 style={{ fontSize: 40 }}>Foro de Comentarios</h1>
         <hr color="black" width="90%" />
       </Grid>
       <Grid item xs={12} className={classes.title}>
@@ -93,103 +142,83 @@ const Comment = () => {
           y tu punto de vista sobre esta.
         </h2>
       </Grid>
-      <Grid container className={classes.root}>
-        <Grid item xs={12} sm={12} className={classes.show}>
-          <label>Ingresa tu comentario </label>
-          <br />
-          <input
-            className={classes.input2}
-            type="text"
-            name="content"
-            size="70"
-            placeholder="Experiencia de uso, opinión..."
-          />
-          <br />
-          <br />
-          <br />
-          <label>La fecha de publicación será automática </label>
-          <br />
-          <br />
+      <Grid container className={classes.root} item xs={12} sm={12}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          style={{
+            margin: "auto !important",
+            alignContent: "center",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
+          <form
+            className={classes.form}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                label="Multiline"
+                multiline
+                rows={4}
+                id="text"
+                inputRef={register}
+                label="Ingrese su comentario"
+                name="content"
+                autoComplete="text"
+                style={{ width: "100%", minHeight: "15%" }}
+              />
+              <br />
+              <br />
+            </Grid>
+            <Grid container item xs={12} sm={12}>
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                style={{ textAlign: "right", paddingRight: 30 }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Comentar
+                </Button>
+                <br />
+                <br />
+              </Grid>
+              <Grid
+                item
+                xs={6}
+                sm={6}
+                style={{ textAlign: "left", paddingLeft: 30 }}
+              >
+                <Link href={Routes.HOME} passHref>
+                  <MuiLink>
+                    <Button variant="contained" color="primary">
+                      Cancelar
+                    </Button>
+                  </MuiLink>
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
         </Grid>
-        <Grid item xs={6} sm={6} className={classes.input}></Grid>
       </Grid>
-      <Grid item xs={12} className={classes.buttons}>
-        <Link href={Routes.HOME} passHref>
-          <MuiLink>
-            <Button variant="contained" color="primary">
-              {" "}
-              Cancelar
-            </Button>
-          </MuiLink>
-        </Link>
-        {"          "}
-        <Button style={{ margin: "50px" }} variant="contained" color="primary">
-          Guardar
-        </Button>
-        <br />
-        <br />
-        <br />
-        <br />
+      <Grid item xs={12} className={classes.title}>
+        <h2>Commentarios de usuarios</h2>
       </Grid>
       <Grid container>
-        <Grid item xs={6} className={classes.card}>
-          <Card className={classes.root3}>
-            <CardContent>
-              <Typography
-                className={classes.title2}
-                color="textSecondary"
-                gutterBottom
-              >
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="h2">
-                be{bull}nev{bull}o{bull}lent
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
-              <Typography variant="body2" component="p">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-        <Grid item xs={6}></Grid>
-      </Grid>
-      <Grid container>
-        <Grid item xs={6}></Grid>
-        <Grid item xs={6} sm={12} className={classes.card2}>
-          <Card className={classes.root4}>
-            <CardContent>
-              <Typography
-                className={classes.title2}
-                color="textSecondary"
-                gutterBottom
-              >
-                Word of the Day
-              </Typography>
-              <Typography variant="h5" component="h2">
-                be{bull}nev{bull}o{bull}lent
-              </Typography>
-              <Typography className={classes.pos} color="textSecondary">
-                adjective
-              </Typography>
-              <Typography variant="body2" component="p">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        </Grid>
+        <Comments />
       </Grid>
       <br />
       <br />
