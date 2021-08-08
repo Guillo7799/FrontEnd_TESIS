@@ -147,7 +147,7 @@ const Footer = () => {
                       width: "90px",
                       height: "35px",
                       color: "white",
-                      backgroundColor: "#094275",
+                      backgroundColor: "#0170B8",
                       borderRadius: 5,
                     }}
                   ></Input>
