@@ -44,7 +44,7 @@ const Comments = () => {
         direction="row"
         style={{ justifyContent: "space-between" }}
       >
-        {data.data.map((comment, user) => (
+        {data.data.map((comment) => (
           <Card
             className={classes.root}
             key={(comment.content, comment.created_at)}

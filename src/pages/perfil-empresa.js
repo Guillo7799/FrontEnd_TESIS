@@ -1,0 +1,150 @@
+import React from "react";
+import useSWR from "swr";
+import { fetcher } from "@/lib/utils";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Image from "next/image";
+import withAuth from "@/hocs/withAuth";
+import { useAuth } from "@/lib/auth";
+import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Typography, Avatar } from "@material-ui/core";
+import Head from "next/head";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
+import { deepOrange } from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
+import Routes from "src/constants/routes";
+import { withStyles } from "@material-ui/core/styles";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    textAlign: "center",
+    fontFamily: "'Source Sans Pro', sans-serif",
+    margin: "auto",
+    padding: 10,
+  },
+  root: {
+    marginTop: 20,
+    alignContent: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  root2: {
+    maxWidth: 500,
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title2: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  main: {
+    marginTop: "5%",
+    paddingLeft: "10%",
+    textAlign: "left",
+  },
+  submain: {
+    paddingLeft: 150,
+    alignContent: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+}));
+
+const StudentProfile = () => {
+  const { user } = useAuth();
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const { data, error } = useSWR(`/business`, fetcher);
+
+  if (error) return <div>No se pudo cargar la información de las empresas</div>;
+  if (!data) return <div>Cargando perfiles empresariales...</div>;
+  const bull = <span className={classes.bullet}>•</span>;
+
+  if (data.business.userable_id === user.id) return data;
+  if (data.business.userable_id != user.id)
+    return <div>Empresa no encontrada...</div>;
+  return (
+    <>
+      <Head>
+        <title>Perfil</title>
+      </Head>
+      <Grid item xs={12} className={classes.title}>
+        <h1>Perfil de Usuario</h1>
+        <hr color="black" width="90%" />
+      </Grid>
+      <Grid container className={classes.main}>
+        <Grid container item xs={12} sm={12} style={{ height: "100%" }}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h4">Información:</Typography>
+            <br />
+            <br />
+            <div>
+              <Avatar
+                image={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${user.image}`}
+                alt="Foto de perfil"
+                className={classes.large}
+              />
+            </div>
+            <Typography varian="h6">
+              <strong>Nombre:</strong> {user.name}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Apellido:</strong> {user.last_name}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Correo electronico:</strong> {user.email}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Celular:</strong> {user.cellphone}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Provincia:</strong> {user.province}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Ciudad:</strong> {user.city}
+            </Typography>
+            <br />
+            <Typography varian="h6">
+              <strong>Biografía:</strong> {user.description}
+            </Typography>
+            <br />
+          </Grid>
+          {/* 
+          <Grid item xs={1}>
+            <hr width="1" size="750" />
+          </Grid>*/}
+          <Grid className={classes.submain} item xs={12} sm={6} spacing={4}>
+            <h3>MIS PUBLICACIOENS</h3>
+          </Grid>
+        </Grid>
+      </Grid>
+    </>
+  );
+};
+
+export default StudentProfile;
