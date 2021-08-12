@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BusinessRegister = () => {
-  const { businessregister: doBusinessRegister } = useAuth();
+const Register = () => {
+  const { register: doRegister } = useAuth();
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -107,12 +107,8 @@ const BusinessRegister = () => {
       cellphone: data.cellphone,
       image: data.image,
       role: data.role,
-      ruc: data.ruc,
-      business_name: data.business_name,
-      business_type: data.business_type,
-      business_age: data.business_age,
     };
-    console.log("Nueva Empresa", newUser);
+    console.log("Nuevo estudiante", newUser);
 
     const formData = new FormData();
     formData.append("name", newUser.name);
@@ -127,18 +123,14 @@ const BusinessRegister = () => {
     formData.append("cellphone", newUser.cellphone);
     formData.append("image", newUser.image);
     formData.append("role", "ROLE_STUDENT");
-    formData.append("ruc", newUser.ruc);
-    formData.append("business_name", newUser.business_name);
-    formData.append("business_type", newUser.business_type);
-    formData.append("business_age", newUser.business_age);
 
     console.log("formData", formData);
 
     try {
-      const userData = await doBusinessRegister(data);
+      const userData = await doRegister(data);
       swal({
-        title: "Usuario empresarial registrado con éxito",
-        text: "Puede loguearse y hacer uso del sistema",
+        title: "Usuario estudiante registrado con éxito",
+        text: "Ahora falta la hoja de vida :)",
         icon: "success",
         button: "Aceptar",
         timer: "3000",
@@ -190,19 +182,19 @@ const BusinessRegister = () => {
   return (
     <>
       <Head>
-        <title>Registro Empresa</title>
+        <title>Registro Estudiante</title>
       </Head>
       <Container component="main" maxWidth="xs" className={styles.container}>
         <CssBaseline />
         <div className={classes.paper}>
           <Grid style={{ paddingTop: "30px" }}>
             <Typography component="h1" variant="h5">
-              Registro de Empresa
+              Registro de Estudiante
             </Typography>
           </Grid>
           <Grid item xs={12} className={classes.icon}>
             <Image
-              src="/register/working-man.png"
+              src="/register/student.png"
               alt="icono_estudiante"
               width={115}
               height={125}
@@ -433,55 +425,6 @@ const BusinessRegister = () => {
                   <option value="ROLE_BUSINESS">Empresa</option>
                 </Select>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  type="number"
-                  id="ruc"
-                  inputRef={register}
-                  label="RUC"
-                  name="ruc"
-                  autoComplete="ruc"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="business_name"
-                  inputRef={register}
-                  label="Nombre de la empresa"
-                  name="business_name"
-                  autoComplete="business_name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="business_type"
-                  inputRef={register}
-                  label="Mercado al que se dirige la empresa"
-                  name="business_type"
-                  autoComplete="business_type"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="business_age"
-                  inputRef={register}
-                  label="Edad de la empresa"
-                  name="business_age"
-                  autoComplete="business_age"
-                />
-              </Grid>
             </Grid>
             <Button
               type="submit"
@@ -507,4 +450,4 @@ const BusinessRegister = () => {
   );
 };
 
-export default withoutAuth(BusinessRegister);
+export default withoutAuth(Register);

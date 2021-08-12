@@ -1,9 +1,8 @@
 const publicRoutes = {
   LOGIN: "/login",
-  REGISTER: "/register",
+  REGISTER: "/registro-estudiante",
   BUSINESSREGISTER: "/registro-empresarial",
   ARTICLES: "/articles",
-  ABOUT: "/about",
   REMEMBERPASSWORD: "/olvide-mi-clave",
   GENERAL: "/registro-general",
   POLITICS: "/politicas-de-uso-privacidad",
