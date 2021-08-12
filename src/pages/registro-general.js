@@ -86,7 +86,7 @@ const RegisterGeneral = () => {
               ofertas de horas de prácticas preprofesionales.
               <p>Seleccione la que se apega a su necesidad.</p>
             </p>
-            <Link href={Routes.GENERAL} passHref>
+            <Link href={Routes.REGISTER} passHref>
               <MuiLink style={{ textDecoration: "none", maxWidth: "300px" }}>
                 <Grid item xs={6} className={classes.studentop}>
                   <h2 style={{ width: "450px", height: "200px" }}>
@@ -95,7 +95,7 @@ const RegisterGeneral = () => {
                 </Grid>
               </MuiLink>
             </Link>
-            <Link href={Routes.GENERAL} passHref>
+            <Link href={Routes.BUSINESSREGISTER} passHref>
               <MuiLink style={{ textDecoration: "none", maxWidth: "300px" }}>
                 <Grid item xs={6} className={classes.businessop}>
                   <h2
