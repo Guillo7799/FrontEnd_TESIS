@@ -94,6 +94,7 @@ const StudentProfile = () => {
                 className={classes.large}
               />
             </div>
+            <br />
             <Typography varian="h6">
               <strong>Nombre:</strong> {user.name}
             </Typography>
@@ -122,15 +123,27 @@ const StudentProfile = () => {
               <strong>Biografía:</strong> {user.description}
             </Typography>
             <br />
+            <Link href={Routes.PUBLICATIONS} passHref>
+              <MuiLink>
+                <Button variant="outlined" color="primary">
+                  Ver ofertas
+                </Button>
+              </MuiLink>
+            </Link>
           </Grid>
           {/* 
           <Grid item xs={1}>
             <hr width="1" size="750" />
           </Grid>*/}
           <Grid className={classes.submain} item xs={12} sm={6} spacing={4}>
-            <h3>HOJA DE VIDA</h3>
+            <h3>CURRICULUM</h3>
           </Grid>
         </Grid>
+      </Grid>
+      <Grid item xs={12} sm={12} style={{ textAlign: "center", height: 600 }}>
+        <h1>Mis Postulaciones</h1>
+        <hr color="black" width="90%" />
+        <p>No hay registros...</p>
       </Grid>
     </>
   );

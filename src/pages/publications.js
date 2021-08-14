@@ -12,7 +12,7 @@ import swal from "sweetalert";
 import withAuth from "@/hocs/withAuth";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
-import Comments from "@/components/Comments";
+import AllPublications from "@/components/AllPublications";
 
 const schema = yup.object().shape({
   text: yup.string().required("Ingresa tu comentario"),
@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Comment = () => {
+const Publications = () => {
   const classes = useStyles();
   const { register, handleSubmit, control, errors } = useForm();
   const [name, setName] = useState("");
@@ -125,96 +125,18 @@ const Comment = () => {
   return (
     <>
       <Head>
-        <title>Foro</title>
+        <title>Ofertas</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
         <QuestionAnswerIcon style={{ fontSize: 30 }} />
-        <h1 style={{ fontSize: 40 }}>Foro de Comentarios</h1>
+        <h1 style={{ fontSize: 40 }}>Publicaciones de ofertas</h1>
         <hr color="black" width="90%" />
       </Grid>
       <Grid item xs={12} className={classes.title}>
-        <h2>
-          Conoce a los otros usuarios, comparte tu experiencia con la plataforma
-          y tu punto de vista sobre esta.
-        </h2>
-      </Grid>
-      <Grid container className={classes.root} item xs={12} sm={12}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          style={{
-            margin: "auto !important",
-            alignContent: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <form
-            className={classes.form}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Grid item xs={12} sm={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Multiline"
-                multiline
-                rows={4}
-                id="text"
-                inputRef={register}
-                label="Ingrese su comentario"
-                name="content"
-                autoComplete="text"
-                style={{ width: "100%", minHeight: "15%" }}
-              />
-              <br />
-              <br />
-            </Grid>
-            <Grid container item xs={12} sm={12}>
-              <Grid
-                item
-                xs={6}
-                sm={6}
-                style={{ textAlign: "right", paddingRight: 30 }}
-              >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                >
-                  Comentar
-                </Button>
-                <br />
-                <br />
-              </Grid>
-              <Grid
-                item
-                xs={6}
-                sm={6}
-                style={{ textAlign: "left", paddingLeft: 30 }}
-              >
-                <Link href={Routes.HOME} passHref>
-                  <MuiLink>
-                    <Button variant="contained" color="primary">
-                      Cancelar
-                    </Button>
-                  </MuiLink>
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </Grid>
-      </Grid>
-      <Grid item xs={12} className={classes.title}>
-        <h2>Commentarios de usuarios</h2>
+        <h2>Postule a la oferta que crea conveniente.</h2>
       </Grid>
       <Grid container>
-        <Comments />
+        <AllPublications />
       </Grid>
       <br />
       <br />
@@ -222,4 +144,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default Publications;
