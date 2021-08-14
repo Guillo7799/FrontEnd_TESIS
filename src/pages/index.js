@@ -33,8 +33,8 @@ export default function Home() {
         <hr color="black" width="100%" />
       </Grid>
       <Link href={Routes.ADMINISTRADOR}>Perfil Administrador</Link>
-      <Link href={Routes.PERFIL}>Perfil</Link>
-      <Link href={Routes.PERFILB}>Perfil de Empresax</Link>
+      <Link href={Routes.PERFIL}>Perfil de estudiante</Link>
+      <Link href={Routes.PERFILB}>Perfil de Empresa</Link>
       <br />
       <br />
       <Grid item xs={12} sm={12}>

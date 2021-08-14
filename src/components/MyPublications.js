@@ -2,6 +2,12 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
+import { useAuth } from "@/lib/auth";
+import Head from "next/head";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
+import Routes from "src/constants/routes";
 import {
   Button,
   Card,
@@ -30,12 +36,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Comments = () => {
+const MyPublication = () => {
   const classes = useStyles();
-  const { data, error } = useSWR(`/comments`, fetcher);
+  const user = useAuth();
+  const { data: publicationData, error } = useSWR(
+    `/publications/filter/${user.id}`,
+    fetcher
+  );
 
-  if (error) return <div>No se pudo cargar los comentarios</div>;
-  if (!data) return <div>Cargando comentarios...</div>;
+  if (error) return <div>No se pudo cargar sus publicaciones</div>;
+  if (!publicationData) return <div>Cargando publicaciones...</div>;
   // render data
   return (
     <>
@@ -43,22 +53,19 @@ const Comments = () => {
       <br />
       <Grid
         container
-        direction="row"
+        direction="column"
         style={{
           justifyContent: "space-between",
         }}
       >
-        {data.data.map((comment) => (
-          <Card
-            className={classes.root}
-            key={(comment.content, comment.created_at)}
-          >
+        {data.data.map((data) => (
+          <Card className={classes.root} key={data.id}>
             <CardActionArea>
               <CardContent>
-                <p style={{ fontSize: 15 }}>{comment.content}</p>
-                <p style={{ fontSize: 12, color: "#C0C0C0" }}>
-                  Realizado el: {comment.created_at}
-                </p>
+                <p style={{ fontSize: 15 }}>{data.career}</p>
+                <p style={{ fontSize: 15 }}>{data.description}</p>
+                <p style={{ fontSize: 15 }}>{data.hours}</p>
+                <p style={{ fontSize: 12 }}>{data.date}</p>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -71,4 +78,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default MyPublication;

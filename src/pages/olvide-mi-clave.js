@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "notistack";
 import Head from "next/head";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
+import Routes from "src/constants/routes";
 
 const schema = yup.object().shape({
   email: yup
@@ -39,7 +42,7 @@ const SendPasswordResetEmailPage = () => {
       await sendPasswordResetEmail(email);
       setLoading(false);
       enqueueSnackbar(
-        "Te hemos enviado un correo con instrucciones para restablecer tu clave.",
+        "Le hemos enviado un correo con instrucciones para restablecer su clave.",
         {
           variant: "success",
         }
@@ -88,9 +91,9 @@ const SendPasswordResetEmailPage = () => {
           <Grid container spacing={2} justify="center" alignItems="center">
             <h1>Recordar contraseña</h1>
             <p>
-              Prácticas al día enviará un correo al email que especifiques a
-              continuación, por favor si no encuentras el correo, revísalo en
-              correo no deseado.
+              Prácticas al día enviará un correo al email que especifique a
+              continuación, por favor si no encuentra el correo, revíselo en
+              correos no deseados o spam.
             </p>
             <Grid xs={12} item>
               <TextField
@@ -105,16 +108,27 @@ const SendPasswordResetEmailPage = () => {
               />
             </Grid>
 
-            <Grid xs={12} item className={classes.buttonWrapper}>
-              <Button
-                name="submit"
-                variant="contained"
-                type="submit"
-                color="primary"
-                disabled={loading}
-              >
-                Enviar
-              </Button>
+            <Grid container xs={12} item className={classes.buttonWrapper}>
+              <Grid item xs={6} sm={6}>
+                <Button
+                  name="submit"
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  disabled={loading}
+                >
+                  Enviar
+                </Button>
+              </Grid>
+              <Grid item xs={6} sm={6}>
+                <Link href={Routes.LOGIN} passHref>
+                  <MuiLink>
+                    <Button name="cancelar" variant="contained" color="primary">
+                      Cancelar
+                    </Button>
+                  </MuiLink>
+                </Link>
+              </Grid>
             </Grid>
           </Grid>
         </form>

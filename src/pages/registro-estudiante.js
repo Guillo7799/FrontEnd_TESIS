@@ -202,7 +202,7 @@ const Register = () => {
           </Grid>
           <Grid container style={{ paddingTop: "30px" }}>
             <Grid item xs={6}>
-              <Typography>¿Ya tienes una cuenta?</Typography>
+              <Typography>¿Ya tiene una cuenta?</Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
               <Link href="/login" variant="body2" color="secondary">
@@ -421,8 +421,10 @@ const Register = () => {
                 >
                   <option arial-label="None"></option>
                   {/*<option>Seleccione....</option>*/}
-                  <option value="ROLE_STUDENT">Estudiante</option>
-                  <option value="ROLE_BUSINESS">Empresa</option>
+                  <option value="ROLE_STUDENT" selected>
+                    Cuenta Estudiantil
+                  </option>
+                  <option value="ROLE_BUSINESS">Cuenta Empresarial</option>
                 </Select>
               </Grid>
             </Grid>
