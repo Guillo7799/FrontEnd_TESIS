@@ -56,12 +56,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10%",
     textAlign: "left",
   },
-  submain: {
-    paddingLeft: 150,
-    alignContent: "center",
-    justifyContent: "center",
-    textAlign: "center",
-  },
 }));
 
 const BusinessProfile = () => {
@@ -128,8 +122,8 @@ const BusinessProfile = () => {
         <hr color="black" width="90%" />
       </Grid>
       <Grid container className={classes.main}>
-        <Grid container item xs={12} sm={12}>
-          <Grid item xs={12} sm={6}>
+        <Grid container>
+          <Grid item xs={12} sm={5}>
             <Typography variant="h4">Información:</Typography>
             <br />
             <br />
@@ -171,12 +165,10 @@ const BusinessProfile = () => {
             </Typography>
             <br />
           </Grid>
-          {/* 
-          <Grid item xs={1}>
-            <hr width="1" size="750" />
-          </Grid>*/}
-          <Grid className={classes.submain} item xs={12} sm={6} spacing={4}>
-            <h3>MIS PUBLICACIONES</h3>
+
+          <Grid item xs={12} sm={2}></Grid>
+          <Grid item xs={12} sm={5} spacing={4}>
+            <h3 style={{ paddingLeft: 75 }}>MIS PUBLICACIONES</h3>
             <br />
             <MyPublication />
           </Grid>
@@ -184,7 +176,12 @@ const BusinessProfile = () => {
         <Grid container item sx={12} sm={12}>
           <br />
           <br />
-          <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{ textAlign: "center", justifyContent: "center" }}
+          >
             <h1>Nueva Publicación de oferta</h1>
             <hr color="black" width="90%" />
             <PublicationTip />{" "}
