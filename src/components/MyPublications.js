@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
     borderColor: "#094275",
+    textAlign: "left",
   },
   media: {
     height: 140,
@@ -38,19 +39,14 @@ const useStyles = makeStyles((theme) => ({
 
 const MyPublication = () => {
   const classes = useStyles();
-  const user = useAuth();
-  const { data: publicationData, error } = useSWR(
-    `/publications/filter/${user.id}`,
-    fetcher
-  );
+  const { user } = useAuth();
+  const { data, error } = useSWR(`/users/publications/${user.id}`, fetcher);
 
   if (error) return <div>No se pudo cargar sus publicaciones</div>;
-  if (!publicationData) return <div>Cargando publicaciones...</div>;
+  if (!data) return <div>Cargando publicaciones...</div>;
   // render data
   return (
     <>
-      <br />
-      <br />
       <Grid
         container
         direction="column"
@@ -62,10 +58,22 @@ const MyPublication = () => {
           <Card className={classes.root} key={data.id}>
             <CardActionArea>
               <CardContent>
-                <p style={{ fontSize: 15 }}>{data.career}</p>
-                <p style={{ fontSize: 15 }}>{data.description}</p>
-                <p style={{ fontSize: 15 }}>{data.hours}</p>
-                <p style={{ fontSize: 12 }}>{data.date}</p>
+                <p style={{ fontSize: 15 }}>
+                  <strong>Carrera: </strong>
+                  {data.career}
+                </p>
+                <p style={{ fontSize: 15 }}>
+                  <strong>Descripción: </strong>
+                  {data.description}
+                </p>
+                <p style={{ fontSize: 15 }}>
+                  <strong>Horas ofertadas: </strong>
+                  {data.hours}
+                </p>
+                <p style={{ fontSize: 15 }}>
+                  <strong>Fecha máxima: </strong>
+                  {data.date}
+                </p>
               </CardContent>
             </CardActionArea>
           </Card>
