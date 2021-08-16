@@ -15,9 +15,7 @@ import { deepOrange } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import Routes from "src/constants/routes";
 import { withStyles } from "@material-ui/core/styles";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
+import MyCurriculum from "@/components/MyCurriculum";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -51,12 +49,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10%",
     textAlign: "left",
   },
-  submain: {
-    paddingLeft: 150,
-    alignContent: "center",
-    justifyContent: "center",
-    textAlign: "center",
-  },
 }));
 
 const StudentProfile = () => {
@@ -83,7 +75,7 @@ const StudentProfile = () => {
       </Grid>
       <Grid container className={classes.main}>
         <Grid container item xs={12} sm={12} style={{ height: "100%" }}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={5}>
             <Typography variant="h4">Información:</Typography>
             <br />
             <br />
@@ -131,12 +123,10 @@ const StudentProfile = () => {
               </MuiLink>
             </Link>
           </Grid>
-          {/* 
-          <Grid item xs={1}>
-            <hr width="1" size="750" />
-          </Grid>*/}
-          <Grid className={classes.submain} item xs={12} sm={6} spacing={4}>
-            <h3>CURRICULUM</h3>
+          <Grid item xs={12} sm={2}></Grid>
+          <Grid item xs={12} sm={5} spacing={4}>
+            <h3 style={{ paddingLeft: 75 }}>CURRICULUM</h3>
+            <MyCurriculum />
           </Grid>
         </Grid>
       </Grid>
