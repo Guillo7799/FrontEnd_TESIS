@@ -8,6 +8,7 @@ const publicRoutes = {
   POLITICS: "/politicas-de-uso-privacidad",
   LEYES: "/ley-ecuatoriana",
   FORO: "/foro",
+  REGISTROE: "/registroE",
 };
 
 const privateRoutes = {

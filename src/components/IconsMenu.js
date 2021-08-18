@@ -7,6 +7,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../lib/auth";
 import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
 import Routes from "../constants/routes";
 
 const useStyles = makeStyles((theme) => ({
