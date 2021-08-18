@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BusinessRegister = () => {
-  const { businessregister: doBusinessRegister } = useAuth();
+const Register = () => {
+  const { register: doRegister } = useAuth();
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -106,12 +106,8 @@ const BusinessRegister = () => {
       description: data.description,
       cellphone: data.cellphone,
       role: data.role,
-      ruc: data.ruc,
-      business_name: data.business_name,
-      business_type: data.business_type,
-      business_age: data.business_age,
     };
-    console.log("Nueva Empresa", newUser);
+    console.log("Nuevo estudiante", newUser);
 
     const formData = new FormData();
     formData.append("name", newUser.name);
@@ -125,18 +121,14 @@ const BusinessRegister = () => {
     formData.append("description", newUser.description);
     formData.append("cellphone", newUser.cellphone);
     formData.append("role", newUser.role);
-    formData.append("ruc", newUser.ruc);
-    formData.append("business_name", newUser.business_name);
-    formData.append("business_type", newUser.business_type);
-    formData.append("business_age", newUser.business_age);
 
     console.log("formData", formData);
 
     try {
-      const userData = await doBusinessRegister(data);
+      const userData = await doRegister(data);
       swal({
-        title: "Usuario Registrado",
-        text: "Por favor cierre sesión e inicie de nuevo",
+        title: "Usuario Registraod",
+        text: "Por favor cierre sesión y vuelva a ingresar",
         icon: "success",
         button: "Aceptar",
         timer: "6000",
@@ -167,7 +159,6 @@ const BusinessRegister = () => {
       console.log(error.config);
     }
   };
-
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -203,7 +194,7 @@ const BusinessRegister = () => {
           </Grid>
           <Grid container style={{ paddingTop: "30px" }}>
             <Grid item xs={6}>
-              <Typography>¿Ya tiene una cuenta?</Typography>
+              <Typography>¿Ya tienes una cuenta?</Typography>
             </Grid>
             <Grid item xs={6} style={{ textAlign: "end" }}>
               <Link href="/login" variant="body2" color="secondary">
@@ -398,20 +389,17 @@ const BusinessRegister = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <label>Confirmación de Rol</label>
+                <label>Confirme su Rol:</label>
                 <Select
                   native
                   name="role"
                   id="role"
                   inputRef={register}
                   variant="outlined"
-                  label="Confirme su Rol"
                   required
                   fullWidth
                 >
-                  <option value="ROLE_BUSINESS" selected>
-                    Cuenta Estudiantil
-                  </option>
+                  <option value="ROLE_STUDENT">Estudiante</option>
                 </Select>
               </Grid>
             </Grid>
@@ -439,4 +427,4 @@ const BusinessRegister = () => {
   );
 };
 
-export default withoutAuth(BusinessRegister);
+export default withoutAuth(Register);
