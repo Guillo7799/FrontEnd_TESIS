@@ -136,7 +136,7 @@ const BusinessRegister = () => {
       const userData = await doBusinessRegister(data);
       swal({
         title: "Usuario Registrado",
-        text: "Por favor cierre sesión e inicie de nuevo",
+        text: "Ya puede iniciar sesión",
         icon: "success",
         button: "Aceptar",
         timer: "6000",
