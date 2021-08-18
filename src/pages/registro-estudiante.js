@@ -128,7 +128,7 @@ const Register = () => {
       const userData = await doRegister(data);
       swal({
         title: "Usuario Registraod",
-        text: "Por favor cierre sesión y vuelva a ingresar",
+        text: "Ya puede iniciar Sesión",
         icon: "success",
         button: "Aceptar",
         timer: "6000",
@@ -427,4 +427,4 @@ const Register = () => {
   );
 };
 
-export default withoutAuth(Register);
+export default Register;

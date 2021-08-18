@@ -488,4 +488,4 @@ const BusinessRegister = () => {
   );
 };
 
-export default withoutAuth(BusinessRegister);
+export default BusinessRegister;
