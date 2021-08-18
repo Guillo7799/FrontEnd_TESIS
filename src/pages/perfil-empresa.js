@@ -202,6 +202,21 @@ const BusinessProfile = () => {
                   variant="outlined"
                   required
                   fullWidth
+                  id="business_name"
+                  inputRef={register}
+                  label="Ingrese el nombre de su organización"
+                  name="business_name"
+                  autoComplete="text"
+                  style={{ width: "100%", minHeight: "15%" }}
+                />
+                <br />
+                <br />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
                   id="career"
                   inputRef={register}
                   label="Carrera de interés"
@@ -256,6 +271,37 @@ const BusinessProfile = () => {
                   label=""
                   name="date"
                   autoComplete="date"
+                  style={{ width: "100%", minHeight: "15%" }}
+                />
+                <br />
+                <br />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="city"
+                  inputRef={register}
+                  label="Ciudad"
+                  name="city"
+                  autoComplete="text"
+                  style={{ width: "100%", minHeight: "15%" }}
+                />
+                <br />
+                <br />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  variant="outlined"
+                  type="email"
+                  required
+                  fullWidth
+                  id="contact_email"
+                  inputRef={register}
+                  label="Correo de contacto"
+                  name="contact_email"
+                  autoComplete="email"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
                 <br />

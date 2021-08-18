@@ -42,7 +42,7 @@ function useAuthProvider() {
     try {
       const response = await api.post("/register", data);
       console.log("response", response);
-      handleUser(response.data);
+      //handleUser(response.data);
       return response;
     } catch (error) {
       if (error.response) {
@@ -71,7 +71,7 @@ function useAuthProvider() {
     try {
       const response = await api.post("/businessregister", data);
       console.log("response", response);
-      handleUser(response.data);
+      //handleUser(response.data);
       return response;
     } catch (error) {
       if (error.response) {
