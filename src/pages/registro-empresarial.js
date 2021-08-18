@@ -105,7 +105,6 @@ const BusinessRegister = () => {
       location: data.location,
       description: data.description,
       cellphone: data.cellphone,
-      image: data.image,
       role: data.role,
       ruc: data.ruc,
       business_name: data.business_name,
@@ -125,8 +124,7 @@ const BusinessRegister = () => {
     formData.append("location", newUser.location);
     formData.append("description", newUser.description);
     formData.append("cellphone", newUser.cellphone);
-    formData.append("image", newUser.image);
-    formData.append("role", "ROLE_STUDENT");
+    formData.append("role", newUser.role);
     formData.append("ruc", newUser.ruc);
     formData.append("business_name", newUser.business_name);
     formData.append("business_type", newUser.business_type);
@@ -137,11 +135,11 @@ const BusinessRegister = () => {
     try {
       const userData = await doBusinessRegister(data);
       swal({
-        title: "Usuario empresarial registrado con éxito",
-        text: "Puede loguearse y hacer uso del sistema",
+        title: "Usuario Registrado",
+        text: "Por favor cierre sesión e inicie de nuevo",
         icon: "success",
         button: "Aceptar",
-        timer: "3000",
+        timer: "6000",
       });
       console.log("userData", userData);
     } catch (error) {
@@ -168,11 +166,6 @@ const BusinessRegister = () => {
       }
       console.log(error.config);
     }
-  };
-
-  const handleImage = (imageFile) => {
-    setImage(imageFile);
-    console.log("image", imageFile);
   };
 
   const handleChange = (prop) => (event) => {
@@ -404,34 +397,19 @@ const BusinessRegister = () => {
                   autoComplete="phone"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
-                <Button component="label">
-                  Seleccionar Foto de perfil
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    inputRef={register}
-                    onChange={(e) => handleImage(e.target.files[0])}
-                    hidden
-                  />
-                </Button>
-              </Grid>
               <Grid item xs={12}>
+                <label>Confirmación de Rol</label>
                 <Select
                   native
                   name="role"
                   id="role"
                   inputRef={register}
                   variant="outlined"
+                  label="Confirme su Rol"
                   required
                   fullWidth
-                  disabled
                 >
-                  <option arial-label="None"></option>
-                  {/*<option>Seleccione....</option>*/}
-                  <option value="ROLE_STUDENT">Cuenta Estudiantil</option>
-                  <option value="ROLE_BUSINESS" selected disabled>
+                  <option value="ROLE_BUSINESS" selected>
                     Cuenta Empresarial
                   </option>
                 </Select>

@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Register = () => {
-  const { register: doRegister } = useAuth();
+const BusinessRegister = () => {
+  const { businessregister: doBusinessRegister } = useAuth();
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
@@ -105,10 +105,13 @@ const Register = () => {
       location: data.location,
       description: data.description,
       cellphone: data.cellphone,
-      image: data.image,
       role: data.role,
+      ruc: data.ruc,
+      business_name: data.business_name,
+      business_type: data.business_type,
+      business_age: data.business_age,
     };
-    console.log("Nuevo estudiante", newUser);
+    console.log("Nueva Empresa", newUser);
 
     const formData = new FormData();
     formData.append("name", newUser.name);
@@ -121,19 +124,22 @@ const Register = () => {
     formData.append("location", newUser.location);
     formData.append("description", newUser.description);
     formData.append("cellphone", newUser.cellphone);
-    formData.append("image", newUser.image);
-    formData.append("role", "ROLE_STUDENT");
+    formData.append("role", newUser.role);
+    formData.append("ruc", newUser.ruc);
+    formData.append("business_name", newUser.business_name);
+    formData.append("business_type", newUser.business_type);
+    formData.append("business_age", newUser.business_age);
 
     console.log("formData", formData);
 
     try {
-      const userData = await doRegister(data);
+      const userData = await doBusinessRegister(data);
       swal({
-        title: "Usuario estudiante registrado con éxito",
-        text: "Ahora falta la hoja de vida :)",
+        title: "Usuario Registrado",
+        text: "Por favor cierre sesión e inicie de nuevo",
         icon: "success",
         button: "Aceptar",
-        timer: "3000",
+        timer: "6000",
       });
       console.log("userData", userData);
     } catch (error) {
@@ -160,11 +166,6 @@ const Register = () => {
       }
       console.log(error.config);
     }
-  };
-
-  const handleImage = (imageFile) => {
-    setImage(imageFile);
-    console.log("image", imageFile);
   };
 
   const handleChange = (prop) => (event) => {
@@ -396,35 +397,21 @@ const Register = () => {
                   autoComplete="phone"
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
-                <Button component="label">
-                  Seleccionar Foto de perfil
-                  <input
-                    type="file"
-                    name="image"
-                    id="image"
-                    inputRef={register}
-                    onChange={(e) => handleImage(e.target.files[0])}
-                    hidden
-                  />
-                </Button>
-              </Grid>
               <Grid item xs={12}>
+                <label>Confirmación de Rol</label>
                 <Select
                   native
                   name="role"
                   id="role"
                   inputRef={register}
                   variant="outlined"
+                  label="Confirme su Rol"
                   required
                   fullWidth
                 >
-                  <option arial-label="None"></option>
-                  {/*<option>Seleccione....</option>*/}
-                  <option value="ROLE_STUDENT" selected>
+                  <option value="ROLE_BUSINESS" selected>
                     Cuenta Estudiantil
                   </option>
-                  <option value="ROLE_BUSINESS">Cuenta Empresarial</option>
                 </Select>
               </Grid>
             </Grid>
@@ -452,4 +439,4 @@ const Register = () => {
   );
 };
 
-export default withoutAuth(Register);
+export default withoutAuth(BusinessRegister);
