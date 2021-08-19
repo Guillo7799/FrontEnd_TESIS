@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
+import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -85,7 +85,7 @@ export default function SimpleModal() {
         pasante.
       </p>
       {/*<SimpleModal />*/}
-      <Button onClick={handleClose}>Lo tengo</Button>
+      <Button onClick={handleClose}>Cancelar</Button>
     </div>
   );
 
@@ -95,10 +95,10 @@ export default function SimpleModal() {
         variant="contained"
         color="default"
         className={classes.button}
-        startIcon={<EmojiObjectsIcon />}
+        startIcon={<DragIndicatorIcon />}
         onClick={handleOpen}
       >
-        ¿Cómo llenar?
+        Postular
       </Button>
       <Modal
         open={open}
