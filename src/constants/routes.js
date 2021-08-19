@@ -19,6 +19,7 @@ const privateRoutes = {
   BUSINESSPROFILE: "/businessProfile",
   ADMINISTRADOR: "/administrador",
   PERFIL: "/perfil-estudiante",
+  GLOBALPROFILE: "/perfil",
   PERFILB: "/perfil-empresa",
   PUBLICATIONS: "/publications",
   // PUBLICATION_ID: "/publication/:id",

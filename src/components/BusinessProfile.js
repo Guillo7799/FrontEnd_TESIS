@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useSWR from "swr";
-import { fetcher } from "@/lib/utils";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "src/constants/routes";
-import { Modal, Select } from "@material-ui/core";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
+import { Select } from "@material-ui/core";
 import { Button, Avatar, Grid, TextField, Typography } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
