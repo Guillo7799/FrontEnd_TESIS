@@ -164,6 +164,10 @@ const BusinessProfile = () => {
               <strong>Biografía:</strong> {user.description}
             </Typography>
             <br />
+            <Typography varian="h6">
+              <strong>Nombre de la Empresa:</strong> {user.business_name}
+            </Typography>
+            <br />
           </Grid>
 
           <Grid item xs={12} sm={2}></Grid>
@@ -318,15 +322,30 @@ const BusinessProfile = () => {
                   fullWidth
                 >
                   <option selected>Seleccione una categoría...</option>
-                  <option value="7">Carreras de Ingeniería</option>
-                  <option value="6">Carreras de Ciencias</option>
-                  <option value="5 Superior">
-                    Carreras tecnológicas superiores
+                  <option value="1">
+                    Ingeniería en Sistemas y carreras afines
                   </option>
-                  <option value="1">Enfermería</option>
-                  <option value="2">Medicina</option>
-                  <option value="3">Derecho y afines</option>
-                  <option value="4">Idiomas</option>
+                  <option value="2">
+                    Ingeniería en Mecánica y carreras afines
+                  </option>
+                  <option value="3">
+                    Ingeniería Química y carreras afines
+                  </option>
+                  <option value="4">
+                    Ingeniería en Electrónica y Control y carreras afines
+                  </option>
+                  <option value="5">
+                    Ingeniería en Eléctrica, Redes y Telecomunicaciones y
+                    carreras afines
+                  </option>
+                  <option value="6">Carreras ligadas a la medicina</option>
+                  <option value="7">Derecho</option>
+                  <option value="8">Admnistración</option>
+                  <option value="9">Marketing</option>
+                  <option value="10">Ingeniería Civil</option>
+                  <option value="11">Licenciaturas</option>
+                  <option value="12">Carreras de Comunicación</option>
+                  <option value="13">Carreras Sociales y Humanísticas</option>
                 </Select>
               </Grid>
               <br />

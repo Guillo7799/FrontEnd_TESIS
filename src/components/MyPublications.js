@@ -3,20 +3,12 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "@/lib/auth";
-import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import Link from "next/link";
-import { Link as MuiLink } from "@material-ui/core";
-import Routes from "src/constants/routes";
 import {
   Button,
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
-  CardMedia,
   Grid,
-  Typography,
 } from "@material-ui/core";
 import { Pagination } from "antd";
 
@@ -34,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     display: "-webkit-box",
     "-webkit-line-clamp": 2,
     "-webkit-box-orient": "vertical",
+  },
+  submit: {
+    margin: theme.spacing(2, 0, 2),
   },
 }));
 
@@ -75,6 +70,15 @@ const MyPublication = () => {
                   {data.date}
                 </p>
               </CardContent>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Eliminar oferta
+              </Button>
             </CardActionArea>
           </Card>
         ))}

@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
-import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import api from "@/lib/api";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardActionArea, CardContent, Grid } from "@material-ui/core";
+import Application from "@/components/Application";
 import { Pagination } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 450,
     borderColor: "#094275",
+    textAlign: "left",
   },
   media: {
     height: 140,
@@ -40,6 +29,7 @@ const Comments = () => {
 
   if (error) return <div>No se pudo cargar las publicaciones</div>;
   if (!data) return <div>Cargando publicaciones...</div>;
+  if (data == null) return <div>No hay registros de publicaciones</div>;
   // render data
   return (
     <>
@@ -57,6 +47,10 @@ const Comments = () => {
             <CardActionArea>
               <CardContent>
                 <p style={{ fontSize: 15 }}>
+                  <strong>Empresa u Organización: </strong>
+                  {publication.business_name}
+                </p>
+                <p style={{ fontSize: 15 }}>
                   <strong>Carrera: </strong>
                   {publication.career}
                 </p>
@@ -68,15 +62,14 @@ const Comments = () => {
                   <strong>Horas que oferta: </strong>
                   {publication.hours}
                 </p>
+                <p style={{ fontSize: 15 }}>
+                  <strong>Correo de Contacto: </strong>
+                  {publication.contact_email}
+                </p>
                 <br />
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  style={{ marginLeft: 150 }}
-                >
-                  Postular
-                </Button>
+                <Application />
               </CardContent>
+              <CardContent style={{ backgroundColor: "#F77272" }}></CardContent>
             </CardActionArea>
           </Card>
         ))}
