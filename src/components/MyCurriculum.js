@@ -3,8 +3,10 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "@/lib/auth";
-import { Grid } from "@material-ui/core";
 import NewCurriculum from "@/components/NewCurriculum";
+import withAuth from "@/hocs/withAuth";
+import { Grid } from "@material-ui/core";
+import Image from "next/image";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +26,12 @@ const useStyles = makeStyles((theme) => ({
   confirmation: {
     paddingLeft: 55,
   },
+  media: {
+    height: 140,
+  },
 }));
 
-const MyCurriculum = () => {
+const MyCurriculum = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const { data, error } = useSWR(`/users/curriculum/${user.id}`, fetcher);
@@ -36,7 +41,7 @@ const MyCurriculum = () => {
   // render data
   return (
     <>
-      {data.user_id === user.id ? (
+      {data ? (
         <Grid
           container
           direction="column"
@@ -46,6 +51,12 @@ const MyCurriculum = () => {
         >
           {data.data.map((data) => (
             <Grid className={classes.root} key={data.id}>
+              <img
+                src={`http://localhost:8000/public/storage/cvitaes/${data.image}`}
+                alt="Profile-User"
+                width={150}
+                height={150}
+              />
               <p style={{ fontSize: 15 }}>
                 <strong>Universidad: </strong>
                 {data.university}
@@ -93,4 +104,4 @@ const MyCurriculum = () => {
   );
 };
 
-export default MyCurriculum;
+export default withAuth(MyCurriculum);

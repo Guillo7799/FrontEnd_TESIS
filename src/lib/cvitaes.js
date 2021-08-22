@@ -29,5 +29,5 @@ export const CVitae = {
   getById,
   create,
   update,
-  delete: deleteCviates,
+  delete: deleteCvitaes,
 };
