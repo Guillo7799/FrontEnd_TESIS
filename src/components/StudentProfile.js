@@ -118,7 +118,7 @@ const StudentProfile = () => {
             </Link>
           </Grid>
           <Grid item xs={12} sm={2}></Grid>
-          <Grid item xs={12} sm={5} spacing={4}>
+          <Grid item xs={12} sm={5} spacing={4} style={{ paddingLeft: 10 }}>
             <h3 style={{ paddingLeft: 75 }}>CURRICULUM</h3>
             <MyCurriculum />
           </Grid>
