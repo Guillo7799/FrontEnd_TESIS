@@ -142,6 +142,7 @@ const BusinessRegister = () => {
         timer: "6000",
       });
       console.log("userData", userData);
+      data.reset();
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
@@ -398,21 +399,17 @@ const BusinessRegister = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <label>Confirmación de Rol</label>
-                <Select
-                  native
-                  name="role"
-                  id="role"
-                  inputRef={register}
+                <TextField
                   variant="outlined"
-                  label="Confirme su Rol"
                   required
                   fullWidth
-                >
-                  <option value="ROLE_BUSINESS" selected>
-                    Cuenta Empresarial
-                  </option>
-                </Select>
+                  type="hidden"
+                  id="role"
+                  inputRef={register}
+                  defaultValue="ROLE_BUSINESS"
+                  name="role"
+                  autoComplete="text"
+                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
