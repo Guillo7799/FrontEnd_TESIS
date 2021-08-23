@@ -127,11 +127,11 @@ const Register = () => {
     try {
       const userData = await doRegister(data);
       swal({
-        title: "Usuario Registraod",
+        title: "Usuario Registrado",
         text: "Ya puede iniciar Sesión",
         icon: "success",
         button: "Aceptar",
-        timer: "6000",
+        timer: "10000",
       });
       console.log("userData", userData);
     } catch (error) {
@@ -139,7 +139,8 @@ const Register = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: "No se pudo registrar la cuenta",
+          title:
+            "No se pudo registrar la cuenta, revise que haya llenado correctamente los campos",
           text: translateMessage(error.response.data.error),
           icon: "error",
           button: "Aceptar",
@@ -389,18 +390,17 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <label>Confirme su Rol:</label>
-                <Select
-                  native
-                  name="role"
-                  id="role"
-                  inputRef={register}
+                <TextField
                   variant="outlined"
                   required
                   fullWidth
-                >
-                  <option value="ROLE_STUDENT">Estudiante</option>
-                </Select>
+                  type="hidden"
+                  id="role"
+                  inputRef={register}
+                  defaultValue="ROLE_STUDENT"
+                  name="role"
+                  autoComplete="text"
+                />
               </Grid>
             </Grid>
             <Button
