@@ -342,7 +342,7 @@ const Curriculum = (props) => {
         startIcon={<NoteAddIcon />}
         onClick={handleOpen}
       >
-        Llenar Curriculum
+        Llenar Uno
       </Button>
       <Modal
         open={open}
