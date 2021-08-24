@@ -10,6 +10,7 @@ import { deepOrange } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import Routes from "src/constants/routes";
 import MyCurriculum from "@/components/MyCurriculum";
+import MyPostulations from "@/components/MyPostulations";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -124,10 +125,19 @@ const StudentProfile = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} sm={12} style={{ textAlign: "center", height: 600 }}>
+      <Grid item xs={12} className={classes.title}>
         <h1>Mis Postulaciones</h1>
         <hr color="black" width="90%" />
-        <p>No hay registros...</p>
+      </Grid>
+      <Grid
+        container
+        className={classes.main}
+        item
+        xs={12}
+        sm={12}
+        style={{ textAlign: "center", height: 600 }}
+      >
+        <MyPostulations />
       </Grid>
     </>
   );

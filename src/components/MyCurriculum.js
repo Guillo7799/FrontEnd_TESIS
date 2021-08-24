@@ -41,7 +41,7 @@ const MyCurriculum = (props) => {
   // render data
   return (
     <>
-      {data ? (
+      {data.user_id === user.id ? (
         <Grid
           container
           direction="column"
