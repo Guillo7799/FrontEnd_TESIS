@@ -1,12 +1,11 @@
 import React from "react";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
-import Head from "next/head";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "src/constants/routes";
 import { Select } from "@material-ui/core";
-import { Button, Avatar, Grid, TextField, Typography } from "@material-ui/core";
+import { Button, Avatar, Grid, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import api from "@/lib/api";

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "../constants/routes";
-import { Button, Grid, TextField, Typography } from "@material-ui/core";
+import { Button, Grid, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import api from "@/lib/api";
