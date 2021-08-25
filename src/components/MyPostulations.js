@@ -4,7 +4,6 @@ import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import { useAuth } from "@/lib/auth";
 import Link from "next/link";
-import { Link as MuiLink } from "@material-ui/core";
 import withAuth from "@/hocs/withAuth";
 import { Grid } from "@material-ui/core";
 import Routes from "src/constants/routes";

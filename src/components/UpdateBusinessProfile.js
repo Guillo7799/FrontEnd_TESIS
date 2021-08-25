@@ -6,7 +6,6 @@ import Head from "next/head";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "../constants/routes";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Image from "next/image";
 import TextField from "@material-ui/core/TextField";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";

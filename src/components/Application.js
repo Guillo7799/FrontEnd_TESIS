@@ -1,13 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import swal from "sweetalert";
-import Loading from "@/components/Loading";
-import withAuth from "@/hocs/withAuth";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, TextField, Modal } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";

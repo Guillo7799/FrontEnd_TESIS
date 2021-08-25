@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import withoutAuth from "@/hocs/withoutAuth";
 import { useAuth } from "@/lib/auth";
 import styles from "@/styles/Login.module.css";
 import Button from "@material-ui/core/Button";
@@ -23,7 +22,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import clsx from "clsx";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { MenuItem, NativeSelect, Select } from "@material-ui/core";
 import Routes from "../constants/routes";
 import swal from "sweetalert";
 import Head from "next/head";

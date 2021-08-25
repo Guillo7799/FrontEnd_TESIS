@@ -2,16 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Card, CardActionArea, CardContent, Grid } from "@material-ui/core";
 import { Pagination } from "antd";
 
 const useStyles = makeStyles((theme) => ({
