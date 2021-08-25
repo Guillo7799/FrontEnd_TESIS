@@ -1,8 +1,7 @@
 import React from "react";
 import { Grid, Button, Input } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import Link from "next/link";
-import { Link as MuiLink } from "@material-ui/core";
+import swal from "sweetalert";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
@@ -33,10 +32,21 @@ function sendEmail(e) {
     )
     .then(
       (result) => {
+        swal({
+          title: "Correo Enviado!",
+          icon: "success",
+          button: "Aceptar",
+          timer: "3000",
+        });
         console.log(result.text);
       },
       (error) => {
         console.log(error.text);
+        swal({
+          title: "Error: revise que haya llenado todos los campos",
+          icon: "error",
+          button: "Aceptar",
+        });
       }
     );
   e.target.reset();
