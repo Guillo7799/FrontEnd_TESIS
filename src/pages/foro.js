@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "150px",
   },
   root4: {
-    minWidth: "150px",
+    width: "80%",
   },
   bullet: {
     display: "inline-block",
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   form: {
-    maxWidth: "100%",
+    Width: "80%",
     maxHeigh: "15%",
   },
 }));
@@ -128,14 +128,14 @@ const Comment = () => {
         <title>Foro</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
-        <QuestionAnswerIcon style={{ fontSize: 30 }} />
-        <h1 style={{ fontSize: 40 }}>Foro de Comentarios</h1>
-        <hr color="black" width="90%" />
+        <QuestionAnswerIcon style={{ fontSize: 30, color: "#F77272" }} />
+        <h1 style={{ fontSize: 40, color: "#F77272" }}>Foro de Comentarios</h1>
+        <hr color="#F77272" width="90%" />
       </Grid>
       <Grid item xs={12} className={classes.title}>
         <h2>
-          Conoce a los otros usuarios, comparte tu experiencia con la plataforma
-          y tu punto de vista sobre esta.
+          Conozca la opinión de otros usuarios, comparta su experiencia con la
+          plataforma y su punto de vista sobre esta.
         </h2>
       </Grid>
       <Grid container className={classes.root} item xs={12} sm={12}>
@@ -169,7 +169,7 @@ const Comment = () => {
                 label="Ingrese su comentario"
                 name="content"
                 autoComplete="text"
-                style={{ width: "100%", minHeight: "15%" }}
+                style={{ width: "80%", minHeight: "15%" }}
               />
               <br />
               <br />

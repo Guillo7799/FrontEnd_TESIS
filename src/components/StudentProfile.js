@@ -6,10 +6,10 @@ import { Grid, Typography, Avatar } from "@material-ui/core";
 import Head from "next/head";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
-import { deepOrange } from "@material-ui/core/colors";
 import Button from "@material-ui/core/Button";
 import Routes from "src/constants/routes";
 import MyCurriculum from "@/components/MyCurriculum";
+import Image from "next/image";
 import MyPostulations from "@/components/MyPostulations";
 
 const useStyles = makeStyles((theme) => ({
@@ -65,8 +65,8 @@ const StudentProfile = () => {
         <title>Perfil</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
-        <h1>Perfil de Usuario</h1>
-        <hr color="black" width="90%" />
+        <h1 style={{ color: "#F77272" }}>Perfil de Usuario</h1>
+        <hr color="#F77272" width="90%" />
       </Grid>
       <Grid container className={classes.main}>
         <Grid container item xs={12} sm={12} style={{ height: "100%" }}>
@@ -74,11 +74,12 @@ const StudentProfile = () => {
             <Typography variant="h4">Información:</Typography>
             <br />
             <br />
-            <div>
-              <Avatar
-                image={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${user.image}`}
-                alt="Foto de perfil"
-                className={classes.large}
+            <div style={{ textAlign: "center" }}>
+              <Image
+                src="/register/student.png"
+                alt="icono_estudiante"
+                width={115}
+                height={125}
               />
             </div>
             <br />
@@ -143,4 +144,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default withAuth(StudentProfile);
