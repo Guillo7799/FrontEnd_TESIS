@@ -3,7 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { Link as MuiLink } from "@material-ui/core";
 import Routes from "../constants/routes";
-import { Button, Grid, TextField } from "@material-ui/core";
+import { Button, Grid, TextField, Snackbar } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import api from "@/lib/api";
@@ -13,6 +13,7 @@ import withAuth from "@/hocs/withAuth";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Comments from "@/components/Comments";
+import { useAuth } from "@/lib/auth";
 
 const schema = yup.object().shape({
   text: yup.string().required("Ingresa tu comentario"),
@@ -79,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Comment = () => {
   const classes = useStyles();
+  const { user } = useAuth();
   const { register, handleSubmit, control, errors } = useForm();
   const [name, setName] = useState("");
 
@@ -122,6 +124,7 @@ const Comment = () => {
     }
   };
   const bull = <span className={classes.bullet}>•</span>;
+
   return (
     <>
       <Head>
@@ -132,86 +135,98 @@ const Comment = () => {
         <h1 style={{ fontSize: 40, color: "#F77272" }}>Foro de Comentarios</h1>
         <hr color="#F77272" width="90%" />
       </Grid>
-      <Grid item xs={12} className={classes.title}>
+      <Grid item xs={12} sm={12} className={classes.title}>
         <h2>
           Conozca la opinión de otros usuarios, comparta su experiencia con la
           plataforma y su punto de vista sobre esta.
         </h2>
       </Grid>
-      <Grid container className={classes.root} item xs={12} sm={12}>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          style={{
-            margin: "auto !important",
-            alignContent: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <form
-            className={classes.form}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmit(onSubmit)}
+      {user ? (
+        <Grid container className={classes.root} item xs={12} sm={12}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{
+              margin: "auto !important",
+              alignContent: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
           >
-            <Grid item xs={12} sm={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Multiline"
-                multiline
-                rows={4}
-                id="text"
-                inputRef={register}
-                label="Ingrese su comentario"
-                name="content"
-                autoComplete="text"
-                style={{ width: "80%", minHeight: "15%" }}
-              />
-              <br />
-              <br />
-            </Grid>
-            <Grid container item xs={12} sm={12}>
-              <Grid
-                item
-                xs={6}
-                sm={6}
-                style={{ textAlign: "right", paddingRight: 30 }}
-              >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
+            <form
+              className={classes.form}
+              noValidate
+              autoComplete="off"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  label="Multiline"
+                  multiline
+                  rows={4}
+                  id="text"
+                  inputRef={register}
+                  label="Ingrese su comentario"
+                  name="content"
+                  autoComplete="text"
+                  style={{ width: "80%", minHeight: "15%" }}
+                />
+                <br />
+                <br />
+              </Grid>
+              <Grid container item xs={12} sm={12}>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  style={{ textAlign: "right", paddingRight: 30 }}
                 >
-                  Comentar
-                </Button>
-                <br />
-                <br />
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Comentar
+                  </Button>
+                  <br />
+                  <br />
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  sm={6}
+                  style={{ textAlign: "left", paddingLeft: 30 }}
+                >
+                  <Link href={Routes.HOME} passHref>
+                    <MuiLink>
+                      <Button variant="contained" color="primary">
+                        Cancelar
+                      </Button>
+                    </MuiLink>
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid
-                item
-                xs={6}
-                sm={6}
-                style={{ textAlign: "left", paddingLeft: 30 }}
-              >
-                <Link href={Routes.HOME} passHref>
-                  <MuiLink>
-                    <Button variant="contained" color="primary">
-                      Cancelar
-                    </Button>
-                  </MuiLink>
-                </Link>
-              </Grid>
-            </Grid>
-          </form>
+            </form>
+          </Grid>
         </Grid>
-      </Grid>
+      ) : (
+        <Grid item xs={12} sm={12} className={classes.title}>
+          <img
+            src="https://image.flaticon.com/icons/png/512/2593/2593668.png"
+            alt="Sugerencia"
+            width={175}
+            height={175}
+          />
+          <h3>Necesita iniciar sesión para realizar un comentario</h3>
+        </Grid>
+      )}
       <Grid item xs={12} className={classes.title}>
-        <h2>Commentarios de usuarios</h2>
+        <h2>Comentarios de usuarios</h2>
       </Grid>
       <Grid container>
         <Comments />
