@@ -13,10 +13,8 @@ const privateRoutes = {
   HOME: "/",
   GLOBALPROFILE: "/perfil",
   PUBLICATIONS: "/publications",
-  //ARTICLES: "/articles",
-  // PUBLICATION_ID: "/publication/:id",
-  // USERS: "/usuarios",
-  // USERS_ID: `/usuario/:id`,
+  CURRICULUMS: "/curriculums",
+  CURRICULUM_ID: "/curriculums/:id",
 };
 
 const Routes = {

@@ -8,6 +8,7 @@ import withAuth from "@/hocs/withAuth";
 import MyPublication from "@/components/MyPublications";
 import ApplicationsByPostulation from "@/components/ApplicationsByPostulation";
 import NewPublication from "@/components/NewPublication";
+import MenuBusiness from "@/components/MenuBusiness";
 
 const schema = yup.object().shape({
   text: yup.string().required("Ingresa tu oferta de prácticas"),
@@ -20,30 +21,17 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     padding: 10,
   },
-  root: {
-    marginTop: 20,
-    alignContent: "center",
-    justifyContent: "center",
-    textAlign: "center",
-  },
-  root2: {
-    maxWidth: 500,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title2: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
   main: {
     marginTop: "5%",
     paddingLeft: "10%",
     textAlign: "left",
+  },
+  actions: {
+    width: "90%",
+    textAlign: "center",
+    fontFamily: "'Source Sans Pro', sans-serif",
+    margin: "auto",
+    padding: 10,
   },
 }));
 
@@ -116,11 +104,8 @@ const BusinessProfile = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid>
-        <NewPublication />
-      </Grid>
-      <Grid>
-        <ApplicationsByPostulation />
+      <Grid container className={classes.actions} item xs={12} sm={12}>
+        <MenuBusiness />
       </Grid>
     </>
   );
