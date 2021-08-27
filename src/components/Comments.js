@@ -3,11 +3,11 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActionArea, CardContent, Grid } from "@material-ui/core";
-import { Pagination } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: "90%",
+    marginLeft: "5%",
     borderColor: "#094275",
   },
   media: {
@@ -18,6 +18,23 @@ const useStyles = makeStyles((theme) => ({
     display: "-webkit-box",
     "-webkit-line-clamp": 2,
     "-webkit-box-orient": "vertical",
+  },
+  comments: {
+    width: "100%",
+  },
+  title: {
+    textAlign: "center",
+    fontFamily: "'Source Sans Pro', sans-serif",
+    margin: "auto",
+    padding: 10,
+  },
+  card: {
+    display: "relative",
+    padding: "10px",
+    width: "100%",
+  },
+  cardContainer: {
+    margin: "10px 40px",
   },
 }));
 
@@ -32,32 +49,26 @@ const Comments = () => {
     <>
       <br />
       <br />
-      <Grid
-        container
-        direction="row"
-        style={{
-          justifyContent: "space-between",
-        }}
-      >
+      <Grid container className={classes.root} direction="row">
         {data.data.map((comment) => (
-          <Card
-            className={classes.root}
-            key={(comment.content, comment.created_at)}
-          >
-            <CardActionArea>
-              <CardContent>
-                <p style={{ fontSize: 15 }}>{comment.content}</p>
-                <p style={{ fontSize: 12, color: "#C0C0C0" }}>
-                  Realizado el: {comment.created_at}
-                </p>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+          <Grid item xs={12} className={classes.cardContainer}>
+            <Grid item xs={12} className={classes.card}>
+              <Card className={classes.comments}>
+                <CardActionArea>
+                  <CardContent>
+                    <p style={{ fontSize: 15 }}>{comment.content}</p>
+                    <p style={{ fontSize: 12, color: "#F77272" }}>
+                      {comment.name} {comment.last_name}
+                    </p>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
         ))}
       </Grid>
       <br />
       <br />
-      <Pagination defaultCurrent={1} total={10} />
     </>
   );
 };
