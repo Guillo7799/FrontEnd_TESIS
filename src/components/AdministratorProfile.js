@@ -26,15 +26,17 @@ const Administrador = () => {
       <Head>
         <title>Administrador</title>
       </Head>
-      <Grid item xs={12} className={classes.title}>
-        <h1>Bienvenido Administrador!</h1>
-        <hr color="black" width="90%" />
-      </Grid>
-      <Grid>
-        <Information />
-      </Grid>
-      <Grid>
-        <CommentsCrud />
+      <Grid container className={classes.main}>
+        <Grid item xs={12} sm={12} className={classes.title}>
+          <h1>¡Bienvenido Administrador!</h1>
+          <hr color="black" width="90%" />
+        </Grid>
+        <Grid>
+          <Information />
+        </Grid>
+        <Grid>
+          <CommentsCrud />
+        </Grid>
       </Grid>
     </>
   );

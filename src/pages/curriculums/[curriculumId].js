@@ -1,12 +1,23 @@
-import React from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
-import { makeStyles } from "@material-ui/core/styles";
-import { useAuth } from "@/lib/auth";
-import NewCurriculum from "@/components/NewCurriculum";
+import { useRouter } from "next/router";
+import React from "react";
+import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
-import { Grid } from "@material-ui/core";
+import Routes from "../../constants/routes";
+import { useSnackbar } from "notistack";
+import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,14 +42,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MyCurriculum = (props) => {
+const UserProfile = () => {
   const classes = useStyles();
-  const { user } = useAuth();
-  const { data, error } = useSWR(`/users/curriculum/${user.id}`, fetcher);
+  const router = useRouter();
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { curriculumId } = router.query;
+  const { data, error, mutate } = useSWR(
+    `/users/curriculum/${curriculumId}`,
+    fetcher
+  );
 
-  if (error) return <div>No se pudo cargar su curriculum</div>;
-  if (!data) return <div>Cargando curriculum...</div>;
-  // render data
+  if (error) return <div>No se pudo cargar la información del artículo</div>;
+  if (!data) return <Loading />;
+
   return (
     <>
       {data ? (
@@ -51,12 +67,16 @@ const MyCurriculum = (props) => {
         >
           {data.data.map((data) => (
             <Grid className={classes.root} key={data.id}>
-              <img
-                src={`http://localhost:8000/public/storage/cvitaes/${data.image}`}
+              <Image
+                src={`/http://localhost:8000/cvitaes/${data.image}`}
                 alt="Profile-User"
                 width={150}
                 height={150}
               />
+              <p style={{ fontSize: 15 }}>
+                <strong>Nombre: </strong>
+                {data.name}
+              </p>
               <p style={{ fontSize: 15 }}>
                 <strong>Universidad: </strong>
                 {data.university}
@@ -97,20 +117,8 @@ const MyCurriculum = (props) => {
           <div>No se pudo cargar su curriculum</div>
         </>
       )}
-      {data.id === null ? (
-        <>
-          <div className={classes.confirmation}>
-            <p>No tiene un Curriculum</p>
-            <NewCurriculum />
-          </div>
-        </>
-      ) : (
-        <>
-          <div>No se pudo cargar el formulario</div>
-        </>
-      )}
     </>
   );
 };
 
-export default withAuth(MyCurriculum);
+export default withAuth(UserProfile);
