@@ -8,6 +8,8 @@ import Routes from "../../constants/routes";
 import { useSnackbar } from "notistack";
 import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
 import {
   Button,
   Card,
@@ -18,27 +20,38 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import Head from "next/head";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 350,
-    borderColor: "#094275",
+    minHeight: "800",
     textAlign: "left",
-  },
-  media: {
-    height: 140,
   },
   title: {
     overflow: "hidden",
     display: "-webkit-box",
+    textAlign: "center",
     "-webkit-line-clamp": 2,
     "-webkit-box-orient": "vertical",
   },
-  confirmation: {
-    paddingLeft: 55,
-  },
   media: {
     height: 140,
+  },
+  main: {
+    marginTop: "5%",
+    paddingLeft: "10%",
+    maxWidth: "90%",
+    textAlign: "left",
+    minHeight: "800px",
+  },
+  button: {
+    textAlign: "center",
+    minWidth: "100%",
+    minHeight: "10%",
+    marginLeft: "47%",
+  },
+  image: {
+    paddingLeft: "15%",
   },
 }));
 
@@ -57,66 +70,116 @@ const UserProfile = () => {
 
   return (
     <>
-      {data ? (
-        <Grid
-          container
-          direction="column"
-          style={{
-            justifyContent: "space-between",
-          }}
-        >
-          {data.data.map((data) => (
-            <Grid className={classes.root} key={data.id}>
-              <Image
-                src={`/http://localhost:8000/cvitaes/${data.image}`}
-                alt="Profile-User"
-                width={150}
-                height={150}
-              />
-              <p style={{ fontSize: 15 }}>
-                <strong>Nombre: </strong>
-                {data.name}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Universidad: </strong>
-                {data.university}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Carrera: </strong>
-                {data.career}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Idioma extranjero: </strong>
-                {data.language}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Nivel del Idioma extranjero: </strong>
-                {data.level_language}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Idioma extranjero: </strong>
-                {data.habilities}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Idioma extranjero: </strong>
-                {data.certificates}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Título de Segundo Grado: </strong>
-                {data.highschool_degree}
-              </p>
-              <p style={{ fontSize: 15 }}>
-                <strong>Experiencia Laboral: </strong>
-                {data.work_experience}
-              </p>
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <>
-          <div>No se pudo cargar su curriculum</div>
-        </>
-      )}
+      <Head>
+        <title>Hoja de Vida</title>
+      </Head>
+      <Grid item xs={12} className={classes.title}>
+        <h1 style={{ color: "#F77272" }}>Curriculum Vitae</h1>
+        <hr color="#F77272" width="90%" />
+      </Grid>
+      <Grid container>
+        {data ? (
+          <Grid
+            container
+            style={{
+              justifyContent: "center",
+            }}
+          >
+            {data.data.map((data) => (
+              <Grid container className={classes.main} key={data.id}>
+                <Grid container>
+                  <Grid item xs={12} sm={6} className={classes.image}>
+                    <Image
+                      src={`/http://localhost:8000/cvitaes/${data.image}`}
+                      alt="Profile-User"
+                      width={150}
+                      height={150}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Nombre y Apellido: </strong>
+                      {data.name} {data.last_name}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Provincia: </strong>
+                      {data.province}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Ciudad: </strong>
+                      {data.city}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Dirección: </strong>
+                      {data.location}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Email: </strong>
+                      {data.email}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Celular: </strong>
+                      {data.cellphone}
+                    </p>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={12} sm={12}>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Universidad: </strong>
+                      {data.university}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Carrera: </strong>
+                      {data.career}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Idioma extranjero: </strong>
+                      {data.language}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Nivel del Idioma extranjero: </strong>
+                      {data.level_language}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Habilidades: </strong>
+                      {data.habilities}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>certificates: </strong>
+                      {data.certificates}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Título de Segundo Grado: </strong>
+                      {data.highschool_degree}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong>Experiencia Laboral: </strong>
+                      {data.work_experience}
+                    </p>
+                  </Grid>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <>
+            <div>No se pudo cargar su curriculum</div>
+          </>
+        )}
+      </Grid>
+      <Grid container item xs={12} sm={12} className={classes.button}>
+        <Link href={Routes.GLOBALPROFILE} passHref>
+          <MuiLink>
+            <Button color="primary" variant="contained">
+              Regresar
+            </Button>
+          </MuiLink>
+        </Link>
+      </Grid>
+      <br />
+      <br />
+      <br />
     </>
   );
 };

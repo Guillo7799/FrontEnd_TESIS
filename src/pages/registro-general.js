@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button";
 const useStyles = makeStyles((theme) => ({
   mainroot: {
     width: "100%",
-    height: "800px",
+    height: "100%",
   },
   title: {
     textAlign: "center",
@@ -27,10 +27,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "70%",
     fontSize: 18,
     fontFamily: "'Source Sans Pro', sans-serif",
-    maxHeight: "100%",
     alignContent: "center",
     justifyContent: "center",
     textAlign: "center",
+    height: "600px",
   },
   studentop: {
     marginTop: 30,
@@ -72,8 +72,8 @@ const RegisterGeneral = () => {
           <title>Opción de Registro</title>
         </Head>
         <Grid item xs={12} className={classes.title}>
-          <h1>Registro - Selección de Rol</h1>
-          <hr color="black" width="90%" />
+          <h1 style={{ color: "#F77272" }}>Registro - Selección de Rol</h1>
+          <hr color="#F77272" width="90%" />
         </Grid>
         <Grid container className={classes.root}>
           <Grid item xs={12} container className={classes.main}>
@@ -120,6 +120,10 @@ const RegisterGeneral = () => {
             </MuiLink>
           </Link>
         </Grid>
+        <br />
+        <br />
+        <br />
+        <br />
       </Grid>
     </>
   );

@@ -78,8 +78,10 @@ const Login = () => {
       <Head>
         <title>Inicio de Sesión</title>
       </Head>
-      <Grid container justify="center" style={{ height: "600px" }}>
+      <Grid container justify="center" style={{ height: "650px" }}>
         <Grid item xs={12} className={classes.icon}>
+          <br />
+          <br />
           <Image
             src="/login/key.png"
             alt="icono_login"
@@ -87,15 +89,12 @@ const Login = () => {
             height={110}
           />
         </Grid>
-        <br />
-        <Grid item xs={12} className={classes.description}>
+        <Grid item xs={12} sm={12} className={classes.description}>
           <Typography component="h1" variant="h5">
-            Iniciar sesión
+            Inicio de sesión
           </Typography>
         </Grid>
-        <br />
-        <br />
-        <Grid item xs={6} style={{ maxWidth: "450px" }}>
+        <Grid item xs={12} sm={12} style={{ maxWidth: "500px" }}>
           <form noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2} justify="center" alignItems="center">
               <Grid xs={12} item>
@@ -135,13 +134,12 @@ const Login = () => {
               </Grid>
               <Grid container>
                 <Grid item xs>
-                  <Link href={Routes.REMEMBERPASSWORD} variant="body2">
-                    Olvidé la contraseña
-                  </Link>
-                </Grid>
-                <Grid item xs>
-                  <Link href={Routes.GENERAL} variant="body2" passHref>
-                    <MuiLink>{"¿No tienes cuenta?, Registrarme"}</MuiLink>
+                  <Link href={Routes.GENERAL} passHref>
+                    <MuiLink>
+                      <p style={{ fontFamily: "Roboto", marginLeft: 15 }}>
+                        ¿No tiene cuenta?, Registrarme
+                      </p>
+                    </MuiLink>
                   </Link>
                 </Grid>
               </Grid>

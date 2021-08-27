@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
+import withAuth from "@/hocs/withAuth";
 import { makeStyles } from "@material-ui/core/styles";
 import Head from "next/head";
-import { Avatar, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import * as yup from "yup";
-import withAuth from "@/hocs/withAuth";
 import MyPublication from "@/components/MyPublications";
-import ApplicationsByPostulation from "@/components/ApplicationsByPostulation";
-import NewPublication from "@/components/NewPublication";
+import Image from "next/image";
 import MenuBusiness from "@/components/MenuBusiness";
 
 const schema = yup.object().shape({
@@ -45,8 +44,8 @@ const BusinessProfile = () => {
         <title>Perfil Empresa</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
-        <h1>Cuenta Empresarial</h1>
-        <hr color="black" width="90%" />
+        <h1 styke={{ color: "#F77272" }}>Cuenta Empresarial</h1>
+        <hr color="#F77272" width="90%" />
       </Grid>
       <Grid container className={classes.main}>
         <Grid container>
@@ -55,10 +54,11 @@ const BusinessProfile = () => {
             <br />
             <br />
             <div style={{ textAlign: "center" }}>
-              <Avatar
-                image={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${user.image}`}
-                alt="Foto de perfil"
-                className={classes.large}
+              <Image
+                src="/register/working-man.png"
+                alt="icono_estudiante"
+                width={115}
+                height={125}
               />
             </div>
             <br />
@@ -91,9 +91,6 @@ const BusinessProfile = () => {
               <strong>Biografía:</strong> {user.description}
             </Typography>
             <br />
-            <Typography varian="h6">
-              <strong>Nombre de la Empresa:</strong> {user.business_name}
-            </Typography>
             <br />
           </Grid>
           <Grid item xs={12} sm={2}></Grid>

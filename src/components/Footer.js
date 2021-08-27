@@ -106,7 +106,7 @@ const Footer = () => {
                     placeholder="Nombre"
                     name="name"
                     size="medium"
-                    style={{ width: "50%", minHeight: "15%", color: "white" }}
+                    style={{ width: "65%", minHeight: "15%", color: "white" }}
                   />
                 </div>
                 <br />
@@ -118,7 +118,7 @@ const Footer = () => {
                     placeholder="Tu correo electrónico"
                     name="email"
                     size="medium"
-                    style={{ width: "50%", minHeight: "15%", color: "white" }}
+                    style={{ width: "65%", minHeight: "15%", color: "white" }}
                   />
                 </div>
                 <br />
@@ -130,7 +130,7 @@ const Footer = () => {
                     placeholder="Asunto"
                     name="subject"
                     size="medium"
-                    style={{ width: "50%", minHeight: "15%", color: "white" }}
+                    style={{ width: "65%", minHeight: "15%", color: "white" }}
                   />
                 </div>
                 <br />
@@ -143,7 +143,7 @@ const Footer = () => {
                     rows="8"
                     placeholder="Tu mensaje"
                     name="message"
-                    style={{ width: "50%", minHeight: "15%", color: "white" }}
+                    style={{ width: "65%", minHeight: "15%", color: "white" }}
                   ></Input>
                 </div>
                 <br />

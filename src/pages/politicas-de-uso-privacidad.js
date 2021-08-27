@@ -53,9 +53,9 @@ const Politics = () => {
       </Head>
       <Grid className={classes.subheader}>
         <Grid className={classes.title}>
-          <h1>POLÍTICAS DE USO Y PRIVACIDAD</h1>
+          <h1 style={{ color: "#F77272" }}>POLÍTICAS DE USO Y PRIVACIDAD</h1>
         </Grid>
-        <hr color="black" width="100%" />
+        <hr color="#F77272" width="100%" />
       </Grid>
       <Grid className={classes.main}>
         <Grid className={classes.partone}>
