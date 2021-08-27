@@ -52,7 +52,7 @@ const MyCurriculum = (props) => {
           {data.data.map((data) => (
             <Grid className={classes.root} key={data.id}>
               <img
-                src={`http://localhost:8000/public/storage/cvitaes/${data.image}`}
+                src={`http://localhost:8000/storage/${data.image}`}
                 alt="Profile-User"
                 width={150}
                 height={150}

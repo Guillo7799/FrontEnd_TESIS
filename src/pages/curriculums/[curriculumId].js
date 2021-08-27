@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "47%",
   },
   image: {
-    paddingLeft: "15%",
+    paddingLeft: "5%",
   },
 }));
 
@@ -89,11 +89,11 @@ const UserProfile = () => {
               <Grid container className={classes.main} key={data.id}>
                 <Grid container>
                   <Grid item xs={12} sm={6} className={classes.image}>
-                    <Image
-                      src={`/http://localhost:8000/cvitaes/${data.image}`}
+                    <img
+                      src={`http://localhost:8000/storage/${data.image}`}
                       alt="Profile-User"
-                      width={150}
-                      height={150}
+                      width={250}
+                      height={300}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
