@@ -44,7 +44,7 @@ const BusinessProfile = () => {
         <title>Perfil Empresa</title>
       </Head>
       <Grid item xs={12} className={classes.title}>
-        <h1 styke={{ color: "#F77272" }}>Cuenta Empresarial</h1>
+        <h1 style={{ color: "#F77272" }}>Cuenta Empresarial</h1>
         <hr color="#F77272" width="90%" />
       </Grid>
       <Grid container className={classes.main}>

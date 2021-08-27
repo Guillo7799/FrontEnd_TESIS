@@ -8,6 +8,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { useAuth } from "../lib/auth";
 import Link from "next/link";
 import Routes from "../constants/routes";
+import AppsIcon from "@material-ui/icons/Apps";
+import LockIcon from "@material-ui/icons/Lock";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
   sectionDesktop: {
@@ -67,12 +70,18 @@ const IconsMenu = () => {
       onClose={handleMenuAccountClose}
     >
       <Link href={Routes.GLOBALPROFILE}>
-        <MenuItem onClick={handleMenuAccountClose}>Perfil</MenuItem>
+        <MenuItem onClick={handleMenuAccountClose}>
+          <AppsIcon /> Administrar mi actividad
+        </MenuItem>
       </Link>
       <Link href={Routes.GLOBALCOUNT}>
-        <MenuItem onClick={handleMenuAccountClose}>Mi cuenta</MenuItem>
+        <MenuItem onClick={handleMenuAccountClose}>
+          <LockIcon /> Mi cuenta
+        </MenuItem>
       </Link>
-      <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
+      <MenuItem onClick={handleLogout}>
+        <ExitToAppIcon /> Cerrar sesión
+      </MenuItem>
     </Menu>
   );
 
