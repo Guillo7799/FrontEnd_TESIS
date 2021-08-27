@@ -34,7 +34,7 @@ const mainMenuItems = [
   },
   {
     text: "Acerca de",
-    to: Routes.FORO,
+    to: Routes.ABOUT,
   },
   {
     text: <HomeIcon />,

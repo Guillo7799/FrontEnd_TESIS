@@ -7,11 +7,13 @@ const publicRoutes = {
   POLITICS: "/politicas-de-uso-privacidad",
   LEYES: "/ley-ecuatoriana",
   FORO: "/foro",
+  ABOUT: "/acerca-de",
 };
 
 const privateRoutes = {
   HOME: "/",
   GLOBALPROFILE: "/perfil",
+  GLOBALCOUNT: "/mi-cuenta",
   PUBLICATIONS: "/publications",
   CURRICULUMS: "/curriculums",
   CURRICULUM_ID: "/curriculums/:id",
