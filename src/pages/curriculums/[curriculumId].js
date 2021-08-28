@@ -23,10 +23,6 @@ import {
 import Head from "next/head";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: "800",
-    textAlign: "left",
-  },
   title: {
     overflow: "hidden",
     display: "-webkit-box",
@@ -39,10 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     marginTop: "5%",
-    paddingLeft: "10%",
     maxWidth: "90%",
     textAlign: "left",
-    minHeight: "800px",
+    minHeight: "100%",
   },
   button: {
     textAlign: "center",
@@ -50,8 +45,33 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "10%",
     marginLeft: "45%",
   },
-  image: {
+  firstContent: {
     paddingLeft: "5%",
+    width: "100%",
+    background: "#E1D8CF",
+    height: "100%",
+  },
+  name: {
+    width: "100%",
+    height: "35%",
+    background: "#373741",
+    textAlign: "center",
+  },
+  imageContent: {
+    borderRadius: 5,
+  },
+  description: {
+    width: "90%",
+    height: "5%",
+    background: "#373741",
+    textAlign: "center",
+  },
+  description2: {
+    width: "90%",
+    marginLeft: "5%",
+    height: "15%",
+    background: "#373741",
+    textAlign: "center",
   },
 }));
 
@@ -73,101 +93,153 @@ const UserProfile = () => {
       <Head>
         <title>Hoja de Vida</title>
       </Head>
-      <Grid item xs={12} className={classes.title}>
-        <h1 style={{ color: "#F77272" }}>Curriculum Vitae</h1>
-        <hr color="#F77272" width="90%" />
+      <Grid item xs={12} sm={12} className={classes.title}>
+        <h1 style={{ fontFamily: "Lobster cursive", color: "#094275" }}>
+          Curriculum Vitae
+        </h1>
       </Grid>
-      <Grid container>
-        {data ? (
-          <Grid
-            container
-            style={{
-              justifyContent: "center",
-            }}
-          >
-            {data.map((data) => (
-              <Grid container className={classes.main} key={data.id}>
-                <Grid container>
-                  <Grid item xs={12} sm={6} className={classes.image}>
-                    <img
-                      src={`http://localhost:8000/storage/${data.image}`}
-                      alt="Profile-User"
-                      width={250}
-                      height={300}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Nombre y Apellido: </strong>
-                      {data.name} {data.last_name}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Provincia: </strong>
-                      {data.province}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Ciudad: </strong>
-                      {data.city}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Dirección: </strong>
-                      {data.location}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Email: </strong>
-                      {data.email}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Celular: </strong>
-                      {data.cellphone}
-                    </p>
-                  </Grid>
+      {data ? (
+        <Grid
+          container
+          style={{
+            justifyContent: "center",
+          }}
+        >
+          {data.map((data) => (
+            <Grid container className={classes.main} key={data.id}>
+              <Grid item xs={12} sm={6} className={classes.firstContent}>
+                <Grid style={{ textAlign: "center", marginTop: 15 }}>
+                  <img
+                    src={`http://localhost:8000/storage/${data.image}`}
+                    alt="Profile-User"
+                    width={250}
+                    height={300}
+                    className={classes.imageContent}
+                  />
                 </Grid>
-                <Grid container>
-                  <Grid item xs={12} sm={12}>
+                <Grid item xs={12} sm={12} className={classes.description}>
+                  <h1 style={{ color: "#E1D8CF" }}>Mis Habilidades</h1>
+                </Grid>
+                <Grid>
+                  <p style={{ fontSize: 15 }}>{data.habilities}</p>
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.description}>
+                  <h1 style={{ color: "#E1D8CF" }}>Mi ubicación</h1>
+                </Grid>
+                <Grid>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Provincia:</strong> {data.province}
+                  </p>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Ciudad:</strong> {data.city}
+                  </p>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Dirección:</strong> {data.location}
+                  </p>
+                </Grid>
+                <Grid item xs={12} sm={12} className={classes.description}>
+                  <h1 style={{ color: "#E1D8CF" }}>Datos de Contacto</h1>
+                </Grid>
+                <Grid>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Correo:</strong> {data.email}
+                  </p>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Celular:</strong> {data.cellphone}
+                  </p>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm={6} className={classes.name}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    background: "#373741",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: 40,
+                      color: "#E1D8CF",
+                      textAlign: "center",
+                    }}
+                  >
+                    {data.name}
+                    <br /> {data.last_name}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: 20,
+                      color: "#E1D8CF",
+                      textAlign: "center",
+                    }}
+                  >
+                    {data.career}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: 20,
+                      color: "#E1D8CF",
+                      textAlign: "center",
+                    }}
+                  >
+                    {data.university}
+                  </p>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <Grid item xs={12} sm={12} className={classes.description2}>
+                    <h1 style={{ color: "#E1D8CF" }}>Idioma</h1>
+                  </Grid>
+                  <Grid style={{ textAlign: "left", paddingLeft: "5%" }}>
                     <p style={{ fontSize: 15 }}>
-                      <strong>Universidad: </strong>
-                      {data.university}
+                      <strong>Idioma:</strong> {data.language}
                     </p>
                     <p style={{ fontSize: 15 }}>
-                      <strong>Carrera: </strong>
-                      {data.career}
+                      <strong>Nivel de Idioma:</strong> {data.level_language}
                     </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Idioma extranjero: </strong>
-                      {data.language}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Nivel del Idioma extranjero: </strong>
-                      {data.level_language}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Habilidades: </strong>
-                      {data.habilities}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Certificados: </strong>
-                      {data.certificates}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Título de Segundo Grado: </strong>
-                      {data.highschool_degree}
-                    </p>
-                    <p style={{ fontSize: 15 }}>
-                      <strong>Experiencia Laboral: </strong>
-                      {data.work_experience}
-                    </p>
+                  </Grid>
+                  <Grid item xs={12} sm={12} className={classes.description2}>
+                    <h1 style={{ color: "#E1D8CF" }}>Mi título de 2° Grado</h1>
+                  </Grid>
+                  <Grid style={{ textAlign: "left", paddingLeft: "5%" }}>
+                    <p style={{ fontSize: 15 }}>{data.highschool_degree}</p>
+                  </Grid>
+                  <Grid item xs={12} sm={12} className={classes.description2}>
+                    <h1 style={{ color: "#E1D8CF" }}>Mis certificados</h1>
+                  </Grid>
+                  <Grid style={{ textAlign: "left", paddingLeft: "5%" }}>
+                    <p style={{ fontSize: 15 }}>{data.certificates}</p>
+                  </Grid>
+                  <Grid item xs={12} sm={12} className={classes.description2}>
+                    <h1 style={{ color: "#E1D8CF" }}>Experiencia laboral</h1>
+                  </Grid>
+                  <Grid style={{ textAlign: "left", paddingLeft: "5%" }}>
+                    <p style={{ fontSize: 15 }}>{data.work_experience}</p>
                   </Grid>
                 </Grid>
               </Grid>
-            ))}
-          </Grid>
-        ) : (
-          <>
-            <div>No se pudo cargar su curriculum</div>
-          </>
-        )}
-      </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <>
+          <div>No se pudo cargar su curriculum</div>
+        </>
+      )}
+      <br />
+      <br />
+      <br />
       <Grid container item xs={12} sm={12} className={classes.button}>
         <Link href={Routes.GLOBALPROFILE} passHref>
           <MuiLink>

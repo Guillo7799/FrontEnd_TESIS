@@ -89,7 +89,7 @@ const Footer = () => {
         </Grid>
         <Grid container item xs={12} sm={6}>
           <Grid item xs={12} sm={12} style={{ padding: 15 }}>
-            <h2>CONTACTO CON EL DESARROLLADOR:</h2>
+            <h2>CONTACTO CON EL ADMINISTRADOR:</h2>
           </Grid>
           <Grid
             item
