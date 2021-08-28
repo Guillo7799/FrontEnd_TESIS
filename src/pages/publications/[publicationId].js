@@ -7,7 +7,7 @@ import withAuth from "@/hocs/withAuth";
 import Routes from "../../constants/routes";
 import { useSnackbar } from "notistack";
 import { makeStyles } from "@material-ui/core/styles";
-import Image from "next/image";
+import Avatar from "@material-ui/core/Avatar";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import {
@@ -21,6 +21,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import Head from "next/head";
+import ApplicationForm from "@/components/ApplicationForm";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,8 +51,13 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "10%",
     marginLeft: "45%",
   },
-  image: {
-    paddingLeft: "5%",
+  square: {
+    width: "80%",
+    height: "100%",
+    textAlign: "center",
+    color: "#E1D8CF",
+    backgroundColor: "#094275",
+    fontSize: 60,
   },
 }));
 
@@ -88,36 +94,44 @@ const PublicationDetail = () => {
             }}
           >
             <Grid container className={classes.main} key={data.id}>
-              <Grid container>
+              <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
-                  <p style={{ fontSize: 15 }}>
-                    <strong>Nombre de la Empresa </strong>
+                  <Avatar variant="square" className={classes.square}>
                     {data.business_name}
-                  </p>
+                  </Avatar>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <h1 style={{ fontSize: 30 }}>Solicita un Practicante</h1>
+                </Grid>
+              </Grid>
+              <Grid container style={{ paddingTop: "5%", height: "100%" }}>
+                <Grid item xs={12} sm={6} style={{ width: "80%" }}>
+                  <h1 style={{ fontSize: 25 }}>Requisitos: </h1>
                   <p style={{ fontSize: 15 }}>
+                    {data.description}
+                    <br />
                     <strong>Carrera de interés: </strong>
                     {data.career}
                   </p>
+                  <h1 style={{ fontSize: 25 }}>Se oferta: </h1>
                   <p style={{ fontSize: 15 }}>
-                    <strong>Detalle de publicación: </strong>
-                    {data.description}
+                    {data.hours} Horas
+                    <br />
+                    <strong>Para la ciudad de: </strong>
+                    {data.city}
                   </p>
-                  <p style={{ fontSize: 15 }}>
-                    <strong>Oferta: </strong>
-                    {data.hours}
-                  </p>
+                  <h1 style={{ fontSize: 25 }}>Tener en cuenta: </h1>
                   <p style={{ fontSize: 15 }}>
                     <strong>Fecha máxima para postular: </strong>
                     {data.date}
                   </p>
                   <p style={{ fontSize: 15 }}>
-                    <strong>Ciudad donde se oferta: </strong>
-                    {data.city}
-                  </p>
-                  <p style={{ fontSize: 15 }}>
-                    <strong>Correo al que se pueden contactar: </strong>
+                    <strong>Correo de contacto: </strong>
                     {data.contact_email}
                   </p>
+                </Grid>
+                <Grid item xs={12} sm={6} style={{ width: "80%" }}>
+                  <ApplicationForm publication={data.id} />
                 </Grid>
               </Grid>
             </Grid>
