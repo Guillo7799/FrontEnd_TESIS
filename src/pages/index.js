@@ -65,11 +65,6 @@ export default function Home() {
           className={classes.title}
           style={{ alignItems: "center" }}
         >
-          <h1>¿Qué objetivo tiene Prácticas al Día?</h1>
-        </Grid>
-        <br />
-        <br />
-        <Grid container item xs={12}>
           <Target />
         </Grid>
         <br />

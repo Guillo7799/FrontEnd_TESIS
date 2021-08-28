@@ -34,7 +34,7 @@ const mainMenuItems = [
   },
   {
     text: "Acerca de",
-    to: Routes.ABOUT,
+    to: "/#acerca-de",
   },
   {
     text: <HomeIcon />,
