@@ -1,20 +1,11 @@
 import React, { useState, useRef } from "react";
-import useSWR from "swr";
 import { useForm } from "react-hook-form";
-import { fetcher } from "@/lib/utils";
 import { useAuth } from "@/lib/auth";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
-import Loading from "@/components/Loading";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import translateMessage from "../constants/messages";
 import { Application } from "@/lib/applications";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Routes from "src/constants/routes";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import * as yup from "yup";
-import api from "@/lib/api";
 import { Grid, Button, Select, Modal } from "@material-ui/core";
 
 function rand() {
@@ -42,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   button: {
-    margin: theme.spacing(1),
+    paddingLeft: "41%",
     backgroundColor: "#F77272",
+    fontSize: 15,
   },
 }));
 
@@ -181,7 +173,7 @@ const EditStatus = (props) => {
         variant="contained"
         color="default"
         className={classes.button}
-        startIcon={<EditIcon />}
+        startIcon={<EditIcon style={{ fontSize: "large" }} />}
         onClick={handleOpen}
       ></Button>
       <Modal

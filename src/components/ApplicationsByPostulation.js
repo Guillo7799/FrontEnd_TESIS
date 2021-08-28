@@ -131,7 +131,7 @@ const StudentsPostulations = (props) => {
                   <StyledTableCell align="center" style={{ width: 250 }}>
                     Descripción de mi publicación
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 100 }}>
+                  <StyledTableCell align="center" style={{ width: 120 }}>
                     Estado de postulación
                   </StyledTableCell>
                 </TableRow>
@@ -158,9 +158,9 @@ const StudentsPostulations = (props) => {
                     <StyledTableCell align="left">
                       {application.description}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
+                    <StyledTableCell align="center" style={{ fontSize: 15 }}>
+                      {application.status}{" "}
                       <EditStatus application={application} />
-                      {application.status}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
-import SaveIcon from "@material-ui/icons/Save";
+import SendIcon from "@material-ui/icons/Send";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -54,6 +54,7 @@ const Application = (props) => {
 
   const handleOpen = () => {
     setOpen(true);
+    console.log("PublicationData", props.application);
   };
 
   const handleClose = () => {
@@ -178,14 +179,20 @@ const Application = (props) => {
           <Grid container item xs={12} sm={12}>
             <Grid item xs={3} sm={3}></Grid>
             <Grid item xs={6} sm={6}>
+              <img
+                src="data:image/png;base64,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"
+                alt="Imagen-postulacion"
+                width={50}
+                height={50}
+              />
               <TextField
                 variant="outlined"
                 required
                 fullWidth
                 id="publication_id"
+                type="hidden"
+                defaultValue={props.application}
                 inputRef={register}
-                defaultValue={props.id}
-                label="Id de Publicación"
                 name="publication_id"
                 autoComplete="text"
               />
@@ -200,9 +207,10 @@ const Application = (props) => {
               type="submit"
               variant="contained"
               color="primary"
+              endIcon={<SendIcon style={{ fontSize: "large" }} />}
               className={classes.submit}
             >
-              Guardar <SaveIcon style={{ fontSize: 20 }} />
+              Enviar
             </Button>
             <br />
             <br />
