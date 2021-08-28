@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "10%",
     textAlign: "left",
   },
+  main2: {
+    width: "95%",
+    marginTop: "5%",
+    paddingLeft: "5%",
+    textAlign: "left",
+  },
 }));
 
 const StudentProfile = () => {
@@ -121,7 +127,9 @@ const StudentProfile = () => {
           </Grid>
           <Grid item xs={12} sm={2}></Grid>
           <Grid item xs={12} sm={5} spacing={4} style={{ paddingLeft: 10 }}>
-            <h3 style={{ paddingLeft: 75 }}>CURRICULUM</h3>
+            <Typography variant="h4">Curriculum</Typography>
+            <br />
+            <br />
             <MyCurriculum />
           </Grid>
         </Grid>
@@ -132,13 +140,16 @@ const StudentProfile = () => {
       </Grid>
       <Grid
         container
-        className={classes.main}
+        className={classes.main2}
         item
         xs={12}
         sm={12}
         style={{ textAlign: "center", height: 600 }}
       >
         <MyPostulations />
+        <br />
+        <br />
+        <br />
       </Grid>
     </>
   );

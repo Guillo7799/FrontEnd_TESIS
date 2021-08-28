@@ -92,6 +92,7 @@ const SwipeableTextMobileStepper = () => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
+      {/*
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -119,7 +120,7 @@ const SwipeableTextMobileStepper = () => {
             )}
           </Button>
         }
-      />
+      />*/}
     </div>
   );
 };

@@ -15,6 +15,7 @@ const privateRoutes = {
   GLOBALPROFILE: "/perfil",
   GLOBALCOUNT: "/mi-cuenta",
   PUBLICATIONS: "/publications",
+  PUBLICATION_ID: "publications/:id",
   CURRICULUMS: "/curriculums",
   CURRICULUM_ID: "/curriculums/:id",
 };
