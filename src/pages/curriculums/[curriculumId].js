@@ -85,7 +85,7 @@ const UserProfile = () => {
               justifyContent: "center",
             }}
           >
-            {data.data.map((data) => (
+            {data.map((data) => (
               <Grid container className={classes.main} key={data.id}>
                 <Grid container>
                   <Grid item xs={12} sm={6} className={classes.image}>
@@ -146,7 +146,7 @@ const UserProfile = () => {
                       {data.habilities}
                     </p>
                     <p style={{ fontSize: 15 }}>
-                      <strong>certificates: </strong>
+                      <strong>Certificados: </strong>
                       {data.certificates}
                     </p>
                     <p style={{ fontSize: 15 }}>

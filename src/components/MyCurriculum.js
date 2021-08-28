@@ -24,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
     "-webkit-box-orient": "vertical",
   },
   confirmation: {
-    paddingLeft: 55,
+    paddingLeft: 10,
+    fontFamily: "'Source Sans Pro', sans-serif",
+    fontSize: 15,
+    width: "350px",
   },
   media: {
     height: 140,
@@ -35,27 +38,23 @@ const MyCurriculum = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const { data, error } = useSWR(`/users/curriculum/${user.id}`, fetcher);
+  console.log("cdatad", data);
 
   if (error) return <div>No se pudo cargar su curriculum</div>;
   if (!data) return <div>Cargando curriculum...</div>;
   // render data
   return (
     <>
-      {data ? (
-        <Grid
-          container
-          direction="column"
-          style={{
-            justifyContent: "space-between",
-          }}
-        >
-          {data.data.map((data) => (
+      {data[0] ? (
+        <Grid container direction="column">
+          {data.map((data) => (
             <Grid className={classes.root} key={data.id}>
               <img
                 src={`http://localhost:8000/storage/${data.image}`}
                 alt="Profile-User"
                 width={150}
                 height={150}
+                style={{ marginLeft: "22%" }}
               />
               <p style={{ fontSize: 15 }}>
                 <strong>Universidad: </strong>
@@ -94,19 +93,25 @@ const MyCurriculum = (props) => {
         </Grid>
       ) : (
         <>
-          <div>No se pudo cargar su curriculum</div>
-        </>
-      )}
-      {data.id === null ? (
-        <>
-          <div className={classes.confirmation}>
-            <p>No tiene un Curriculum</p>
-            <NewCurriculum />
-          </div>
-        </>
-      ) : (
-        <>
-          <div>No se pudo cargar el formulario</div>
+          <Grid item xs={8} sm={12}>
+            <div className={classes.confirmation}>
+              <img
+                src="https://image.flaticon.com/icons/png/512/1207/1207431.png"
+                alt="No hay curriculum"
+                style={{ marginLeft: 30 }}
+                width={190}
+                height={200}
+              />
+              <p>
+                <strong>No hay registro</strong>
+              </p>
+              <p>
+                Recuerde, es recomendable postular con un curriculum lleno, de
+                tal manera que la empresa puede revisarlo.
+              </p>
+              <NewCurriculum />
+            </div>
+          </Grid>
         </>
       )}
     </>
