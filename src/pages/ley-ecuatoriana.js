@@ -1,11 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Link from "next/link";
 import Head from "next/head";
-import { Link as MuiLink } from "@material-ui/core";
-import Routes from "../constants/routes";
-import Image from "next/image";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import Link from "next/link";
 
 const useStyles = makeStyles((theme) => ({
   subheader: {
@@ -19,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Source Sans Pro', sans-serif",
   },
   info: {
-    minHeight: "100%",
+    minHeight: "50%",
     maxWidth: "90%",
     paddingLeft: "5%",
-    textAlign: "center",
+    textAlign: "left",
   },
 }));
 
@@ -51,8 +49,8 @@ const Laws = () => {
           ¿Qué dice la Ley ecuatoriana sobre las prácticas preprofesionales?
         </h2>
       </Grid>
-      <Grid container className={classes.info}>
-        <Grid item xs={12} sm={6} style={{ height: "100%" }}>
+      <Grid container className={classes.info} spacing={2}>
+        <Grid item xs={12} sm={5} style={{ height: "100%" }}>
           <img
             src="https://image.flaticon.com/icons/png/512/1698/1698609.png"
             alt="personaje-confundido"
@@ -60,24 +58,58 @@ const Laws = () => {
             height={350}
           />
         </Grid>
-        <Grid item xs={12} sm={6} style={{ height: "100%" }}>
-          <p style={{ fontSize: 20 }}>
-            Es un hecho establecido hace demasiado tiempo que un lector se
-            distraerá con el contenido del texto de un sitio mientras que mira
-            su diseño. El punto de usar Lorem Ipsum es que tiene una
-            distribución más o menos normal de las letras, al contrario de usar
-            textos como por ejemplo "Contenido aquí, contenido aquí". Estos
-            textos hacen parecerlo un español que se puede leer. Muchos paquetes
-            de autoedición y editores de páginas web usan el Lorem Ipsum como su
-            texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar
-            por resultado muchos sitios web que usan este texto si se encuentran
-            en estado de desarrollo. Muchas versiones han evolucionado a través
-            de los años, algunas veces por accidente, otras veces a propósito
-            (por ejemplo insertándole humor y cosas por el estilo).
+        <Grid item xs={12} sm={7} style={{ height: "100%" }}>
+          <h2 style={{ color: "#094275" }}>
+            Artículo 59 de la Ley Orgánica del Servicio Público (LOSEP)
+          </h2>
+          <p style={{ fontSize: 17 }}>
+            Estipula que las instituciones del sector público podrán celebrar
+            convenios o contratos de pasantías con estudiantes de institutos,
+            universidades y escuelas politécnicas, respetando la equidad y
+            paridad de género, discapacidad y la interculturalidad; que estos
+            convenios o contratos no originan relación laboral ni dependencia
+            alguna, no generan derechos ni obligaciones laborales o
+            administrativas, y se caracterizan por tener una duración limitada;
+            y que las y los pasantes podrán percibir un reconocimiento económico
+            establecido por el Ministerio de Trabajo.
           </p>
-          <br />
-          <br /> <br /> <br />
-          <br />
+          <h2 style={{ color: "#094275" }}>
+            Artículo 87 de la Ley Orgánica de Educación Superior (LOES)
+          </h2>
+          <p style={{ fontSize: 17 }}>
+            Establece como requisito previo a la obtención del título, que las y
+            los estudiantes deberán acreditar servicios a la comunidad mediante
+            prácticas o pasantías preprofesionales debidamente monitoreadas, en
+            los campos de su especialidad, de conformidad con los lineamientos
+            generales definidos por el Consejo de Educación Superior.
+          </p>
+          <h2 style={{ color: "#094275" }}>
+            Artículo 89 de la Ley Orgánica de Educación Superior (LOES)
+          </h2>
+          <p style={{ fontSize: 17 }}>
+            Señala que las prácticas pre profesionales, son actividades de
+            aprendizaje orientadas a la aplicación de conocimientos y al
+            desarrollo de las destrezas y habilidades específicas que un
+            estudiante debe adquirir para un adecuado desempeño en su futura
+            profesión. Estas prácticas deberán ser de investigación-acción y se
+            realizarán en el entorno institucional, empresarial o comunitario,
+            público o privado, adecuado para el fortalecimiento del aprendizaje.
+            Las prácticas pre profesionales o pasatías son parte fundamental del
+            currículo conforme se regula en el presente reglamento.
+          </p>
+          <h2 style={{ color: "#094275" }}>
+            Literal i) del artículo 14 de la Ley de la Juventud
+          </h2>
+          <p style={{ fontSize: 17 }}>
+            Prescribe como política de promoción del derecho a la educación de
+            los jóvenes, la promoción de pasantías laborales en los sectores
+            público y privado enfocados en el desarrollo del país y la oferta de
+            empleo.
+          </p>
+          <a href="https://www.trabajo.gob.ec/wp-content/uploads/downloads/2017/07/MDT-2017-109F.pdf">
+            Acuerdo Ministerial Nro.: MDT-2017{" "}
+            <LocalOfferIcon style={{ paddingTop: 10 }} />
+          </a>
         </Grid>
         <br />
         <br />
