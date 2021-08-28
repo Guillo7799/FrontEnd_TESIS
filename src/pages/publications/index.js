@@ -3,13 +3,8 @@ import Head from "next/head";
 import { Grid } from "@material-ui/core";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
-import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import AllPublications from "@/components/AllPublications";
-import Image from "next/image";
-import withAuth from "@/hocs/withAuth";
-import Link from "next/link";
-import { Link as MuiLink } from "@material-ui/core";
-import Routes from "src/constants/routes";
+import AllInboxIcon from "@material-ui/icons/AllInbox";
 import MiniPostulations from "@/components/MiniPostulations";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +35,7 @@ const Publications = () => {
       {user ? (
         <Grid container className={classes.root}>
           <Grid item xs={12} className={classes.title}>
-            <QuestionAnswerIcon style={{ fontSize: 30, color: "#F77272" }} />
+            <AllInboxIcon style={{ fontSize: 30, color: "#F77272" }} />
             <h1 style={{ fontSize: 40, color: "#F77272" }}>
               Publicaciones de ofertas
             </h1>

@@ -79,10 +79,16 @@ const MyPostulationsMini = (props) => {
             <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="center" style={{ width: 100 }}>
+                  <StyledTableCell
+                    align="center"
+                    style={{ width: 100, background: "#094275" }}
+                  >
                     Nombre de la empresa
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 150 }}>
+                  <StyledTableCell
+                    align="center"
+                    style={{ width: 150, background: "#094275" }}
+                  >
                     Estado de postulación
                   </StyledTableCell>
                 </TableRow>
@@ -141,17 +147,19 @@ const MyPostulationsMini = (props) => {
         </Grid>
       ) : (
         <>
-          <div className={classes.confirmation}>
-            <p>
-              <img
-                src="https://img.freepik.com/vector-gratis/personaje-dibujos-animados-plantea-hombre-pensando-icono-signo-interrogacion-globo_61103-1093.jpg?size=626&ext=jpg"
-                alt="Sin postulación"
-                width={150}
-                height={150}
-              />
-              <strong>No ha postulado a ninguna oferta</strong>
-            </p>
-          </div>
+          <Grid container item xs={12} sm={12} className={classes.root}>
+            <div className={classes.confirmation}>
+              <p>
+                <img
+                  src="https://img.freepik.com/vector-gratis/personaje-dibujos-animados-plantea-hombre-pensando-icono-signo-interrogacion-globo_61103-1093.jpg?size=626&ext=jpg"
+                  alt="Sin postulación"
+                  width={150}
+                  height={150}
+                />
+                <strong>No ha postulado a ninguna oferta</strong>
+              </p>
+            </div>
+          </Grid>
         </>
       )}
     </>
