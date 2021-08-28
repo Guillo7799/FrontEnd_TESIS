@@ -53,6 +53,11 @@ const Login = () => {
     try {
       const userData = await login(data);
       setLoading(false);
+      swal({
+        title: "¡Bienvenido!",
+        button: "Aceptar",
+        timer: "2000",
+      });
       console.log("userData", userData);
     } catch (error) {
       if (error.response) {

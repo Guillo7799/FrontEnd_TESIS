@@ -14,11 +14,18 @@ import {
   TableBody,
   Table,
   Grid,
+  Button,
 } from "@material-ui/core";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
+import Routes from "src/constants/routes";
 
 const useStyles = makeStyles((theme) => ({
   confirmation: {
     paddingLeft: 55,
+  },
+  root: {
+    paddingTop: "10%",
   },
 }));
 
@@ -40,7 +47,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const MyPostulations = (props) => {
+const MyPostulationsMini = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const { data, error } = useSWR(`/users/applications/${user.id}`, fetcher);
@@ -56,14 +63,22 @@ const MyPostulations = (props) => {
   return (
     <>
       {data ? (
-        <Grid container direction="column">
+        <Grid container className={classes.root} direction="column">
+          <Grid style={{ textAlign: "center" }}>
+            <img
+              src="https://image.flaticon.com/icons/png/512/1939/1939616.png"
+              alt="Mis-postulaciones"
+              width={150}
+              height={150}
+            />
+            <p style={{ fontSize: 20 }}>
+              Postulaciones de <strong>{user.name}</strong>
+            </p>
+          </Grid>
           <TableContainer component={Paper}>
             <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="center" style={{ width: 150 }}>
-                    Mensaje de Postulación
-                  </StyledTableCell>
                   <StyledTableCell align="center" style={{ width: 100 }}>
                     Nombre de la empresa
                   </StyledTableCell>
@@ -75,9 +90,6 @@ const MyPostulations = (props) => {
               <TableBody>
                 {data.data.map((mypostulation) => (
                   <StyledTableRow key={mypostulation.id}>
-                    <StyledTableCell align="left">
-                      {mypostulation.message}
-                    </StyledTableCell>
                     <StyledTableCell align="center">
                       {mypostulation.business_name}
                     </StyledTableCell>
@@ -117,6 +129,13 @@ const MyPostulations = (props) => {
           </TableContainer>
           <br />
           <br />
+          <Link href={Routes.GLOBALPROFILE} passHref>
+            <MuiLink>
+              <Button variant="contained" color="primary">
+                Regresar
+              </Button>
+            </MuiLink>
+          </Link>
           <br />
           <br />
         </Grid>
@@ -139,4 +158,4 @@ const MyPostulations = (props) => {
   );
 };
 
-export default withAuth(MyPostulations);
+export default withAuth(MyPostulationsMini);

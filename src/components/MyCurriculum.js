@@ -73,11 +73,11 @@ const MyCurriculum = (props) => {
                 {data.level_language}
               </p>
               <p style={{ fontSize: 15 }}>
-                <strong>Idioma extranjero: </strong>
+                <strong>Mis habilidades: </strong>
                 {data.habilities}
               </p>
               <p style={{ fontSize: 15 }}>
-                <strong>Idioma extranjero: </strong>
+                <strong>Mis certificados: </strong>
                 {data.certificates}
               </p>
               <p style={{ fontSize: 15 }}>

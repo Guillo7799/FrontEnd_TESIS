@@ -2,24 +2,16 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Button,
-  Grid,
-  TextField,
-  Modal,
-} from "@material-ui/core";
+import { Card, CardActionArea, CardContent, Grid } from "@material-ui/core";
 import { Pagination } from "antd";
-import swal from "sweetalert";
+import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
 import { useAuth } from "@/lib/auth";
-import { useForm } from "react-hook-form";
+import IconButton from "@material-ui/core/IconButton";
 import * as yup from "yup";
-import api from "@/lib/api";
-import translateMessage from "../constants/messages";
+import Link from "next/link";
+import Routes from "src/constants/routes";
 import Application from "@/components/Application";
 
 function rand() {
@@ -43,9 +35,13 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 450,
+    maxWidth: "90%",
+    marginLeft: "5%",
     borderColor: "#094275",
     textAlign: "left",
+  },
+  cardContainer: {
+    margin: "10px 40px",
   },
   media: {
     height: 140,
@@ -79,7 +75,7 @@ const Publications = (publication) => {
   const { data, error } = useSWR(`/publications`, fetcher);
 
   if (error) return <div>No se pudo cargar las publicaciones</div>;
-  if (!data) return <div>Cargando publicaciones...</div>;
+  if (!data) return <Loading />;
   if (data == null) return <div>No hay registros de publicaciones</div>;
   // render data
 
@@ -87,45 +83,42 @@ const Publications = (publication) => {
     <>
       <br />
       <br />
-      <Grid
-        container
-        direction="row"
-        style={{
-          justifyContent: "space-between",
-        }}
-      >
+      <Grid container direction="row" className={classes.root}>
         {data.data.map((publication) => (
-          <Card className={classes.root} key={publication.id}>
-            <CardActionArea>
-              <CardContent>
-                <p style={{ fontSize: 15 }}>
-                  <strong>Empresa u Organización: </strong>
-                  {publication.business_name}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong>Carrera: </strong>
-                  {publication.career}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong>Descripción: </strong>
-                  {publication.description}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong>Horas que oferta: </strong>
-                  {publication.hours}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong>Correo de Contacto: </strong>
-                  {publication.contact_email}
-                </p>
-                <br />
-                <div style={{ textAlign: "center" }}>
-                  <Application application={publication.id} />
-                </div>
-              </CardContent>
-              <CardContent style={{ backgroundColor: "#F77272" }}></CardContent>
-            </CardActionArea>
-          </Card>
+          <Grid item xs={12} className={classes.cardContainer}>
+            <Card className={classes.root} key={publication.id}>
+              <CardActionArea>
+                <CardContent>
+                  <h1 style={{ color: "#094275" }}>{publication.career}</h1>
+                  <p style={{ fontSize: 15 }}>
+                    <strong> Empresa: </strong>
+                    {publication.business_name}
+                  </p>
+                  <p style={{ fontSize: 15 }}>
+                    <strong>Descripción: </strong>
+                    {publication.description}
+                  </p>
+                  <br />
+                  <div style={{ textAlign: "center" }}>
+                    <Application application={publication.id} />
+                  </div>
+                  <div>
+                    <Link href={`${Routes.PUBLICATIONS}/${publication.id}`}>
+                      <IconButton
+                        color="#094071"
+                        aria-label="add to shopping cart"
+                      >
+                        <VisibilityIcon />
+                      </IconButton>
+                    </Link>
+                  </div>
+                </CardContent>
+                <CardContent
+                  style={{ backgroundColor: "#094275" }}
+                ></CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
         ))}
       </Grid>
       <br />

@@ -1,17 +1,11 @@
-import { React, useState, useRef } from "react";
+import { React } from "react";
 import useSWR from "swr";
-import { useForm } from "react-hook-form";
 import { fetcher } from "@/lib/utils";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useAuth } from "@/lib/auth";
 import Link from "next/link";
-import { Link as MuiLink } from "@material-ui/core";
 import withAuth from "@/hocs/withAuth";
 import Routes from "src/constants/routes";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import * as yup from "yup";
-import api from "@/lib/api";
 import {
   Paper,
   TableRow,
@@ -22,15 +16,9 @@ import {
   Table,
   Grid,
   Button,
-  Select,
-  Modal,
 } from "@material-ui/core";
 import Image from "next/image";
 import Loading from "@/components/Loading";
-import EditIcon from "@material-ui/icons/Edit";
-import SaveIcon from "@material-ui/icons/Save";
-import translateMessage from "../constants/messages";
-import { Application } from "@/lib/applications";
 import EditStatus from "@/components/EditStatus";
 
 const useStyles = makeStyles((theme) => ({
@@ -131,7 +119,7 @@ const StudentsPostulations = (props) => {
                   <StyledTableCell align="center" style={{ width: 250 }}>
                     Descripción de mi publicación
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 120 }}>
+                  <StyledTableCell align="center" style={{ width: 10 }}>
                     Estado de postulación
                   </StyledTableCell>
                 </TableRow>
