@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState, useRef } from "react";
 import useSWR from "swr";
 import { useForm } from "react-hook-form";
 import { fetcher } from "@/lib/utils";
@@ -31,21 +31,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import translateMessage from "../constants/messages";
 import { Application } from "@/lib/applications";
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
+import EditStatus from "@/components/EditStatus";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,68 +88,18 @@ const StyledTableRow = withStyles((theme) => ({
 
 const StudentsPostulations = (props) => {
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
   const { data: ApplicationData, error } = useSWR(
     `/users/${user.id}/publication/application`,
     fetcher
   );
-  const { application, setApplication } = useState("");
+  //const { application, setApplication } = useState("");
   console.log("ApplicationData: ", ApplicationData);
 
   if (error) return <div>No se pudo cargar las postulaciones</div>;
   if (!ApplicationData) return <Loading />;
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   console.log("infoApp", ApplicationData);
-  const cont = 0;
-
-  const onSubmit = async (status) => {
-    //setApplication();
-    console.log("ID: ", ApplicationData.data[0].id);
-    console.log("Data: ", status);
-
-    try {
-      const response = await Application.update(
-        ApplicationData.data[0].id,
-        status
-      );
-      console.log("Response:", response);
-      swal({
-        title: "Cambio guardado",
-        icon: "success",
-        button: "Aceptar",
-        timer: "15000",
-      });
-      return response;
-    } catch (error) {
-      if (error.response) {
-        console.log("error", error.response.data.errors);
-        swal({
-          title: translateMessage(error.response.data.error),
-          icon: "error",
-          text: "No se puede registrar el cambio",
-          button: "Aceptar",
-        });
-        Error(error.response.data.errors);
-        return Promise.reject(error.response);
-      } else if (error.request) {
-        console.log(error.request);
-      } else {
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
-    }
-  };
 
   return (
     <>
@@ -195,7 +131,7 @@ const StudentsPostulations = (props) => {
                   <StyledTableCell align="center" style={{ width: 250 }}>
                     Descripción de mi publicación
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 100 }}>
+                  <StyledTableCell align="center" style={{ width: 120 }}>
                     Estado de postulación
                   </StyledTableCell>
                 </TableRow>
@@ -222,132 +158,9 @@ const StudentsPostulations = (props) => {
                     <StyledTableCell align="left">
                       {application.description}
                     </StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button
-                        backgroudnColor="#EE6E6E"
-                        variant
-                        startIcon={<EditIcon />}
-                        type="button"
-                        onClick={handleOpen}
-                      >
-                        {application.status}
-                      </Button>
-                      <Modal
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        className={classes.modal}
-                        open={open}
-                        onClose={handleClose}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                          timeout: 500,
-                        }}
-                      >
-                        <Fade in={open}>
-                          <div
-                            style={modalStyle}
-                            className={classes.paper}
-                            key={application.id}
-                          >
-                            <Grid style={{ textAlign: "center" }}>
-                              <h1>Cambio de estado</h1>
-                            </Grid>
-                            <Grid>
-                              <p>
-                                <strong>
-                                  Recuerde que el estado permitirá conocer al
-                                  estudiante como está el proceso de su
-                                  postulación.
-                                </strong>
-                              </p>
-                              <p>Pendiente = No ha revisado el Curriculum.</p>
-                              <p>
-                                Revisado = Ha revisado el Curriculum pero el
-                                postulante no cumple con lo que se necesita.
-                              </p>
-                              <p>
-                                Por Contactar = Ha revisado el curriculum y el
-                                postulante cumple lo solicitado y se pondrá en
-                                contacto con él para organizar una entrevista.
-                              </p>
-                            </Grid>
-                            <Grid
-                              item
-                              xs={12}
-                              sm={12}
-                              style={{ textAlign: "center" }}
-                            >
-                              <br />
-                              <form
-                                className={classes.form}
-                                noValidate
-                                autoComplete="off"
-                                key={application.id}
-                                onSubmit={handleSubmit(onSubmit)}
-                              >
-                                <Grid
-                                  container
-                                  item
-                                  xs={12}
-                                  sm={12}
-                                  spacing={1}
-                                >
-                                  <Grid item xs={12} sm={12}>
-                                    <Grid item xs={12} sm={12}>
-                                      <Select
-                                        native
-                                        name="status"
-                                        id="status"
-                                        key={application.id}
-                                        inputRef={register}
-                                        variant="outlined"
-                                        label="Estado"
-                                        required
-                                        fullWidth
-                                      >
-                                        <option value="Pendiente" selected>
-                                          Pendiente
-                                        </option>
-                                        <option value="Revisado">
-                                          Revisado
-                                        </option>
-                                        <option value="Por Contactar">
-                                          Por Contactar
-                                        </option>
-                                      </Select>
-                                      <br />
-                                      <br />
-                                    </Grid>
-                                  </Grid>
-                                  <Grid item xs={12} sm={12}>
-                                    <Button
-                                      type="submit"
-                                      variant="contained"
-                                      color="primary"
-                                      key={application.id}
-                                      className={classes.submit}
-                                    >
-                                      Actualizar{" "}
-                                      <SaveIcon style={{ fontSize: 20 }} />
-                                    </Button>
-                                    <br />
-                                    <br />
-                                  </Grid>
-                                  <Grid item xs={12} sm={12}>
-                                    <Button onClick={handleClose}>
-                                      Cancelar
-                                    </Button>
-                                  </Grid>
-                                </Grid>
-                                <br />
-                              </form>
-                              <br />
-                            </Grid>
-                          </div>
-                        </Fade>
-                      </Modal>
-                      {/*{application.status}*/}
+                    <StyledTableCell align="center" style={{ fontSize: 15 }}>
+                      {application.status}{" "}
+                      <EditStatus application={application} />
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

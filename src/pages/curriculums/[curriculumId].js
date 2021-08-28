@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     minWidth: "100%",
     minHeight: "10%",
-    marginLeft: "47%",
+    marginLeft: "45%",
   },
   image: {
     paddingLeft: "5%",
