@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
   },
   main: {
-    marginTop: "5%",
-    paddingLeft: "10%",
+    paddingLeft: "5%",
     textAlign: "left",
   },
 }));
@@ -28,7 +27,7 @@ const Information = () => {
           <Grid container item xs={12} sm={12}>
             <h1 style={{ fontSize: 22 }}>Información</h1>
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={12} sm={11}>
             <p>
               <strong>Nombre: </strong>
               {user.name}
@@ -39,7 +38,7 @@ const Information = () => {
             </p>
             <p>
               <strong>Detalle: </strong>
-              {user.description} 
+              {user.description}
             </p>
           </Grid>
         </Grid>
