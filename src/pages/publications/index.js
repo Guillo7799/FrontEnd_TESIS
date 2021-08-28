@@ -49,7 +49,7 @@ const Publications = () => {
           <Grid item xs={12} className={classes.title}>
             <h2>Postule a la oferta que crea conveniente.</h2>
           </Grid>
-          <Grid container>
+          <Grid container style={{ paddingLeft: "10%" }}>
             <Grid item xs={12} sm={4} style={{ height: "500px" }}>
               <MiniPostulations />
             </Grid>
@@ -62,7 +62,7 @@ const Publications = () => {
         </Grid>
       ) : (
         <div>
-          <Image
+          <img
             src="https://image.flaticon.com/icons/png/512/2622/2622112.png"
             alt="No inicio de sesión"
             width={150}
@@ -76,4 +76,4 @@ const Publications = () => {
   );
 };
 
-export default withAuth(Publications);
+export default Publications;
