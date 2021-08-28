@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import AllPublications from "@/components/AllPublications";
 import Image from "next/image";
+import withAuth from "@/hocs/withAuth";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -66,4 +67,4 @@ const Publications = () => {
   );
 };
 
-export default useAuth(Publications);
+export default withAuth(Publications);

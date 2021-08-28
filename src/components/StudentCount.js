@@ -63,7 +63,7 @@ const StudentCount = () => {
             <h1>Datos del Usuario</h1>
             <br />
             <p>
-              <strong>Su cuenta es:</strong> Empresarial
+              <strong>Su cuenta es:</strong> Estudiantil
             </p>
             <p>
               <br />

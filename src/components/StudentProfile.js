@@ -74,7 +74,7 @@ const StudentProfile = () => {
             <Typography variant="h4">Información:</Typography>
             <br />
             <br />
-            <div style={{ textAlign: "center" }}>
+            <div style={{ paddingLeft: "5%" }}>
               <Image
                 src="/register/student.png"
                 alt="icono_estudiante"
