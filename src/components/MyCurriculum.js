@@ -50,7 +50,7 @@ const MyCurriculum = (props) => {
           {data.map((data) => (
             <Grid className={classes.root} key={data.id}>
               <img
-                src={`http://localhost:8000/storage/${data.image}`}
+                src={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${data.image}`}
                 alt="Profile-User"
                 width={150}
                 height={150}

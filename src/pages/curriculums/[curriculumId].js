@@ -108,7 +108,7 @@ const UserProfile = () => {
               <Grid item xs={12} sm={6} className={classes.firstContent}>
                 <Grid style={{ textAlign: "center", marginTop: 15 }}>
                   <img
-                    src={`http://localhost:8000/storage/${data.image}`}
+                    src={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${data.image}`}
                     alt="Profile-User"
                     width={250}
                     height={300}
