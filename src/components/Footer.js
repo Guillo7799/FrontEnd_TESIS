@@ -63,7 +63,7 @@ const Footer = () => {
           </Grid>
           <Grid item xs={12} sm={12} className={classes.content}>
             <p style={{ fontSize: 20, color: "#878586" }}>
-              Conoce más sobre la plataforma, visita nuestras redes sociales
+              Conocer más sobre la plataforma, Nuestras redes sociales:
             </p>
             <br />
             <a href="https://www.youtube.com/channel/UCi-LZGktPQ08v4vfF-ej9Qg">
@@ -115,7 +115,7 @@ const Footer = () => {
                   <Input
                     type="email"
                     className="form-control"
-                    placeholder="Tu correo electrónico"
+                    placeholder="Su correo electrónico"
                     name="email"
                     size="medium"
                     style={{ width: "65%", minHeight: "15%", color: "white" }}
@@ -141,7 +141,7 @@ const Footer = () => {
                     id=""
                     cols="30"
                     rows="8"
-                    placeholder="Tu mensaje"
+                    placeholder="Su mensaje"
                     name="message"
                     style={{ width: "65%", minHeight: "15%", color: "white" }}
                   ></Input>

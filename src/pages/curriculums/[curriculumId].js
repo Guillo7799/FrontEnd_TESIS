@@ -94,9 +94,7 @@ const UserProfile = () => {
         <title>Hoja de Vida</title>
       </Head>
       <Grid item xs={12} sm={12} className={classes.title}>
-        <h1 style={{ fontFamily: "Lobster cursive", color: "#094275" }}>
-          Curriculum Vitae
-        </h1>
+        <h1 style={{ color: "#094275", fontSize: 35 }}>Curriculum Vitae</h1>
       </Grid>
       {data ? (
         <Grid
