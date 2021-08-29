@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
+    maxHeight: "95px",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     display: "none",
     padding: 8,
-    minHeight: 80,
+    //minHeight: 80,
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },

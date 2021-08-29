@@ -81,6 +81,7 @@ export default function MediaCard() {
             </CardContent>
           </CardActionArea>
         </Card>
+        <br /> <br /> <br />
       </Grid>
     </Grid>
   );
