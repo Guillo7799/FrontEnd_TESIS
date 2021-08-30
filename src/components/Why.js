@@ -17,7 +17,7 @@ const images = [
   },
   {
     url: "https://img.freepik.com/vector-gratis/teletrabajo_23-2148491068.jpg?size=626&ext=jpg",
-    title: "Desde casa",
+    title: "Todo desde casa",
     width: "33%",
   },
 ];

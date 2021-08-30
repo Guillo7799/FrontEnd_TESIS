@@ -61,13 +61,22 @@ const MyPostulations = (props) => {
             <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell align="center" style={{ width: 150 }}>
+                  <StyledTableCell
+                    align="center"
+                    style={{ width: 150, background: "#094275" }}
+                  >
                     Mensaje de Postulación
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 100 }}>
+                  <StyledTableCell
+                    align="center"
+                    style={{ width: 100, background: "#094275" }}
+                  >
                     Nombre de la empresa
                   </StyledTableCell>
-                  <StyledTableCell align="center" style={{ width: 150 }}>
+                  <StyledTableCell
+                    align="center"
+                    style={{ width: 150, background: "#094275" }}
+                  >
                     Estado de postulación
                   </StyledTableCell>
                 </TableRow>
