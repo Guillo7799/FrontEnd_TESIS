@@ -70,22 +70,12 @@ const MyPublication = () => {
                   {data.date}
                 </p>
               </CardContent>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Eliminar oferta
-              </Button>
             </CardActionArea>
           </Card>
         ))}
       </Grid>
       <br />
       <br />
-      <Pagination defaultCurrent={1} total={10} />
     </>
   );
 };

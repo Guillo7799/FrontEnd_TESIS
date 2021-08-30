@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardActionArea, CardContent, Grid } from "@material-ui/core";
-import { Pagination } from "antd";
+import FilterPublication from "@/components/FilterPublication";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
@@ -66,64 +66,68 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Publications = (publication) => {
+const Publications = (props) => {
   const classes = useStyles();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
-  const { user } = useAuth();
-
   const { data, error } = useSWR(`/publications`, fetcher);
 
   if (error) return <div>No se pudo cargar las publicaciones</div>;
   if (!data) return <Loading />;
   if (data == null) return <div>No hay registros de publicaciones</div>;
-  // render data
+
+  console.log("AllCategory: ", props.categoria.category_id);
 
   return (
     <>
       <br />
       <br />
-      <Grid container direction="row" className={classes.root}>
-        {data.data.map((publication) => (
-          <Grid item xs={12} className={classes.cardContainer}>
-            <Card className={classes.root} key={publication.id}>
-              <CardActionArea>
-                <CardContent>
-                  <h1 style={{ color: "#094275" }}>{publication.career}</h1>
-                  <p style={{ fontSize: 15 }}>
-                    <strong> Empresa: </strong>
-                    {publication.business_name}
-                  </p>
-                  <p style={{ fontSize: 15 }}>
-                    <strong>Descripción: </strong>
-                    {publication.description}
-                  </p>
-                  <br />
-                  <div style={{ textAlign: "center" }}>
-                    <Application application={publication.id} />
-                  </div>
-                  <div>
-                    <Link href={`${Routes.PUBLICATIONS}/${publication.id}`}>
-                      <IconButton
-                        color="#094071"
-                        aria-label="add to shopping cart"
-                      >
-                        <VisibilityIcon />
-                      </IconButton>
-                    </Link>
-                  </div>
-                </CardContent>
-                <CardContent
-                  style={{ backgroundColor: "#094275" }}
-                ></CardContent>
-              </CardActionArea>
-            </Card>
+      {props ? (
+        <>
+          <FilterPublication category={props.categoria.category_id} />
+        </>
+      ) : (
+        <>
+          <Grid container direction="row" className={classes.root}>
+            {data.data.map((publication) => (
+              <Grid item xs={12} className={classes.cardContainer}>
+                <Card className={classes.root} key={publication.id}>
+                  <CardActionArea>
+                    <CardContent>
+                      <h1 style={{ color: "#094275" }}>{publication.career}</h1>
+                      <p style={{ fontSize: 15 }}>
+                        <strong> Empresa: </strong>
+                        {publication.business_name}
+                      </p>
+                      <p style={{ fontSize: 15 }}>
+                        <strong>Descripción: </strong>
+                        {publication.description}
+                      </p>
+                      <br />
+                      <div style={{ textAlign: "center" }}>
+                        <Application application={publication.id} />
+                      </div>
+                      <div>
+                        <Link href={`${Routes.PUBLICATIONS}/${publication.id}`}>
+                          <IconButton
+                            color="#094071"
+                            aria-label="add to shopping cart"
+                          >
+                            <VisibilityIcon />
+                          </IconButton>
+                        </Link>
+                      </div>
+                    </CardContent>
+                    <CardContent
+                      style={{ backgroundColor: "#094275" }}
+                    ></CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </>
+      )}
       <br />
       <br />
-      <Pagination defaultCurrent={1} total={10} />
     </>
   );
 };

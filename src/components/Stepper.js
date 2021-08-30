@@ -10,10 +10,10 @@ const tutorialSteps = [
     imgPath: "/index/Welcome.png",
   },
   {
-    imgPath: "/index/estudiante.png",
+    imgPath: "/index/Estudiante.png",
   },
   {
-    imgPath: "/index/empresa.png",
+    imgPath: "/index/Empresa.png",
   },
   {
     imgPath: "/index/phrase.png",

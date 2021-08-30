@@ -61,7 +61,7 @@ export default function MediaCard() {
             <br />
             <h2 style={{ color: "#094275" }}>Objetivo</h2>
             <ul style={{ textAlign: "left", marginLeft: "5%" }}>
-              <li>Bridar una plataforma segura para el usuario</li>
+              <li>Brindar una plataforma segura para el usuario</li>
               <li>Manejar los datos ingresados de la mejor manera</li>
               <li>Dar un servicio amigable y fácil de entender</li>
               <li>
