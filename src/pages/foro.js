@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontFamily: "'Source Sans Pro', sans-serif",
     margin: "auto",
-    padding: 10,
+    marginTop: "5%",
   },
   root: {
     marginTop: 20,

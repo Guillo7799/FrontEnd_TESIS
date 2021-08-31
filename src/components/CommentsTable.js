@@ -67,6 +67,35 @@ const CommentsTable = (props) => {
   if (error) return <div>No se pudo cargar los comentarios</div>;
   if (!commentData) return <Loading />;
 
+  const onSubmit = async (data) => {
+    console.log("idComment: ", data);
+    try {
+      const response = await api.delete(`/comments/${props.id}`);
+      handleClick("Se ha eliminado el barrio con éxito", "success");
+      props.onHandleCloseModal();
+      return response;
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        Error(error.response.data);
+        props.onHandleCloseModal();
+        return Promise.reject(error.response);
+        // return error.response;
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    }
+  };
+
   return (
     <>
       {commentData ? (
@@ -102,7 +131,11 @@ const CommentsTable = (props) => {
                       <StyledTableCell align="left">
                         {comment.content}
                       </StyledTableCell>
-                      <StyledTableCell align="center">Eliminar</StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button type="submit" value={comment.id}>
+                          Eliminar
+                        </Button>
+                      </StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>

@@ -4,6 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import Stepper from "@/components/Stepper";
 import Target from "@/components/Target";
 import Why from "@/components/Why";
+import StudentVideo from "@/components/StudentVideo";
+import BusinessVideo from "@/components/BusinessVideo";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -150,6 +152,53 @@ export default function Home() {
             <br />
           </Grid>
         </Grid>
+        <Grid container spacing={2}>
+          <Grid style={{ textAlign: "center", width: "100%" }}>
+            <h1 style={{ color: "#094275" }}>Tutorial para nuevos usuarios</h1>
+          </Grid>
+          <Grid item xs={12} sm={6} style={{ width: "100%" }}>
+            <StudentVideo />
+          </Grid>{" "}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            style={{ width: "80%", textAlign: "center", fontSize: 25 }}
+          >
+            <BusinessVideo />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid style={{ textAlign: "center", width: "100%" }}></Grid>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            style={{ width: "80%", textAlign: "center", fontSize: 25 }}
+          >
+            <p>Así funciona para estudiantes</p>
+          </Grid>{" "}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            style={{
+              width: "100%",
+              width: "80%",
+              textAlign: "center",
+              fontSize: 25,
+            }}
+          >
+            <p>Así funciona para empresas</p>
+          </Grid>
+        </Grid>
+        <Grid className={classes.before}>
+          <Grid item xs={12}>
+            <br />
+            <br />
+          </Grid>
+        </Grid>
+
         <br />
         <br />
         <Grid

@@ -74,7 +74,7 @@ const Publications = () => {
                   onChange={handleChange}
                   fullWidth
                 >
-                  <option>Seleccione una categoría...</option>
+                  <option>Ingeniería en Sistemas y carreras afines</option>
                   <option value="1">
                     Ingeniería en Sistemas y carreras afines
                   </option>
