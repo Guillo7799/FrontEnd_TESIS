@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     width: "80%",
   },
   actions: {
-    width: "90%",
+    width: "100%",
     textAlign: "center",
     fontFamily: "'Source Sans Pro', sans-serif",
     margin: "auto",
@@ -49,11 +49,22 @@ const Administrador = () => {
           <Grid item xs={12} sm={6}>
             <Information />
           </Grid>
+          {/*}
           <Grid item xs={12} sm={5}>
             <NewCategory />
-          </Grid>
+  </Grid>*/}
         </Grid>
         <Grid container className={classes.actions} item xs={12} sm={12}>
+          <Grid
+            item
+            xs={12}
+            sm={12}
+            style={{ textAlign: "center", width: "100%" }}
+          >
+            <h2 style={{ color: "#094275" }}>
+              Visualización y eliminación de comentario
+            </h2>
+          </Grid>
           <CommentsTable />
         </Grid>
         <Grid container className={classes.actions} item xs={12} sm={12}>

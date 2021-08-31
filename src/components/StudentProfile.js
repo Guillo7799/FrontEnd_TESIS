@@ -11,6 +11,7 @@ import Routes from "src/constants/routes";
 import MyCurriculum from "@/components/MyCurriculum";
 import Image from "next/image";
 import MyPostulations from "@/components/MyPostulations";
+import UpdateStudent from "./UpdateStudent";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -119,11 +120,13 @@ const StudentProfile = () => {
             <br />
             <Link href={Routes.PUBLICATIONS} passHref>
               <MuiLink>
-                <Button variant="outlined" color="primary">
+                <Button variant="contained" color="primary">
                   Ver ofertas
                 </Button>
               </MuiLink>
-            </Link>
+            </Link>{" "}
+            <UpdateStudent />
+            <br />
           </Grid>
           <Grid item xs={12} sm={2}></Grid>
           <Grid item xs={12} sm={5} spacing={4} style={{ paddingLeft: 10 }}>

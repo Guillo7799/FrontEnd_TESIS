@@ -14,6 +14,7 @@ import { Pagination } from "antd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginTop: 20,
     maxWidth: 345,
     borderColor: "#094275",
     textAlign: "left",
@@ -29,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(2, 0, 2),
+  },
+  mypublications: {
+    marginTop: 20,
+    overflowY: "scroll",
+    width: "80%",
   },
 }));
 
@@ -48,25 +54,28 @@ const MyPublication = () => {
         style={{
           justifyContent: "space-between",
         }}
+        className={classes.mypublications}
       >
         {data.data.map((data) => (
           <Card className={classes.root} key={data.id}>
             <CardActionArea>
               <CardContent>
                 <p style={{ fontSize: 15 }}>
-                  <strong>Carrera: </strong>
+                  <strong style={{ color: "#094275" }}>Carrera: </strong>
                   {data.career}
                 </p>
                 <p style={{ fontSize: 15 }}>
-                  <strong>Descripción: </strong>
+                  <strong style={{ color: "#094275" }}>Descripción: </strong>
                   {data.description}
                 </p>
                 <p style={{ fontSize: 15 }}>
-                  <strong>Horas ofertadas: </strong>
+                  <strong style={{ color: "#094275" }}>
+                    Horas ofertadas:{" "}
+                  </strong>
                   {data.hours}
                 </p>
                 <p style={{ fontSize: 15 }}>
-                  <strong>Fecha máxima: </strong>
+                  <strong style={{ color: "#094275" }}>Fecha máxima: </strong>
                   {data.date}
                 </p>
               </CardContent>

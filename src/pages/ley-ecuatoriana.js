@@ -180,6 +180,12 @@ const Laws = () => {
             </TabPanel>
           </SwipeableViews>
         </Grid>
+        <Grid>
+          <p>¿Conocer más sobre el tema?, </p>
+          <a href="https://www.trabajo.gob.ec/wp-content/uploads/downloads/2017/07/MDT-2017-109F.pdf">
+            Click Aquí
+          </a>
+        </Grid>
       </Grid>
       <br />
       <br />
