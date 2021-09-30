@@ -14,9 +14,13 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import Comments from "@/components/Comments";
 import { useAuth } from "@/lib/auth";
+import useSWR, { mutate } from "swr";
+import { fetcher } from "@/lib/utils";
+import Typography from "@material-ui/core/Typography";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-  text: yup.string().required("Ingresa tu comentario"),
+  content: yup.string().required("Ingrese su comentario"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title2: {
     fontSize: 14,
+    width: "80%",
+    textAlign: "center",
+    margin: "auto",
+    marginTop: "2%",
   },
   pos: {
     marginBottom: 12,
@@ -81,8 +89,11 @@ const useStyles = makeStyles((theme) => ({
 const Comment = () => {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit, control, errors } = useForm();
+  const { register, handleSubmit, control, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [name, setName] = useState("");
+  const { data: commentData, error, mutate } = useSWR(`/comments`, fetcher);
 
   const onSubmit = async (data) => {
     console.log("data", data);
@@ -98,6 +109,7 @@ const Comment = () => {
         button: "Aceptar",
         timer: "3000",
       });
+      mutate();
       return response;
     } catch (error) {
       if (error.response) {
@@ -135,7 +147,7 @@ const Comment = () => {
         <h1 style={{ fontSize: 40, color: "#F77272" }}>Foro de Comentarios</h1>
         <hr color="#F77272" width="90%" />
       </Grid>
-      <Grid item xs={12} sm={12} className={classes.title}>
+      <Grid item xs={12} sm={12} className={classes.title2}>
         <h2>
           Conozca la opinión de otros usuarios, comparta su experiencia con la
           plataforma y su punto de vista sobre esta.
@@ -175,16 +187,14 @@ const Comment = () => {
                   autoComplete="text"
                   style={{ width: "80%", minHeight: "15%" }}
                 />
+                <Typography color="primary">
+                  {errors.content?.message}
+                </Typography>
                 <br />
                 <br />
               </Grid>
               <Grid container item xs={12} sm={12}>
-                <Grid
-                  item
-                  xs={6}
-                  sm={6}
-                  style={{ textAlign: "right", paddingRight: 30 }}
-                >
+                <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
                   <Button
                     type="submit"
                     variant="contained"
@@ -195,20 +205,6 @@ const Comment = () => {
                   </Button>
                   <br />
                   <br />
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sm={6}
-                  style={{ textAlign: "left", paddingLeft: 30 }}
-                >
-                  <Link href={Routes.HOME} passHref>
-                    <MuiLink>
-                      <Button variant="contained" color="primary">
-                        Cancelar
-                      </Button>
-                    </MuiLink>
-                  </Link>
                 </Grid>
               </Grid>
             </form>
@@ -229,7 +225,7 @@ const Comment = () => {
         <h2>Comentarios de usuarios</h2>
       </Grid>
       <Grid container>
-        <Comments />
+        <Comments mutate={mutate} />
       </Grid>
       <br />
       <br />
