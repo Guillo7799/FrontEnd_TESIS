@@ -62,7 +62,7 @@ const Publications = () => {
             </Grid>
             <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
               <Grid item xs={12} sm={12} style={{ width: "80%" }}>
-                <h3 style={{ marginLeft: "20%" }}>Filtrar Publicationes: </h3>
+                <h3 style={{ marginLeft: "20%" }}>Filtrar Publicaciones: </h3>
                 <Select
                   style={{ marginLeft: "12%" }}
                   native

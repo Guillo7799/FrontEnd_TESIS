@@ -130,7 +130,7 @@ const EditStatus = (props) => {
                   id="status"
                   inputRef={register}
                   variant="outlined"
-                  label="Estado"
+                  //label="Estado"
                   required
                   fullWidth
                 >

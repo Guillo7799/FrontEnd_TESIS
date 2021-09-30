@@ -20,6 +20,8 @@ import {
   Modal,
 } from "@material-ui/core";
 import Loading from "@/components/Loading";
+import { Comment } from "@/lib/comments";
+import Delete from "@/components/ConfirmDeleteComment";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -67,22 +69,24 @@ const CommentsTable = (props) => {
   if (error) return <div>No se pudo cargar los comentarios</div>;
   if (!commentData) return <Loading />;
 
-  const onSubmit = async (data) => {
-    console.log("idComment: ", data);
+  /*
+  const handleDelete = async (value) => {
+    console.log("idComment", value);
     try {
-      const response = await api.delete(`/comments/${props.id}`);
-      handleClick("Se ha eliminado el barrio con éxito", "success");
-      props.onHandleCloseModal();
-      return response;
+      await Comment.delete(value);
+      router.push(Routes.GLOBALPROFILE);
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log(error.response.data);
-        Error(error.response.data);
-        props.onHandleCloseModal();
-        return Promise.reject(error.response);
-        // return error.response;
+        enqueueSnackbar("No se pudo eliminar el comentario", {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "center",
+          },
+        });
+        console.log(error.response);
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -94,7 +98,7 @@ const CommentsTable = (props) => {
       }
       console.log(error.config);
     }
-  };
+  };*/
 
   return (
     <>
@@ -105,16 +109,28 @@ const CommentsTable = (props) => {
               <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="center" style={{ width: 150 }}>
+                    <StyledTableCell
+                      align="center"
+                      style={{ width: 150, background: "#094275" }}
+                    >
                       Nombre
                     </StyledTableCell>
-                    <StyledTableCell align="center" style={{ width: 150 }}>
+                    <StyledTableCell
+                      align="center"
+                      style={{ width: 150, background: "#094275" }}
+                    >
                       Apellido
                     </StyledTableCell>
-                    <StyledTableCell align="center" style={{ width: 250 }}>
+                    <StyledTableCell
+                      align="center"
+                      style={{ width: 250, background: "#094275" }}
+                    >
                       Texto
                     </StyledTableCell>
-                    <StyledTableCell align="center" style={{ width: 100 }}>
+                    <StyledTableCell
+                      align="center"
+                      style={{ width: 100, background: "#094275" }}
+                    >
                       Acción
                     </StyledTableCell>
                   </TableRow>
@@ -132,9 +148,7 @@ const CommentsTable = (props) => {
                         {comment.content}
                       </StyledTableCell>
                       <StyledTableCell align="center">
-                        <Button type="submit" value={comment.id}>
-                          Eliminar
-                        </Button>
+                        <Delete comment={comment} />
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}

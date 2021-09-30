@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontFamily: "'Source Sans Pro', sans-serif",
     margin: "auto",
-    padding: 10,
   },
 }));
 
@@ -52,15 +51,10 @@ const Administrador = () => {
           {/*}
           <Grid item xs={12} sm={5}>
             <NewCategory />
-  </Grid>*/}
+          </Grid>*/}
         </Grid>
         <Grid container className={classes.actions} item xs={12} sm={12}>
-          <Grid
-            item
-            xs={12}
-            sm={12}
-            style={{ textAlign: "center", width: "100%" }}
-          >
+          <Grid item xs={12} sm={12} style={{ width: "100%" }}>
             <h2 style={{ color: "#094275" }}>
               Visualización y eliminación de comentario
             </h2>
@@ -68,8 +62,15 @@ const Administrador = () => {
           <CommentsTable />
         </Grid>
         <Grid container className={classes.actions} item xs={12} sm={12}>
+          <Grid item xs={12} sm={12} style={{ width: "100%" }}>
+            <h2 style={{ color: "#094275" }}>
+              Registro de nuevo Usuario Estudiante/Empresa
+            </h2>
+          </Grid>
           <NewUserAdmin />
         </Grid>
+        <br />
+        <br />
       </Grid>
     </>
   );
