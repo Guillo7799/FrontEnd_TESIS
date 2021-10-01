@@ -17,7 +17,7 @@ async function create(data) {
 }
 
 async function update(id, data) {
-  return await api.put(`/users/${id}`, data);
+  return await api.put(`/users/student/${id}`, data);
 }
 
 async function deleteUsers(id) {

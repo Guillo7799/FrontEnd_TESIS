@@ -10,6 +10,8 @@ import translateMessage from "../constants/messages";
 import withAuth from "@/hocs/withAuth";
 import SaveIcon from "@material-ui/icons/Save";
 import UpdateIcon from "@material-ui/icons/Update";
+import { User } from "@/lib/users";
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -35,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
   button: {
-    margin: theme.spacing(1),
     backgroundColor: "#F77272",
+    size: "large",
   },
 }));
 
@@ -47,6 +49,7 @@ const UpdateStudent = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   console.log("UserData", props);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -58,13 +61,13 @@ const UpdateStudent = (props) => {
   const onSubmit = async (data) => {
     console.log("data", data);
     try {
-      const response = await api.put("/users/" + user.id, formData);
+      const response = await User.update(user.id, data);
       console.log("Dato Estudiante", response);
       swal({
-        title: "Usuario actualizado",
+        title: "Datos actualizado",
         icon: "success",
         button: "Aceptar",
-        timer: "15000",
+        timer: "1500",
       });
       return response;
     } catch (error) {
@@ -74,7 +77,7 @@ const UpdateStudent = (props) => {
         swal({
           title: translateMessage(error.response.data.error),
           icon: "error",
-          text: "Hubo un error, revise que haya llenado bien todos los campos",
+          text: "No se pudo actualizar los datos",
           button: "Aceptar",
         });
         console.log(error.response.data);
@@ -143,7 +146,7 @@ const UpdateStudent = (props) => {
               type="number"
               required
               fullWidth
-              label="Multiline"
+              label="Teléfono"
               multiline
               rows={3}
               id="cellphone"

@@ -118,14 +118,20 @@ const StudentProfile = () => {
               <strong>Biografía:</strong> {user.description}
             </Typography>
             <br />
-            <Link href={Routes.PUBLICATIONS} passHref>
-              <MuiLink>
-                <Button variant="contained" color="primary">
-                  Ver ofertas
-                </Button>
-              </MuiLink>
-            </Link>{" "}
-            <UpdateStudent />
+            <Grid container item xs={12} sm={12}>
+              <Grid item xs={12} sm={5} style={{ textAlign: "center" }}>
+                <Link href={Routes.PUBLICATIONS} passHref>
+                  <MuiLink>
+                    <Button variant="contained" color="primary">
+                      Ver ofertas
+                    </Button>
+                  </MuiLink>
+                </Link>
+              </Grid>
+              <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
+                <UpdateStudent />
+              </Grid>
+            </Grid>
             <br />
           </Grid>
           <Grid item xs={12} sm={2}></Grid>
