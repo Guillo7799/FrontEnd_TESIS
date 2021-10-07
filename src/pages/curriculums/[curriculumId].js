@@ -29,12 +29,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     "-webkit-line-clamp": 2,
     "-webkit-box-orient": "vertical",
+    marginTop: "5%",
   },
   media: {
     height: 140,
   },
   main: {
-    marginTop: "5%",
+    marginTop: "1%",
     maxWidth: "90%",
     textAlign: "left",
     minHeight: "100%",
@@ -232,7 +233,20 @@ const UserProfile = () => {
         </Grid>
       ) : (
         <>
-          <div>No se pudo cargar su curriculum</div>
+          <div className={classes.nouser}>
+            <img
+              src="https://img2.freepng.es/20180920/caa/kisspng-design-sales-company-coaching-service-5ba32473a7aee4.0449760315374183556868.jpg"
+              alt="No inicio de sesión"
+              width={250}
+              height={350}
+            />
+            <h2>Parece que este usuario no ha registrado un curriculum</h2>
+            <div></div>
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
         </>
       )}
       <br />
