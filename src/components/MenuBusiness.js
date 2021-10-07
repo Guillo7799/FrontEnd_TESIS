@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ApplicationsByPostulation from "@/components/ApplicationsByPostulation";
 import NewPublication from "@/components/NewPublication";
+import MyPublicationsWithApplications from "./PublicationsWithApplications";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -86,7 +87,7 @@ export default function FullWidthTabs() {
           <NewPublication />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <ApplicationsByPostulation />
+          <MyPublicationsWithApplications />
         </TabPanel>
       </SwipeableViews>
     </div>

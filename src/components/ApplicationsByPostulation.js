@@ -78,7 +78,7 @@ const StudentsPostulations = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const { data: ApplicationData, error } = useSWR(
-    `/users/${user.id}/publication/application`,
+    `/publications/${props.id}/applications`,
     fetcher
   );
   //const { application, setApplication } = useState("");

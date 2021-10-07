@@ -11,11 +11,14 @@ import {
   Grid,
 } from "@material-ui/core";
 import { Pagination } from "antd";
+import ViewApplications from "@/components/ModalApplications";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
-    Width: 345,
+    margin: "auto",
+    minHeight: "250px",
+    Width: "350px",
     borderColor: "#094275",
     textAlign: "left",
   },
@@ -35,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     height: "400px",
     overflowY: "scroll",
-    maxWidth: "90%",
+    width: "100%",
   },
 }));
 
-const MyPublication = () => {
+const MyPublicationsWithApplications = () => {
   const classes = useStyles();
   const { user } = useAuth();
   const { data, error } = useSWR(`/users/publications/${user.id}`, fetcher);
@@ -80,10 +83,12 @@ const MyPublication = () => {
                   {data.date}
                 </p>
               </CardContent>
+              <CardContent>
+                <ViewApplications publications={data.id} />
+              </CardContent>
             </CardActionArea>
           </Card>
         ))}
-        <br />
       </Grid>
       <br />
       <br />
@@ -91,4 +96,4 @@ const MyPublication = () => {
   );
 };
 
-export default MyPublication;
+export default MyPublicationsWithApplications;

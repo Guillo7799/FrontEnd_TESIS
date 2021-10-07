@@ -8,6 +8,7 @@ import * as yup from "yup";
 import MyPublication from "@/components/MyPublications";
 import Image from "next/image";
 import MenuBusiness from "@/components/MenuBusiness";
+import Button from "@material-ui/core/Button";
 
 const schema = yup.object().shape({
   text: yup.string().required("Ingresa tu oferta de prácticas"),
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'Source Sans Pro', sans-serif",
     margin: "auto",
     padding: 10,
+    marginTop: 15,
   },
   main: {
     marginTop: "5%",
@@ -47,11 +49,21 @@ const BusinessProfile = () => {
         <h1 style={{ color: "#F77272" }}>Cuenta Empresarial</h1>
         <hr color="#F77272" width="90%" />
       </Grid>
+      <br />
+      <br />
+      <Grid container item xs={12}>
+        <Grid item xs={12} sm={6} style={{ paddingLeft: "15%" }}>
+          <Typography variant="h4">Información:</Typography>
+          <br />
+        </Grid>
+        <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
+          <Typography variant="h4">Mis Publicaciones:</Typography>
+          <br />
+        </Grid>
+      </Grid>
       <Grid container className={classes.main}>
         <Grid container>
           <Grid item xs={12} sm={5}>
-            <Typography variant="h4">Información:</Typography>
-            <br />
             <br />
             <div style={{ paddingLeft: "5%" }}>
               <Image
@@ -94,10 +106,18 @@ const BusinessProfile = () => {
             <br />
           </Grid>
           <Grid item xs={12} sm={2}></Grid>
-          <Grid item xs={12} sm={5} spacing={4}>
-            <h3 style={{ paddingLeft: 75 }}>MIS PUBLICACIONES</h3>
-            <br />
+          <Grid item xs={12} sm={5} spacing={4} container>
+            <Grid item xs={12} sm={12}></Grid>
+
             <MyPublication />
+            <br />
+            <Grid item xs={12} sm={12} style={{ marginLeft: "25%" }}>
+              <Button color="primary" variant="contained">
+                Gestionar
+              </Button>
+            </Grid>
+            <br />
+            <br />
           </Grid>
         </Grid>
       </Grid>
