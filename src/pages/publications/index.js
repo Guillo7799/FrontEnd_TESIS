@@ -23,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "100%",
   },
+  nouser: {
+    textAlign: "center",
+    marginTop: "20%",
+    height: "500px",
+  },
 }));
 
 const Publications = () => {
@@ -108,16 +113,23 @@ const Publications = () => {
           <br />
         </Grid>
       ) : (
-        <div>
-          <img
-            src="https://image.flaticon.com/icons/png/512/2622/2622112.png"
-            alt="No inicio de sesión"
-            width={150}
-            height={150}
-          />
-          <p>Vaya! parece que no ha iniciado sesión</p>
-          <br />
-        </div>
+        <>
+          <div className={classes.nouser}>
+            <img
+              src="https://image.flaticon.com/icons/png/512/2622/2622112.png"
+              alt="No inicio de sesión"
+              width={150}
+              height={150}
+            />
+            <h2>Vaya! parece que no ha iniciado sesión</h2>
+            <div></div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </>
       )}
     </>
   );
