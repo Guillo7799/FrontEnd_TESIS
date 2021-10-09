@@ -16,8 +16,8 @@ async function create(data) {
   });
 }
 
-async function update(id, data) {
-  return await api.put(`/cvitaes/${id}`, data);
+async function update(data) {
+  return await api.put(`/update/cvitae`, data);
 }
 
 async function deleteCvitaes(id) {

@@ -9,7 +9,7 @@ import { Link as MuiLink } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Routes from "src/constants/routes";
 import MyCurriculum from "@/components/MyCurriculum";
-import Image from "next/image";
+import Info from "@/components/StudentInfo";
 import MyPostulations from "@/components/MyPostulations";
 import UpdateStudent from "./UpdateStudent";
 
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontFamily: "'Source Sans Pro', sans-serif",
     margin: "auto",
+    marginTop: "3%",
     padding: 10,
   },
   root: {
@@ -81,42 +82,7 @@ const StudentProfile = () => {
             <Typography variant="h4">Información:</Typography>
             <br />
             <br />
-            <div style={{ paddingLeft: "5%" }}>
-              <Image
-                src="/register/student.png"
-                alt="icono_estudiante"
-                width={115}
-                height={125}
-              />
-            </div>
-            <br />
-            <Typography varian="h6">
-              <strong>Nombre:</strong> {user.name}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Apellido:</strong> {user.last_name}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Correo electronico:</strong> {user.email}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Celular:</strong> {user.cellphone}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Provincia:</strong> {user.province}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Ciudad:</strong> {user.city}
-            </Typography>
-            <br />
-            <Typography varian="h6">
-              <strong>Biografía:</strong> {user.description}
-            </Typography>
+            <Info />
             <br />
             <Grid container item xs={12} sm={12}>
               <Grid item xs={12} sm={5} style={{ textAlign: "center" }}>

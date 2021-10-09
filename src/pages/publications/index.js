@@ -127,7 +127,6 @@ const Publications = () => {
             <br />
             <br />
             <br />
-            <br />
           </div>
         </>
       )}

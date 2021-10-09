@@ -106,8 +106,10 @@ export default function BasicModal(props) {
   console.log("infoApp", ApplicationData);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Ver Postulaciones</Button>
+    <div style={{ textAlign: "center" }}>
+      <Button style={{ backgroundColor: "#F77272" }} onClick={handleOpen}>
+        Ver Postulaciones
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
