@@ -11,7 +11,7 @@ import Routes from "src/constants/routes";
 import MyCurriculum from "@/components/MyCurriculum";
 import Info from "@/components/StudentInfo";
 import MyPostulations from "@/components/MyPostulations";
-import UpdateStudent from "./UpdateStudent";
+import UpdateMenu from "@/components/UpdateMenuStudent";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -95,7 +95,7 @@ const StudentProfile = () => {
                 </Link>
               </Grid>
               <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
-                <UpdateStudent />
+                <UpdateMenu />
               </Grid>
             </Grid>
             <br />
