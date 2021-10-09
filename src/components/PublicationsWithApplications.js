@@ -38,7 +38,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     height: "400px",
     overflowY: "scroll",
+    maxWidth: "90%",
+  },
+  card: {
+    display: "relative",
+    padding: "10px",
     width: "100%",
+  },
+  cardContainer: {
+    margin: "10px 40px",
   },
 }));
 
@@ -61,33 +69,41 @@ const MyPublicationsWithApplications = () => {
         className={classes.mypublications}
       >
         {data.data.map((data) => (
-          <Card className={classes.root} key={data.id}>
-            <CardActionArea>
-              <CardContent>
-                <p style={{ fontSize: 15 }}>
-                  <strong style={{ color: "#094275" }}>Carrera: </strong>
-                  {data.career}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong style={{ color: "#094275" }}>Descripción: </strong>
-                  {data.description}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong style={{ color: "#094275" }}>
-                    Horas ofertadas:{" "}
-                  </strong>
-                  {data.hours}
-                </p>
-                <p style={{ fontSize: 15 }}>
-                  <strong style={{ color: "#094275" }}>Fecha máxima: </strong>
-                  {data.date}
-                </p>
-              </CardContent>
-              <CardContent>
-                <ViewApplications publications={data.id} />
-              </CardContent>
-            </CardActionArea>
-          </Card>
+          <Grid item xs={12} className={classes.cardContainer}>
+            <Grid item xs={12} className={classes.card}>
+              <Card className={classes.root} key={data.id}>
+                <CardActionArea>
+                  <CardContent>
+                    <p style={{ fontSize: 15 }}>
+                      <strong style={{ color: "#094275" }}>Carrera: </strong>
+                      {data.career}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong style={{ color: "#094275" }}>
+                        Descripción:{" "}
+                      </strong>
+                      {data.description}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong style={{ color: "#094275" }}>
+                        Horas ofertadas:{" "}
+                      </strong>
+                      {data.hours}
+                    </p>
+                    <p style={{ fontSize: 15 }}>
+                      <strong style={{ color: "#094275" }}>
+                        Fecha máxima:{" "}
+                      </strong>
+                      {data.date}
+                    </p>
+                  </CardContent>
+                  <CardContent>
+                    <ViewApplications publications={data.id} />
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          </Grid>
         ))}
       </Grid>
       <br />
