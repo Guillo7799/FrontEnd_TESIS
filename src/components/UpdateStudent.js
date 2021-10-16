@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, TextField, Modal } from "@material-ui/core";
 import { useForm } from "react-hook-form";
+import { fetcher } from "@/lib/utils";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
@@ -62,12 +63,13 @@ const UpdateStudent = (props) => {
     console.log("data", data);
     try {
       const response = await User.update(user.id, data);
-      console.log("Dato Estudiante", response);
+      console.log("Datos Estudiante", response);
       swal({
-        title: "Datos actualizado",
+        title: "Datos Actualizados",
+        text: "Por favor para que se reflejen los cambios cierre e inicie sesión nuevamente",
         icon: "success",
         button: "Aceptar",
-        timer: "1500",
+        timer: "50000",
       });
       return response;
     } catch (error) {
@@ -181,14 +183,8 @@ const UpdateStudent = (props) => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        startIcon={<UpdateIcon />}
-        onClick={handleOpen}
-      >
-        Actualizar datos
+      <Button style={{ color: "#F77272" }} onClick={handleOpen}>
+        Actualizar datos de Perfil
       </Button>
       <Modal
         open={open}
