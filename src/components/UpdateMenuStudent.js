@@ -16,6 +16,7 @@ import Modal from "@mui/material/Modal";
 import SaveIcon from "@material-ui/icons/Save";
 import UpdateIcon from "@material-ui/icons/Update";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import UpdateInfo from "@/components/UpdateStudent";
 
 const style = {
   position: "absolute",
@@ -108,40 +109,36 @@ export default function BasicModal() {
           <Grid style={{ textAlign: "center" }}>
             <MenuOpenIcon style={{ fontSize: "40px", color: "#F77272" }} />
             <h1>Actualización de datos</h1>
-            <p>
-              Tiene registrado un curriculum, escoja entre las opciones cual de
-              los datos desea actualizar
-            </p>
-            <br />
-            <br />
           </Grid>
 
           {data[0] ? (
             <Grid container item xs={12} sm={12}>
               <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
-                <Button style={{ color: "#F77272" }}>
-                  Actualizar datos mínimos personales
-                </Button>
+                <p>
+                  Tiene registrado un curriculum, escoja entre las opciones cual
+                  de los datos desea actualizar
+                </p>
+                <br />
+              </Grid>
+              <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
+                <UpdateInfo />
                 <br />
                 <br />
               </Grid>
-
               <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
-                <Button style={{ color: "#F77272" }}>
-                  Actualizar datos de Curriculum
-                </Button>
+                <Link href={Routes.UPDATECV} passHref>
+                  <MuiLink>
+                    <Button style={{ color: "#F77272" }}>
+                      Actualizar datos de Curriculum
+                    </Button>
+                  </MuiLink>
+                </Link>
               </Grid>
             </Grid>
           ) : (
             <>
               <Grid container item xs={12} sm={12}>
                 <Grid item xs={12} sm={12}>
-                  <Grid style={{ textAlign: "center" }}>
-                    <MenuOpenIcon
-                      style={{ fontSize: "40px", color: "#F77272" }}
-                    />
-                    <h1>Actualización de datos</h1>
-                  </Grid>
                   <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
                     <br />
                     <form
@@ -189,8 +186,6 @@ export default function BasicModal() {
                           required
                           fullWidth
                           label="Teléfono"
-                          multiline
-                          rows={3}
                           id="cellphone"
                           inputRef={register}
                           defaultValue={user.cellphone}

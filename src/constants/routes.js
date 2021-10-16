@@ -17,6 +17,8 @@ const privateRoutes = {
   PUBLICATION_ID: "publications/:id",
   CURRICULUMS: "/curriculums",
   CURRICULUM_ID: "/curriculums/:id",
+  UPDATECV: "/actualizar-curriculum",
+  UPDATEINFO: "/actualizar-info-personal",
 };
 
 const Routes = {
