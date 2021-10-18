@@ -118,7 +118,7 @@ const Politics = () => {
             un juez ante un orden judicial. "Prácticas al día" se reserva el
             derecho de modificar los términos de uso en cualquier momento.
           </p>
-          <p>Haga uso consiente de la aplicación.</p>
+          <p>Haga uso consciente de la aplicación.</p>
         </Grid>
         <br />
         <br />
