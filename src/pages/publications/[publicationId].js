@@ -115,7 +115,7 @@ const PublicationDetail = () => {
                   </p>
                   <h1 style={{ fontSize: 25 }}>Se oferta: </h1>
                   <p style={{ fontSize: 15 }}>
-                    {data.hours} Horas
+                    {data.hours}
                     <br />
                     <strong>Para la ciudad de: </strong>
                     {data.city}

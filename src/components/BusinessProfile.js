@@ -9,6 +9,9 @@ import MyPublication from "@/components/MyPublications";
 import MenuBusiness from "@/components/MenuBusiness";
 import Button from "@material-ui/core/Button";
 import Info from "@/components/BusinessInfo";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
+import Routes from "../constants/routes";
 
 const schema = yup.object().shape({
   text: yup.string().required("Ingresa tu oferta de prácticas"),
@@ -73,9 +76,13 @@ const BusinessProfile = () => {
             <MyPublication />
             <br />
             <Grid item xs={12} sm={12} style={{ marginLeft: "25%" }}>
-              <Button color="primary" variant="contained">
-                Gestionar
-              </Button>
+              <Link href={Routes.GESTION} passHref>
+                <MuiLink>
+                  <Button color="primary" variant="contained">
+                    Gestionar
+                  </Button>
+                </MuiLink>
+              </Link>
             </Grid>
             <br />
             <br />

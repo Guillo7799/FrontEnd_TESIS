@@ -10,7 +10,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import { useRouter } from "next/router";
-import translateMessage from "../constants/messages";
+import translateMessage from "../../constants/messages";
 import withAuth from "@/hocs/withAuth";
 import SaveIcon from "@material-ui/icons/Save";
 import Routes from "src/constants/routes";

@@ -1,13 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useAuth } from "@/lib/auth";
 import Link from "next/link";
-import withAuth from "@/hocs/withAuth";
 import Routes from "src/constants/routes";
 import {
   Paper,
