@@ -7,15 +7,36 @@ import Routes from "src/constants/routes";
 import { Select } from "@material-ui/core";
 import { Button, Avatar, Grid, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import swal from "sweetalert";
 import withAuth from "@/hocs/withAuth";
 import PublicationTip from "@/components/PublicationTip";
+import Typography from "@material-ui/core/Typography";
 
 const schema = yup.object().shape({
-  text: yup.string().required("Ingresa tu oferta de prácticas"),
+  business_name: yup
+    .string()
+    .required("Ingrese el nombre de la empresa ofertante"),
+  career: yup.string().required("Ingrese la carrera de interés"),
+  description: yup
+    .string()
+    .required("Ingrese la descripción de las actividades a desarrollar"),
+  hours: yup
+    .string()
+    .required(
+      "Ingrese la cantidad de horas que oferta y si tienen algún tipo de beneficio"
+    ),
+  date: yup.string().required("Ingrese la fecha máxima de postulación"),
+  city: yup
+    .string()
+    .required("Ingrese la ciudad donde se solicita el practicante"),
+  contact_email: yup.string().required("Ingresa el correo de contacto"),
+  category_id: yup
+    .string()
+    .required("Seleccione la categoría a la que pertenece la oferta"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +73,9 @@ const useStyles = makeStyles((theme) => ({
 
 const NewPublication = () => {
   const { user } = useAuth();
-  const { register, handleSubmit, control, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -143,7 +166,9 @@ const NewPublication = () => {
                   autoComplete="text"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">
+                  {errors.business_name?.message}
+                </Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -158,7 +183,9 @@ const NewPublication = () => {
                   autoComplete="text"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">
+                  {errors.career?.message}
+                </Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -176,7 +203,9 @@ const NewPublication = () => {
                   autoComplete="text"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">
+                  {errors.description?.message}
+                </Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -191,7 +220,7 @@ const NewPublication = () => {
                   autoComplete="text"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">{errors.hours?.message}</Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -207,7 +236,7 @@ const NewPublication = () => {
                   autoComplete="date"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">{errors.date?.message}</Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -222,7 +251,7 @@ const NewPublication = () => {
                   autoComplete="text"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">{errors.city?.message}</Typography>
                 <br />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -238,7 +267,9 @@ const NewPublication = () => {
                   autoComplete="email"
                   style={{ width: "100%", minHeight: "15%" }}
                 />
-                <br />
+                <Typography color="primary">
+                  {errors.contact_email?.message}
+                </Typography>
                 <br />
               </Grid>
               <Grid item xs={12}>
@@ -277,6 +308,9 @@ const NewPublication = () => {
                   <option value="12">Carreras de Comunicación</option>
                   <option value="13">Carreras Sociales y Humanísticas</option>
                 </Select>
+                <Typography color="primary">
+                  {errors.category_id?.message}
+                </Typography>
               </Grid>
               <br />
               <Grid container item xs={12} sm={12}>
@@ -303,7 +337,7 @@ const NewPublication = () => {
                   sm={6}
                   style={{ textAlign: "left", paddingLeft: 30 }}
                 >
-                  <Link href={Routes.HOME} passHref>
+                  <Link href={Routes.GLOBALPROFILE} passHref>
                     <MuiLink>
                       <Button variant="contained" color="primary">
                         Cancelar

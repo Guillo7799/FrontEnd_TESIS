@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import swal from "sweetalert";
-import Loading from "@/components/Loading";
 import withAuth from "@/hocs/withAuth";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,12 +8,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
-import translateMessage from "../constants/messages";
-import Routes from "../constants/routes";
 import { useRouter } from "next/router";
 import SaveIcon from "@material-ui/icons/Save";
 import Typography from "@material-ui/core/Typography";
-import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import Head from "next/head";
 
 const schema = yup.object().shape({
   university: yup.string().required("Ingrese la Universidad donde estudia"),
@@ -29,21 +26,6 @@ const schema = yup.object().shape({
   work_experience: yup.string().required("Ingrese su experiencia laboral"),
   image: yup.string().required("Seleccione su fotode perfil"),
 });
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50;
-  const left = 50;
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,11 +50,6 @@ const Curriculum = (props) => {
     resolver: yupResolver(schema),
   });
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [image, setImage] = React.useState(null);
-  const fileInputRef = useRef();
-  const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -117,14 +94,14 @@ const Curriculum = (props) => {
         button: "Aceptar",
         timer: "3000",
       });
-      router.push(Routes.LOGIN);
+      router.push(Routes.GLOBALPROFILE);
       return response;
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "error",
           icon: "error",
           button: "Aceptar",
         });
@@ -149,8 +126,11 @@ const Curriculum = (props) => {
     console.log("image", imageFile);
   };
 
-  const body = (
-    <div style={modalStyle} className={classes.paper}>
+  return (
+    <>
+      <Head>
+        <title>Registro de Curriculum</title>
+      </Head>
       <h1>Formulario de Curriculum</h1>
       <Grid
         item
@@ -308,19 +288,6 @@ const Curriculum = (props) => {
             <br />
           </Grid>
           <Grid item xs={12}>
-            {/* 
-            <Button component="label" variant="contained" color="primary">
-              Seleccionar Foto <BackupIcon style={{ fontSize: 20 }} />
-              <input
-                type="file"
-                fullWidth
-                name="image"
-                id="image"
-                ref={register}
-                onChange={(e) => handleImage(e.target.files[0])}
-                hidden
-              />
-            </Button>*/}
             <label>
               Subir foto:
               <input
@@ -356,29 +323,7 @@ const Curriculum = (props) => {
         <br />
         <br />
       </Grid>
-    </div>
-  );
-
-  return (
-    <div>
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        startIcon={<NoteAddIcon />}
-        onClick={handleOpen}
-      >
-        Llenar Uno
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
-        {body}
-      </Modal>
-    </div>
+    </>
   );
 };
 

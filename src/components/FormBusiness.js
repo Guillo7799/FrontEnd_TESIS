@@ -28,16 +28,39 @@ import SaveIcon from "@material-ui/icons/Save";
 import Image from "next/image";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Ingresa tu nombre"),
-  last_name: yup.string().required("Ingresa tu apellido"),
+  name: yup.string().required("Ingrese su nombre"),
+  last_name: yup.string().required("Ingrese su apellido"),
   email: yup
     .string()
-    .email("Ingresa un email válido")
-    .required("Ingresa tu email."),
-  password: yup.string().required("Ingresa la contraseña"),
+    .email("Ingrese un email válido")
+    .required("Ingrese su email."),
+  password: yup
+    .string()
+    .required("Ingrese la contraseña")
+    .min(8, "La clave debe tener al menos 8 caracteres."),
   password_confirmation: yup
     .string()
-    .required("Falta la confirmación de la contraseña"),
+    .required("Falta la confirmación de la contraseña")
+    .min(8, "La clave debe tener al menos 8 caracteres."),
+  province: yup.string().required("Ingrese la provincia"),
+  city: yup.string().required("Ingrese el nombre de la ciudad"),
+  location: yup.string().required("Ingrese la dirección de la empresa"),
+  description: yup
+    .string()
+    .required("Ingrese una breve descripción de la empresa"),
+  cellphone: yup
+    .string()
+    .required("Ingrese su número de celular")
+    .min(10, "El número ingresado es incorrecto - mínimo 10 números"),
+  ruc: yup
+    .string()
+    .required("Ingrese su ruc")
+    .min(13, "El número ingresado es incorrecto - son 13 números"),
+  business_name: yup
+    .string()
+    .required("Ingrese el nombre de la empresa que representa"),
+  business_type: yup.string().required("Ingrese el tipo de empresa que es"),
+  business_age: yup.string().required("Ingrese la edad de la empresa"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -327,6 +350,9 @@ const BusinessRegister = () => {
                   name="province"
                   autoComplete="province"
                 />
+                <Typography color="primary">
+                  {errors.province?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -339,6 +365,7 @@ const BusinessRegister = () => {
                   name="city"
                   autoComplete="city"
                 />
+                <Typography color="primary">{errors.city?.message}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -351,6 +378,9 @@ const BusinessRegister = () => {
                   name="location"
                   autoComplete="location"
                 />
+                <Typography color="primary">
+                  {errors.location?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -363,6 +393,9 @@ const BusinessRegister = () => {
                   name="description"
                   autoComplete="description"
                 />
+                <Typography color="primary">
+                  {errors.description?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -376,6 +409,12 @@ const BusinessRegister = () => {
                   name="cellphone"
                   autoComplete="phone"
                 />
+                <Typography color="primary">
+                  {errors.cellphone?.message}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={12} style={{ textAlign: "center" }}>
+                <Typography color="black">Datos de la Empresa</Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -402,6 +441,7 @@ const BusinessRegister = () => {
                   name="ruc"
                   autoComplete="ruc"
                 />
+                <Typography color="primary">{errors.ruc?.message}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -414,6 +454,9 @@ const BusinessRegister = () => {
                   name="business_name"
                   autoComplete="business_name"
                 />
+                <Typography color="primary">
+                  {errors.business_name?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -426,6 +469,9 @@ const BusinessRegister = () => {
                   name="business_type"
                   autoComplete="business_type"
                 />
+                <Typography color="primary">
+                  {errors.business_type?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -438,6 +484,9 @@ const BusinessRegister = () => {
                   name="business_age"
                   autoComplete="business_age"
                 />
+                <Typography color="primary">
+                  {errors.business_age?.message}
+                </Typography>
               </Grid>
             </Grid>
             <Button

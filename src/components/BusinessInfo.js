@@ -32,7 +32,7 @@ const PersonalInfo = () => {
   const classes = useStyles();
   return (
     <>
-      <div>
+      <div id="infoBusiness">
         <br />
         <div style={{ paddingLeft: "5%" }}>
           <Image
