@@ -2,25 +2,29 @@ import React, { useEffect, useRef, useState } from "react";
 import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
 import swal from "sweetalert";
 import { useAuth } from "@/lib/auth";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, TextField, Modal } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import SendIcon from "@material-ui/icons/Send";
+import Typography from "@material-ui/core/Typography";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
 
 const schema = yup.object().shape({
-  text: yup.string().required("Llene el formulario de postulación"),
+  name: yup.string().required("Ingrese su nombre"),
+  last_name: yup.string().required("Ingrese su apellido"),
+  message: yup.string().required("Es necesario un mensaje de postulación"),
 });
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -49,7 +53,9 @@ const Application = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [name, setName] = useState("");
 
   const handleOpen = () => {
@@ -140,7 +146,7 @@ const Application = (props) => {
                 name="name"
                 autoComplete="text"
               />
-              <br />
+              <Typography color="primary">{errors.name?.message}</Typography>
               <br />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -155,7 +161,9 @@ const Application = (props) => {
                 name="last_name"
                 autoComplete="text"
               />
-              <br />
+              <Typography color="primary">
+                {errors.last_name?.message}
+              </Typography>
               <br />
             </Grid>
           </Grid>
@@ -173,7 +181,7 @@ const Application = (props) => {
               name="message"
               autoComplete="text"
             />
-            <br />
+            <Typography color="primary">{errors.message?.message}</Typography>
             <br />
           </Grid>
           <Grid container item xs={12} sm={12}>

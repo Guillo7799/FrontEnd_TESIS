@@ -61,7 +61,7 @@ const Publications = () => {
           <Grid item xs={12} className={classes.title}>
             <h2>Postule a la oferta que crea conveniente.</h2>
           </Grid>
-          <Grid container style={{ paddingLeft: "10%" }}>
+          <Grid container style={{ paddingLeft: "10%", minHeight: "1000px" }}>
             <Grid item xs={12} sm={4} style={{ height: "500px" }}>
               <MiniPostulations />
             </Grid>
@@ -79,7 +79,7 @@ const Publications = () => {
                   onChange={handleChange}
                   fullWidth
                 >
-                  <option>Ingeniería en Sistemas y carreras afines</option>
+                  <option value="">Seleccione una categoría</option>
                   <option value="1">
                     Ingeniería en Sistemas y carreras afines
                   </option>

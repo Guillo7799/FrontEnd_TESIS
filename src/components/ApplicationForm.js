@@ -4,14 +4,18 @@ import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, TextField, Modal } from "@material-ui/core";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import SendIcon from "@material-ui/icons/Send";
 import withAuth from "@/hocs/withAuth";
+import Typography from "@material-ui/core/Typography";
 
 const schema = yup.object().shape({
-  text: yup.string().required("Llene el formulario de postulación"),
+  name: yup.string().required("Ingrese su nombre"),
+  last_name: yup.string().required("Ingrese su apellido"),
+  message: yup.string().required("Es necesario un mensaje de postulación"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
 const ApplicationForm = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   console.log("PublicationData", props);
 
   const onSubmit = async (data) => {
@@ -114,7 +120,7 @@ const ApplicationForm = (props) => {
                 name="name"
                 autoComplete="text"
               />
-              <br />
+              <Typography color="primary">{errors.name?.message}</Typography>
               <br />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -129,7 +135,9 @@ const ApplicationForm = (props) => {
                 name="last_name"
                 autoComplete="text"
               />
-              <br />
+              <Typography color="primary">
+                {errors.last_name?.message}
+              </Typography>
               <br />
             </Grid>
           </Grid>
@@ -147,7 +155,7 @@ const ApplicationForm = (props) => {
               name="message"
               autoComplete="text"
             />
-            <br />
+            <Typography color="primary">{errors.message?.message}</Typography>
             <br />
           </Grid>
           <Grid container item xs={12} sm={12}>

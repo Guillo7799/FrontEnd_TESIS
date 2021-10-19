@@ -26,18 +26,33 @@ import Routes from "../constants/routes";
 import swal from "sweetalert";
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
-  name: yup.string().required("Ingresa tu nombre"),
-  last_name: yup.string().required("Ingresa tu apellido"),
+  name: yup.string().required("Ingrese su nombre"),
+  last_name: yup.string().required("Ingrese su apellido"),
   email: yup
     .string()
-    .email("Ingresa un email válido")
-    .required("Ingresa tu email."),
-  password: yup.string().required("Ingresa la contraseña"),
+    .email("Ingrese un email válido")
+    .required("Ingrese su email."),
+  password: yup
+    .string()
+    .required("Ingrese la contraseña")
+    .min(8, "La clave debe tener al menos 8 caracteres."),
   password_confirmation: yup
     .string()
-    .required("Falta la confirmación de la contraseña"),
+    .required("Falta la confirmación de la contraseña")
+    .min(8, "La clave debe tener al menos 8 caracteres."),
+  province: yup.string().required("Ingrese la provincia donde vive"),
+  city: yup.string().required("Ingrese el nombre de la ciudad donde vive"),
+  location: yup
+    .string()
+    .required("Ingrese una dirección referencial (No exacta)"),
+  description: yup.string().required("Ingrese una breve descripción suya"),
+  cellphone: yup
+    .string()
+    .required("Ingrese su número de celular")
+    .min(10, "El número ingresado es incorrecto - son 10 números"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -76,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   const { register: doRegister } = useAuth();
   const classes = useStyles();
+  const router = useRouter();
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -131,6 +147,7 @@ const Register = () => {
         button: "Aceptar",
         timer: "10000",
       });
+      router.push(Routes.LOGIN);
       console.log("userData", userData);
     } catch (error) {
       if (error.response) {
@@ -337,6 +354,9 @@ const Register = () => {
                   name="province"
                   autoComplete="province"
                 />
+                <Typography color="primary">
+                  {errors.province?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -349,6 +369,7 @@ const Register = () => {
                   name="city"
                   autoComplete="city"
                 />
+                <Typography color="primary">{errors.city?.message}</Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -361,6 +382,9 @@ const Register = () => {
                   name="location"
                   autoComplete="location"
                 />
+                <Typography color="primary">
+                  {errors.location?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -373,6 +397,9 @@ const Register = () => {
                   name="description"
                   autoComplete="description"
                 />
+                <Typography color="primary">
+                  {errors.description?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -386,6 +413,9 @@ const Register = () => {
                   name="cellphone"
                   autoComplete="phone"
                 />
+                <Typography color="primary">
+                  {errors.cellphone?.message}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <TextField

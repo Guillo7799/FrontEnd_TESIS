@@ -20,6 +20,7 @@ const privateRoutes = {
   UPDATECV: "/actualizar-curriculum",
   UPDATEINFO: "/actualizar-info-personal",
   GESTION: "/mis-publicaciones",
+  NEWCURRICULUM: "/nuevo-curriculum",
 };
 
 const Routes = {
