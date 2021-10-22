@@ -52,7 +52,7 @@ const schema = yup.object().shape({
   cellphone: yup
     .string()
     .required("Ingrese su número de celular")
-    .min(10, "El número ingresado es incorrecto - son 10 números"),
+    .min(10, "El número ingresado es incorrecto - son 8 números"),
 });
 
 const useStyles = makeStyles((theme) => ({
