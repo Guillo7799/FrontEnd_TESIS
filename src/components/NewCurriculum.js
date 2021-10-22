@@ -69,7 +69,7 @@ const Curriculum = (props) => {
   });
   const router = useRouter();
   const [name, setName] = useState("");
-  const [image, setImage] = React.useState(null);
+  const [image, setImage] = useState(null);
   const fileInputRef = useRef();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -93,7 +93,7 @@ const Curriculum = (props) => {
       certificates: data.certificates,
       highschool_degree: data.highschool_degree,
       work_experience: data.work_experience,
-      image: data.image[0],
+      image: image,
     };
     const formData = new FormData();
     formData.append("university", newCurriculum.university);
@@ -117,7 +117,7 @@ const Curriculum = (props) => {
         button: "Aceptar",
         timer: "3000",
       });
-      router.push(Routes.LOGIN);
+      router.push(Routes.GLOBALPROFILE);
       return response;
     } catch (error) {
       if (error.response) {
