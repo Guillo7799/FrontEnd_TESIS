@@ -14,6 +14,7 @@ import translateMessage from "../constants/messages";
 import swal from "sweetalert";
 import withAuth from "@/hocs/withAuth";
 import PublicationTip from "@/components/PublicationTip";
+import { useRouter } from "next/router";
 import Typography from "@material-ui/core/Typography";
 
 const schema = yup.object().shape({
@@ -76,16 +77,9 @@ const NewPublication = () => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const onSubmit = async (data) => {
     console.log("data", data);
@@ -101,6 +95,7 @@ const NewPublication = () => {
         button: "Aceptar",
         timer: "3000",
       });
+      router.push(Routes.GESTION);
       return response;
     } catch (error) {
       if (error.response) {

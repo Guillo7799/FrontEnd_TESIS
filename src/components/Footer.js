@@ -152,12 +152,12 @@ const Footer = () => {
                   <Input
                     type="submit"
                     className="btn btn-info"
-                    value="Enviar"
+                    value="ENVIAR"
                     style={{
                       width: "90px",
                       height: "35px",
                       color: "white",
-                      backgroundColor: "#0170B8",
+                      backgroundColor: "#0188FD",
                       borderRadius: 5,
                     }}
                   ></Input>
