@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NewPublication = () => {
   const { user } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const router = useRouter();
@@ -95,6 +95,7 @@ const NewPublication = () => {
         button: "Aceptar",
         timer: "3000",
       });
+      reset();
       router.push(Routes.GESTION);
       return response;
     } catch (error) {

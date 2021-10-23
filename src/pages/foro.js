@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
 const Comment = () => {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit, control, errors } = useForm({
+  const { register, handleSubmit, control, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [name, setName] = useState("");
@@ -110,6 +110,7 @@ const Comment = () => {
         timer: "3000",
       });
       mutate();
+      reset();
       return response;
     } catch (error) {
       if (error.response) {
