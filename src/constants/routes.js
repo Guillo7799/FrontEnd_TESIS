@@ -1,5 +1,5 @@
 const publicRoutes = {
-  LOGIN: "/login",
+  LOGIN: "/inicio-de-sesion",
   REGISTER: "/registro-estudiante",
   BUSINESSREGISTER: "/registro-empresarial",
   REMEMBERPASSWORD: "/olvide-mi-clave",

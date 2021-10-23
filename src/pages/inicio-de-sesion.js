@@ -20,7 +20,10 @@ const schema = yup.object().shape({
     .string()
     .email("Ingrese un email válido")
     .required("Ingrese su email."),
-  password: yup.string().required("Ingrese su clave"),
+  password: yup
+    .string()
+    .required("Ingrese su clave")
+    .min(6, "La contraseña debe tener por lo menos 6 caracteres"),
 });
 
 const useStyles = makeStyles((theme) => ({
