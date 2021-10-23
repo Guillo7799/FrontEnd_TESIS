@@ -52,9 +52,9 @@ const StudentCount = () => {
         <Grid container item xs={12} sm={12} className={classes.info}>
           <Grid container item sx={12} sm={2} className={classes.image}>
             <img
-              src="https://cdn.icon-icons.com/icons2/1465/PNG/512/130manstudent2_100617.png"
-              alt="Estudiantil-imagen"
-              width={175}
+              src="https://cdn-icons-png.flaticon.com/512/1440/1440955.png"
+              alt="cuenta-estudiantil"
+              width={200}
               height={175}
               style={{ marginLeft: "25%" }}
             />

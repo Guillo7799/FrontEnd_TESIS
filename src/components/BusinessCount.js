@@ -136,7 +136,7 @@ const BusinessCount = () => {
               </tr>
               <tr>
                 <td>
-                  <strong>VCambio de estado de postulación</strong>
+                  <strong>Cambio de estado de postulación</strong>
                 </td>
                 <td style={{ textAlign: "left" }}>
                   Una vez revisado el curriculum del estudiante que postula el
