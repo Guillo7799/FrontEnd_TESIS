@@ -101,7 +101,7 @@ const BusinessRegister = () => {
   const { businessregister: doBusinessRegister } = useAuth();
   const classes = useStyles();
   const router = useRouter();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [image, setImage] = React.useState(null);
@@ -164,9 +164,9 @@ const BusinessRegister = () => {
         button: "Aceptar",
         timer: "6000",
       });
+      reset();
       console.log("userData", userData);
       router.push(Routes.LOGIN);
-      data.reset();
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code

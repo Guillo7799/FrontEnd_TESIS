@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 const ApplicationForm = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   console.log("PublicationData", props);
@@ -67,6 +67,7 @@ const ApplicationForm = (props) => {
         button: "Aceptar",
         timer: "15000",
       });
+      reset();
       return response;
     } catch (error) {
       if (error.response) {

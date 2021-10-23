@@ -92,7 +92,7 @@ const Register = () => {
   const { register: doRegister } = useAuth();
   const classes = useStyles();
   const router = useRouter();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [image, setImage] = React.useState(null);
@@ -147,6 +147,7 @@ const Register = () => {
         button: "Aceptar",
         timer: "10000",
       });
+      reset();
       router.push(Routes.LOGIN);
       console.log("userData", userData);
     } catch (error) {

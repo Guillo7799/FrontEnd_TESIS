@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 const Curriculum = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const router = useRouter();
@@ -117,6 +117,7 @@ const Curriculum = (props) => {
         button: "Aceptar",
         timer: "3000",
       });
+      reset();
       router.push(Routes.GLOBALPROFILE);
       return response;
     } catch (error) {

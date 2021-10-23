@@ -53,7 +53,7 @@ const Application = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const { user } = useAuth();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [name, setName] = useState("");
@@ -93,6 +93,7 @@ const Application = (props) => {
         button: "Aceptar",
         timer: "15000",
       });
+      reset();
       return response;
     } catch (error) {
       if (error.response) {

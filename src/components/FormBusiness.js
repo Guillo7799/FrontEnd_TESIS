@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 const BusinessRegister = () => {
   const { businessregister: doBusinessRegister } = useAuth();
   const classes = useStyles();
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
   const [image, setImage] = React.useState(null);
@@ -163,7 +163,7 @@ const BusinessRegister = () => {
         timer: "6000",
       });
       console.log("userData", userData);
-      data.reset();
+      reset();
     } catch (error) {
       if (error.response) {
         // The request was made and the server responded with a status code
