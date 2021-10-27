@@ -17,6 +17,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import UpdateIcon from "@material-ui/icons/Update";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import UpdateInfo from "@/components/UpdateStudent";
+import { User } from "@/lib/users";
 
 const style = {
   position: "absolute",
