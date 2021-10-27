@@ -34,7 +34,8 @@ const schema = yup.object().shape({
   email: yup
     .string()
     .email("Ingrese un email válido")
-    .required("Ingrese su email."),
+    .required("Ingrese su email.")
+    .matches(/\S+@\S+\.\edu.ec+/, "Se requiere de un correo institucional"),
   password: yup
     .string()
     .required("Ingrese la contraseña")
