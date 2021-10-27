@@ -1,12 +1,10 @@
 import * as React from "react";
-import withAuth from "@/hocs/withAuth";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, TextField } from "@material-ui/core";
 import { useForm } from "react-hook-form";
-import Head from "next/head";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
@@ -54,7 +52,8 @@ export default function BasicModal() {
       const response = await User.update(user.id, data);
       console.log("Dato Estudiante", response);
       swal({
-        title: "Datos actualizado",
+        title: "Datos actualizados",
+        text: "Por favor para que se reflejen los cambios cierre e inicie sesión nuevamente",
         icon: "success",
         button: "Aceptar",
         timer: "1500",
@@ -213,7 +212,7 @@ export default function BasicModal() {
                     </form>
                     <br />
                   </Grid>
-                  <Button onClick={handleClose}>Lo tengo</Button>
+                  <Button onClick={handleClose}>Ok, cerrar</Button>
                 </Grid>
               </Grid>
             </>
