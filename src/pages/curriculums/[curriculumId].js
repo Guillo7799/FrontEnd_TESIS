@@ -10,16 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Image from "next/image";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import Head from "next/head";
 
 const useStyles = makeStyles((theme) => ({

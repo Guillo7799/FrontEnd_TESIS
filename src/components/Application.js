@@ -11,6 +11,8 @@ import api from "@/lib/api";
 import translateMessage from "../constants/messages";
 import SendIcon from "@material-ui/icons/Send";
 import Typography from "@material-ui/core/Typography";
+import { useRouter } from "next/router";
+import Routes from "src/constants/routes";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -53,6 +55,7 @@ const Application = (props) => {
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const { user } = useAuth();
+  const router = useRouter();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
@@ -94,6 +97,7 @@ const Application = (props) => {
         timer: "15000",
       });
       reset();
+      router.push(Routes.GLOBALPROFILE);
       return response;
     } catch (error) {
       if (error.response) {

@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     alignContent: "center",
     justifyContent: "center",
     width: "100%",
+    height: "100%",
   },
   nouser: {
     textAlign: "center",
@@ -65,7 +66,16 @@ const Publications = () => {
             <Grid item xs={12} sm={4} style={{ height: "500px" }}>
               <MiniPostulations />
             </Grid>
-            <Grid item xs={12} sm={8} style={{ textAlign: "center" }}>
+            <Grid
+              item
+              xs={12}
+              sm={8}
+              style={{
+                textAlign: "center",
+                height: "900px",
+                overflowY: "scroll",
+              }}
+            >
               <Grid item xs={12} sm={12} style={{ width: "80%" }}>
                 <h3 style={{ marginLeft: "20%" }}>Filtrar Publicaciones: </h3>
                 <Select

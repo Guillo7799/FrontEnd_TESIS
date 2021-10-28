@@ -49,7 +49,10 @@ const schema = yup.object().shape({
   location: yup
     .string()
     .required("Ingrese una dirección referencial (No exacta)"),
-  description: yup.string().required("Ingrese una breve descripción suya"),
+  description: yup
+    .string()
+    .required("Ingrese una breve descripción suya")
+    .max(1000, "El límite de caractéres es de 1000"),
   cellphone: yup
     .string()
     .required("Ingrese su número de celular")
