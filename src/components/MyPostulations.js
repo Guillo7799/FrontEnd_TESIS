@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
   confirmation: {
     paddingLeft: 55,
   },
+  mypostulation: {
+    marginTop: 10,
+    height: "400px",
+    overflowY: "scroll",
+  },
 }));
 
 const StyledTableCell = withStyles((theme) => ({
@@ -56,7 +61,7 @@ const MyPostulations = (props) => {
   return (
     <>
       {data ? (
-        <Grid container direction="column">
+        <Grid container direction="column" className={classes.mypostulation}>
           <TableContainer component={Paper}>
             <Table aria-label="customized table">
               <TableHead>

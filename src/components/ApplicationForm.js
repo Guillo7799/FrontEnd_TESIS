@@ -11,6 +11,8 @@ import translateMessage from "../constants/messages";
 import SendIcon from "@material-ui/icons/Send";
 import withAuth from "@/hocs/withAuth";
 import Typography from "@material-ui/core/Typography";
+import { useRouter } from "next/router";
+import Routes from "src/constants/routes";
 
 const schema = yup.object().shape({
   name: yup.string().required("Ingrese su nombre"),
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 const ApplicationForm = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
+  const router = useRouter();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
@@ -68,6 +71,7 @@ const ApplicationForm = (props) => {
         timer: "15000",
       });
       reset();
+      router.push(Routes.PUBLICATIONS);
       return response;
     } catch (error) {
       if (error.response) {

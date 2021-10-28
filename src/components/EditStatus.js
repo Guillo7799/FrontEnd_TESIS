@@ -13,8 +13,8 @@ function rand() {
 }
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 const EditStatus = (props) => {
   const { user } = useAuth();
   const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
   const { register, handleSubmit } = useForm();
