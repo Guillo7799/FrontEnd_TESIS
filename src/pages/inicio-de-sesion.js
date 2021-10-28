@@ -14,6 +14,7 @@ import Routes from "../constants/routes";
 import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
   email: yup
@@ -44,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const { login } = useAuth();
   const classes = useStyles();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit, errors } = useForm({
@@ -61,6 +63,7 @@ const Login = () => {
         button: "Aceptar",
         timer: "2000",
       });
+      router.push(Routes.GLOBALPROFILE);
       console.log("userData", userData);
     } catch (error) {
       if (error.response) {

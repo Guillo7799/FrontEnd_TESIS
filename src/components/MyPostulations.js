@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   mypostulation: {
     marginTop: 10,
     height: "400px",
-    overflowY: "scroll",
   },
 }));
 
