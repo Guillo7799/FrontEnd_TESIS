@@ -27,7 +27,7 @@ const schema = yup.object().shape({
     .string()
     .required("Ingrese su título de segundo grado (Secundaria)"),
   work_experience: yup.string().required("Ingrese su experiencia laboral"),
-  image: yup.string().required("Seleccione su fotode perfil"),
+  image: yup.string().required("Seleccione su foto de perfil"),
 });
 
 function rand() {

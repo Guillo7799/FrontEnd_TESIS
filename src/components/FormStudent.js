@@ -47,11 +47,15 @@ const schema = yup.object().shape({
   location: yup
     .string()
     .required("Ingrese una dirección referencial (No exacta)"),
-  description: yup.string().required("Ingrese una breve descripción suya"),
+  description: yup
+    .string()
+    .required("Ingrese una breve descripción suya")
+    .max(1000, "El límite de caractéres es de 1000"),
   cellphone: yup
     .string()
     .required("Ingrese su número de celular")
-    .min(10, "El número ingresado es incorrecto - son 10 números"),
+    .min(10, "El número ingresado es incorrecto - son 10 números")
+    .max(10, "El número de celular es de 10 dígitos"),
 });
 
 const useStyles = makeStyles((theme) => ({
