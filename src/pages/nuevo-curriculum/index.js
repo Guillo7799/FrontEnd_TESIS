@@ -24,4 +24,4 @@ const NewCurriculumStudent = () => {
   );
 };
 
-export default NewCurriculumStudent;
+export default withAuth(NewCurriculumStudent);
