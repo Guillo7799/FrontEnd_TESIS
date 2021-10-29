@@ -47,15 +47,18 @@ const schema = yup.object().shape({
   location: yup.string().required("Ingrese la dirección de la empresa"),
   description: yup
     .string()
-    .required("Ingrese una breve descripción de la empresa"),
+    .required("Ingrese una breve descripción de la empresa")
+    .max(1000, "El límite de caractéres es de 1000"),
   cellphone: yup
     .string()
     .required("Ingrese su número de celular")
-    .min(10, "El número ingresado es incorrecto - mínimo 10 números"),
+    .min(10, "El número ingresado es incorrecto - mínimo 10 números")
+    .max(10, "El número de celular es de 10 dígitos"),
   ruc: yup
     .string()
     .required("Ingrese su ruc")
-    .min(13, "El número ingresado es incorrecto - son 13 números"),
+    .min(13, "El número ingresado es incorrecto - son 13 números")
+    .max(13, "El RUC consta de 13 dígitos"),
   business_name: yup
     .string()
     .required("Ingrese el nombre de la empresa que representa"),
