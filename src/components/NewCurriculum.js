@@ -15,6 +15,8 @@ import { useRouter } from "next/router";
 import SaveIcon from "@material-ui/icons/Save";
 import Typography from "@material-ui/core/Typography";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import Link from "next/link";
+import { Link as MuiLink } from "@material-ui/core";
 
 const schema = yup.object().shape({
   university: yup.string().required("Ingrese la Universidad donde estudia"),
@@ -362,15 +364,19 @@ const Curriculum = (props) => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-        startIcon={<NoteAddIcon />}
-        onClick={handleOpen}
-      >
-        Llenar Uno
-      </Button>
+      <Link href={Routes.NEWCURRICULUM} passHref>
+        <MuiLink>
+          <Button
+            variant="contained"
+            color="default"
+            className={classes.button}
+            startIcon={<NoteAddIcon />}
+            //onClick={handleOpen}
+          >
+            Llenar Uno
+          </Button>
+        </MuiLink>
+      </Link>
       <Modal
         open={open}
         onClose={handleClose}
