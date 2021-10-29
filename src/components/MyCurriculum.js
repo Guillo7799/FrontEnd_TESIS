@@ -13,6 +13,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 350,
     borderColor: "#094275",
     textAlign: "left",
+    height: "510px",
+    overflowY: "scroll",
   },
   media: {
     height: 140,
