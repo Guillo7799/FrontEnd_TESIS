@@ -15,16 +15,21 @@ import Link from "next/link";
 import { Link as MuiLink } from "@material-ui/core";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import clsx from "clsx";
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email("Ingrese un email válido")
     .required("Ingrese su email."),
-  password: yup
-    .string()
-    .required("Ingrese su clave")
-    .min(6, "La contraseña debe tener por lo menos 6 caracteres"),
+  password: yup.string().required("Ingrese su contraseña"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +55,15 @@ const Login = () => {
 
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
+  });
+
+  const [values, setValues] = React.useState({
+    amount: "",
+    password: "",
+    password_confirmation: "",
+    weight: "",
+    weightRange: "",
+    showPassword: false,
   });
 
   const onSubmit = async (data) => {
@@ -84,6 +98,19 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={styles.login}>
       <Head>
@@ -121,16 +148,44 @@ const Login = () => {
                 />
               </Grid>
               <Grid xs={12} item>
-                <TextField
-                  id="password"
-                  name="password"
-                  type="password"
-                  label="Contraseña"
-                  inputRef={register}
-                  autoComplete="current-password"
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
-                />
+                <FormControl
+                  className={clsx(classes.textField)}
+                  variant="outlined"
+                >
+                  <InputLabel htmlFor="password">Contraseña *</InputLabel>
+                  <OutlinedInput
+                    id="password"
+                    name="password"
+                    inputRef={register}
+                    type={values.showPassword ? "text" : "password"}
+                    value={values.password}
+                    error={!!errors.password}
+                    helperText={errors.password?.message}
+                    onChange={handleChange("password")}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {values.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    labelWidth={93}
+                  />
+                </FormControl>
+                <Typography
+                  style={{ color: "red", fontSize: "12px", marginLeft: "3%" }}
+                >
+                  {errors.password?.message}
+                </Typography>
               </Grid>
               <Grid xs={12} item className={classes.buttonWrapper}>
                 <Button
