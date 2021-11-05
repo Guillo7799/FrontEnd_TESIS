@@ -130,7 +130,7 @@ const Comment = () => {
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
         swal({
-          title: translateMessage(error.request),
+          title: "Error",
           icon: "error",
           text: "Error, hubo un problema con el servidor",
           button: "Aceptar",
@@ -139,7 +139,7 @@ const Comment = () => {
       } else {
         // Something happened in setting up the request that triggered an Error
         swal({
-          title: translateMessage(error.message),
+          title: "Error",
           icon: "error",
           text: "Error, hubo un problema con la petición al servidor",
           button: "Aceptar",
