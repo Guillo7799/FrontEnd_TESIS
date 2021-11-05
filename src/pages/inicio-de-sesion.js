@@ -83,15 +83,30 @@ const Login = () => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        swal({
+          icon: "error",
+          text: "Error, El servidor devolvió una respuesta errónea",
+          button: "Aceptar",
+        });
         alert(error.response.message);
         console.log(error.response);
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          icon: "error",
+          text: "Error, hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          icon: "error",
+          text: "Error, hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);

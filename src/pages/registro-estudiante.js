@@ -160,9 +160,8 @@ const Register = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title:
-            "No se pudo registrar la cuenta, revise que haya llenado correctamente los campos",
-          text: translateMessage(error.response.data.error),
+          title: "No se pudo registrar la cuenta",
+          text: "Revise que todos los campos estén llenos de forma correcta",
           icon: "error",
           button: "Aceptar",
           timer: "2000",
@@ -173,9 +172,21 @@ const Register = () => {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "La cuenta ya se encuentra registrada",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);

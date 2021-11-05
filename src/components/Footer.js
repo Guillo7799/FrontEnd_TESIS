@@ -41,12 +41,13 @@ function sendEmail(e) {
         console.log(result.text);
       },
       (error) => {
-        console.log(error.text);
         swal({
-          title: "Error: revise que haya llenado todos los campos",
+          title: "Error",
+          text: "Revise que haya llenado todos los campos",
           icon: "error",
           button: "Aceptar",
         });
+        console.log(error.text);
       }
     );
   e.target.reset();

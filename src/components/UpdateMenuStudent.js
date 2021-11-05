@@ -16,6 +16,27 @@ import UpdateIcon from "@material-ui/icons/Update";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import UpdateInfo from "@/components/UpdateStudent";
 import { User } from "@/lib/users";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import translateMessage from "../constants/messages";
+
+const schema = yup.object().shape({
+  location: yup
+    .string()
+    .required(
+      "Ingrese la nueva dirección, recuerde que no debe ser exacta (Referencia)"
+    )
+    .matches(/^[aA-zZ\s]+$/, "Debe ingresar palabras del alfabeto"),
+  description: yup
+    .string()
+    .required("Ingrese la nueva biografía")
+    .matches(/^[aA-zZ\s]+$/, "Debe ingresar palabras del alfabeto"),
+  cellphone: yup
+    .string("De ingresar un número de teléfono")
+    .min(10, "El número debe tener mínimo 10 dígitos")
+    .max(10, "El número debe tener 10 dígitos")
+    .required("Ingrese el nuevo número de teléfono"),
+});
 
 const style = {
   position: "absolute",
@@ -39,7 +60,9 @@ const useStyles = makeStyles((theme) => ({
 export default function BasicModal() {
   const classes = useStyles();
   const { user } = useAuth();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -64,9 +87,9 @@ export default function BasicModal() {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "Datos inválidos",
           icon: "error",
-          text: "No se pudo actualizar los datos",
+          text: "Error, revise que haya llenado todos los campos",
           button: "Aceptar",
         });
         console.log(error.response.data);
@@ -76,9 +99,21 @@ export default function BasicModal() {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);
@@ -160,7 +195,15 @@ export default function BasicModal() {
                             name="location"
                             autoComplete="text"
                           />
-                          <br />
+                          <Typography
+                            style={{
+                              color: "red",
+                              fontSize: "12px",
+                              marginLeft: "3%",
+                            }}
+                          >
+                            {errors.location?.message}
+                          </Typography>
                           <br />
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -175,7 +218,15 @@ export default function BasicModal() {
                             name="description"
                             autoComplete="text"
                           />
-                          <br />
+                          <Typography
+                            style={{
+                              color: "red",
+                              fontSize: "12px",
+                              marginLeft: "3%",
+                            }}
+                          >
+                            {errors.description?.message}
+                          </Typography>
                           <br />
                         </Grid>
                       </Grid>
@@ -192,7 +243,15 @@ export default function BasicModal() {
                           name="cellphone"
                           autoComplete="text"
                         />
-                        <br />
+                        <Typography
+                          style={{
+                            color: "red",
+                            fontSize: "12px",
+                            marginLeft: "3%",
+                          }}
+                        >
+                          {errors.cellphone?.message}
+                        </Typography>
                         <br />
                       </Grid>
                       <br />

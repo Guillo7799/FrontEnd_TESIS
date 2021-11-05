@@ -9,6 +9,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
+import translateMessage from "../constants/messages";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -85,9 +86,21 @@ const Confirm = (props) => {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);
