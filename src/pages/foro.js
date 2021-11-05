@@ -117,8 +117,9 @@ const Comment = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "Dato inválido",
           icon: "error",
+          text: "Error, revise que haya llenado el campo",
           button: "Aceptar",
         });
         console.log(error.response.data);
@@ -128,9 +129,21 @@ const Comment = () => {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: translateMessage(error.request),
+          icon: "error",
+          text: "Error, hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: translateMessage(error.message),
+          icon: "error",
+          text: "Error, hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);

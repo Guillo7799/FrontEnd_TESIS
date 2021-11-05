@@ -18,6 +18,7 @@ import FormControl from "@material-ui/core/FormControl";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
+import translateMessage from "../constants/messages";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import clsx from "clsx";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -173,7 +174,7 @@ const BusinessRegister = () => {
         // that falls out of the range of 2xx
         swal({
           title: "No se pudo registrar la cuenta",
-          text: translateMessage(error.response.data.error),
+          text: "Revise que los campos estén llenados correctamente",
           icon: "error",
           button: "Aceptar",
           timer: "2000",
@@ -184,9 +185,21 @@ const BusinessRegister = () => {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);

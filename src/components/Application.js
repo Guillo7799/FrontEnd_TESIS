@@ -104,9 +104,9 @@ const Application = (props) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "Error",
           icon: "error",
-          text: "Hubo un error, revise que haya llenado bien todos los campos",
+          text: "Revise que haya llenado bien todos los campos",
           button: "Aceptar",
         });
         console.log(error.response.data);
@@ -116,9 +116,21 @@ const Application = (props) => {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
         // http.ClientRequest in node.js
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
         // Something happened in setting up the request that triggered an Error
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);

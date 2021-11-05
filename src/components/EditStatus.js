@@ -74,7 +74,7 @@ const EditStatus = (props) => {
       if (error.response) {
         console.log("error", error.response.data.errors);
         swal({
-          title: translateMessage(error.response.data.error),
+          title: "Error",
           icon: "error",
           text: "No se puede registrar el cambio",
           button: "Aceptar",
@@ -82,8 +82,20 @@ const EditStatus = (props) => {
         Error(error.response.data.errors);
         return Promise.reject(error.response);
       } else if (error.request) {
+        swal({
+          title: "Error",
+          icon: "error",
+          text: "Hubo un problema con el servidor",
+          button: "Aceptar",
+        });
         console.log(error.request);
       } else {
+        swal({
+          title: "Error",
+          icon: "error",
+          text: " Hubo un problema con la petición al servidor",
+          button: "Aceptar",
+        });
         console.log("Error", error.message);
       }
       console.log(error.config);
