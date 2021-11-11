@@ -90,6 +90,9 @@ const MyCurriculum = (props) => {
                 <strong>Experiencia Laboral: </strong>
                 {data.work_experience}
               </p>
+              <a href={data.link} style={{ fontSize: 15 }} target="_blank">
+                <strong>Link de mi Hoja de vida </strong>
+              </a>
             </Grid>
           ))}
         </Grid>

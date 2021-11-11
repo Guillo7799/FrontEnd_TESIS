@@ -32,6 +32,9 @@ const schema = yup.object().shape({
     .required("Ingrese su título de segundo grado (Secundaria)"),
   work_experience: yup.string().required("Ingrese su experiencia laboral"),
   image: yup.string().required("Seleccione su fotode perfil"),
+  link: yup
+    .string()
+    .required("Ingrese un link de carpeta compartida con el curriculum"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -95,6 +98,7 @@ const CurriculumByStudent = (props) => {
       highschool_degree: data.highschool_degree,
       work_experience: data.work_experience,
       image: image,
+      link: data.link,
     };
     const formData = new FormData();
     formData.append("university", newCurriculum.university);
@@ -106,6 +110,7 @@ const CurriculumByStudent = (props) => {
     formData.append("highschool_degree", newCurriculum.highschool_degree);
     formData.append("work_experience", newCurriculum.work_experience);
     formData.append("image", newCurriculum.image);
+    formData.append("link", newCurriculum.link);
 
     console.log("formData", formData);
     console.log("Nuevo Curriculum", newCurriculum);
@@ -345,6 +350,21 @@ const CurriculumByStudent = (props) => {
                 />
                 <Typography color="primary">{errors.image?.message}</Typography>
               </label>
+            </Grid>
+            <br />
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="link"
+                inputRef={register}
+                label="Ingrese link de carpeta compartida del curriculum"
+                name="link"
+                autoComplete="text"
+              />
+              <Typography color="primary">{errors.link?.message}</Typography>
+              <br />
             </Grid>
             <br />
             <Grid container item xs={12} sm={12} spacing={5}>

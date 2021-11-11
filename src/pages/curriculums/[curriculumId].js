@@ -219,6 +219,14 @@ const UserProfile = () => {
                   </Grid>
                 </Grid>
               </Grid>
+              <Grid item xs={12} sm={12} container>
+                <Grid style={{ textAlign: "left", paddingLeft: "5%" }}>
+                  <p style={{ fontSize: 15 }}>¿Obtener curriculum? </p>
+                  <a href={data.link} style={{ fontSize: 15 }} target="_blank">
+                    Ver Curriculum
+                  </a>
+                </Grid>
+              </Grid>
             </Grid>
           ))}
         </Grid>
