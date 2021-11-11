@@ -136,6 +136,10 @@ const NewPublication = () => {
     }
   };
 
+  var hoy = new Date();
+  var fecha =
+    hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+
   return (
     <>
       <Grid container className={classes.main}>
@@ -239,11 +243,19 @@ const NewPublication = () => {
                   required
                   fullWidth
                   id="date"
+                  InputProps={{
+                    inputProps: { min: "2021-11-11", max: "2022-12-31" },
+                  }}
                   inputRef={register}
                   label=""
                   name="date"
                   autoComplete="date"
-                  style={{ width: "100%", minHeight: "15%" }}
+                  style={{
+                    width: "100%",
+                    minHeight: "15%",
+                    height: "50px",
+                    fontSize: "17px",
+                  }}
                 />
                 <Typography color="primary">{errors.date?.message}</Typography>
                 <br />
