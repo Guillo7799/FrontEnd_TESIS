@@ -215,6 +215,21 @@ const UpdateCurriculum = () => {
               <br />
               <br />
             </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                label="Link de carpeta donde está el curriculum"
+                id="link"
+                inputRef={register}
+                defaultValue={data[0].link}
+                name="link"
+                autoComplete="text"
+              />
+              <br />
+              <br />
+            </Grid>
             <br />
             <Grid item xs={12} sm={12}>
               <Button
