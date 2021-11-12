@@ -244,7 +244,7 @@ const NewPublication = () => {
                   fullWidth
                   id="date"
                   InputProps={{
-                    inputProps: { min: "2021-11-11", max: "2022-12-31" },
+                    inputProps: { min: "2021-11-12", max: "2022-12-31" },
                   }}
                   inputRef={register}
                   label=""
