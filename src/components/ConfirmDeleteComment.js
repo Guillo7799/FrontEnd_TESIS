@@ -10,6 +10,8 @@ import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import translateMessage from "../constants/messages";
+import { useRouter } from "next/router";
+import Routes from "src/constants/routes";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -43,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Confirm = (props) => {
   const classes = useStyles();
+  const router = useRouter();
   const { user } = useAuth();
   const { register, handleSubmit } = useForm();
   const [modalStyle] = React.useState(getModalStyle);
@@ -67,6 +70,7 @@ const Confirm = (props) => {
         button: "Aceptar",
         timer: "1500",
       });
+      router.push(Routes.FORO);
       return response;
     } catch (error) {
       if (error.response) {
