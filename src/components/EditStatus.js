@@ -145,6 +145,7 @@ const EditStatus = (props) => {
                   //label="Estado"
                   required
                   fullWidth
+                  defaultValue={props.application.status}
                 >
                   <option value="Pendiente" selected>
                     Pendiente
