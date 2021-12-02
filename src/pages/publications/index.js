@@ -108,7 +108,7 @@ const Publications = () => {
                   </option>
                   <option value="6">Carreras ligadas a la medicina</option>
                   <option value="7">Derecho</option>
-                  <option value="8">Admnistración</option>
+                  <option value="8">Administración</option>
                   <option value="9">Marketing</option>
                   <option value="10">Ingeniería Civil</option>
                   <option value="11">Licenciaturas</option>

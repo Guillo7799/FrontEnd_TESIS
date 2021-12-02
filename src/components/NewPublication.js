@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "@/lib/auth";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "next/link";
@@ -73,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NewPublication = () => {
+  const [startDate, handleStartDateChange] = useState(null);
   const { user } = useAuth();
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
@@ -136,9 +137,17 @@ const NewPublication = () => {
     }
   };
 
-  var hoy = new Date();
-  var fecha =
-    hoy.getDate() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getFullYear();
+  var dtToday = new Date();
+
+  var month = dtToday.getMonth() + 1;
+  var day = dtToday.getDate();
+  var year = dtToday.getFullYear();
+  if (month < 10) month = "0" + month.toString();
+  if (day < 10) day = "0" + day.toString();
+
+  var maxDate = year + "-" + month + "-" + day;
+  var fYear = year + 1;
+  var finishDate = fYear + "-" + month + "-" + day;
 
   return (
     <>
@@ -244,7 +253,7 @@ const NewPublication = () => {
                   fullWidth
                   id="date"
                   InputProps={{
-                    inputProps: { min: "2021-11-12", max: "2022-12-31" },
+                    inputProps: { min: maxDate, max: finishDate },
                   }}
                   inputRef={register}
                   label=""
@@ -322,7 +331,7 @@ const NewPublication = () => {
                   </option>
                   <option value="6">Carreras ligadas a la medicina</option>
                   <option value="7">Derecho</option>
-                  <option value="8">Admnistración</option>
+                  <option value="8">Administración</option>
                   <option value="9">Marketing</option>
                   <option value="10">Ingeniería Civil</option>
                   <option value="11">Licenciaturas</option>
